@@ -1,0 +1,38 @@
+@media only screen and (max-width: 425px) and (min-width: 390px) {
+    .card-box-content {
+        padding: 16px;
+    }
+    .timeline-item {
+        padding: 0 0 0 16px;
+    }
+    .education .list-img {
+        background: #f1eff0;
+        text-align: center;
+    }
+
+    .list-description {
+        padding: 15px;
+    }
+    .experience-date {
+        width: 100%;
+        z-index: 1;
+        background: #f1f1f1;
+        text-align: center;
+        -webkit-transition: .4s;
+        transition: .4s;
+        padding: 46px;
+    }
+
+    .experience .listing-content {
+        width: 260px;
+    }
+
+    .experience .list-description {
+        padding: 12% 6% 0;;
+    }
+
+    .personal_details {
+        width: 100%;
+        padding: 14px 0;
+    }
+}

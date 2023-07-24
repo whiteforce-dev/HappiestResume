@@ -1,0 +1,89 @@
+@media only screen and (min-width: 382px) and (max-width: 560px) {
+    .navbar  {
+        padding-top: 0.5rem !important;
+        padding-bottom: 0.5rem !important;
+        
+    }
+
+    .container  {
+        padding-right: 20px !important;
+        padding-left: 20px !important;
+        text-align: center;
+    }
+
+    .btn-primary {
+        width: auto !important;
+    }
+
+    .slick-slide {
+        margin: 0 4px !important;
+    }
+
+    .mb-5 {
+        margin-bottom: 1rem !important;
+    }
+
+    .slick-slide img {
+        width: 100% !important;
+    }
+
+    .slick-initialized .slick-slide {
+        width: 90px !important;
+    }
+
+    .about-section-img{
+        bottom: 0 !important ;
+        top: 100% !important;
+    }
+
+    .resume-cell{
+        width: 76% !important;
+        margin:auto !important;
+        padding: 0 12px;
+    }
+
+    .flickity-prev-next-button {
+        top: 40% !important; 
+    }
+    .flickity-viewport{
+        height: 100% !important
+    }
+    .flickity-page-dots {
+        top: 80% !important;
+        bottom: 0px !important;
+    }
+
+    #templates {
+        padding-bottom: 0.5rem !important;
+    }
+
+    .resume-maker-guide {
+        padding-top: 0px !important
+    }
+
+    .showcase__video{
+         width: 526px !important;
+    }
+
+    .count-happiest {
+        margin-right: 0px !important;
+        margin-left: 0px !important;
+    }
+
+    .app-download {
+        padding-top: 0px !important;
+    }
+    
+
+    .footer_container {
+        padding: 0 !important;
+    }
+    .footer_ul {
+        margin-left: 0px !important;
+        text-align: center !important
+        ;
+    }
+    .footer_iconbox {
+        margin-left: 0px !important;
+    }
+  }
