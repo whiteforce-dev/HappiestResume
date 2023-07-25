@@ -99,4 +99,43 @@ class FrontendController extends Controller
         return view('dashboard');
 
     }
+    public function forgotpassword()
+    {
+        return view('auth.forgotpassword');
+    }
+    public function updatepassword(Request $request)
+    {
+    // return $request;
+    $request->validate([
+
+        'reg_email' => 'required|max:50',
+
+        'contact' => 'required|max:10|min:10',
+
+        'password' => 'required|max:20|min:6',
+        'cpassword' => 'required|max:20|min:6',
+    ]);
+    // return $request;
+    $emailid=$request->reg_email;
+    // return $emailid;
+    $contact = $request->contact;
+    // $password = $request->password;
+    $password = Hash::make($request->password);
+
+    $user = UserLogin_Model::where(['email' => $emailid, 'contact' => $contact])->first();
+
+    if($user) {
+        // return 1;
+        $user->password = $password;
+        $user->save();
+        // return $user;
+        //  return 1;
+
+
+        return view('auth.login')->with('message', 'Password has been changed successfully');
+    } else {
+        // return 'else';
+        return view('auth.forgotpassword')->with('message', 'Invalid Mobile Number and Email Id');
+    }
+}
 }

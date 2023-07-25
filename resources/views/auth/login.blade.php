@@ -134,7 +134,12 @@
 
                                 <div class="sign-up text-center pt-3">
                                     <p>Don't have an Account<a href="{{ url('sign-up') }}" style="font-weight: 700;">
-                                            Sign-up</a></p>
+                                            Sign-up</a> &nbsp;
+                                    <a href="{{ url('forgotpassword') }}" style="font-weight: 700;">
+                                        Forgot Password</a></p>
+                                </div>
+                                <div class="sign-up text-center pt-3">
+                                    
                                 </div>
                             </div>
                         </form>
