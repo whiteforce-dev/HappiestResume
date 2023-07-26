@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ApiAppController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -27,3 +28,8 @@ Route::Any('/registration', [App\Http\Controllers\FrontendController::class,'reg
 Route::Any('forgotpassword', [App\Http\Controllers\FrontendController::class,'forgotpassword']);
 Route::Post('updatepassword', [App\Http\Controllers\FrontendController::class,'updatepassword']);
 Route::get('/logout', [HomeController::class, 'logout']);
+
+// //////////////////// Api ///////////////////////////////////////
+Route::get('get-Country', [ApiAppController::class, 'getCountry']);
+Route::get('get-states', [ApiAppController::class, 'getState']);
+Route::get('get-cities', [ApiAppController::class, 'getCity']);

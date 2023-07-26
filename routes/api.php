@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ApiAppController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -17,3 +18,10 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+
+Route::get('get-country', [ApiAppController::class,'getCountry']);
+Route::get('get-states/{country_id}', [ApiAppController::class, 'getState']);
+Route::get('get-cities/{state_id}', [ApiAppController::class, 'getCity']);
+Route::get('downloadpdf', [ApiAppController::class,'downloadPDF']);
+Route::get('login-user-detail/{username}/{password}', [ApiAppController::class, 'loginUserDetails']);
