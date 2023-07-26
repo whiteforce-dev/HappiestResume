@@ -1402,6 +1402,7 @@ public function aboutus()
 ";
         return $this->sendResponse($contact, $message);
     }
+
     public function getCountry()
     {
         
@@ -1434,16 +1435,17 @@ public function aboutus()
         ];
         // return view('resume',compact('data'));
         $pdf = PDF::loadView('resume',$data);
-          return $pdf->stream('resume.pdf');
+        //   return $pdf->stream('resume.pdf');
           $pdf->stream('resume.pdf');
         $message = "success";
         return $this->sendResponse($pdf,$message);
     
     }
-    public function loginUserDetails($username,$password)
+    public function loginUserDetails(Request $request)
     {
-             
-        $currentuser= UserLogin_Model::where(['username'=>$username,'password'=>$password])->first();
+             $email = $request->email;
+             $password = $request->password;
+        $currentuser= UserLogin_Model::where(['email'=>$email,'password'=>$password])->first();
         $message = "success";
         return $this->sendResponse($currentuser,$message);
 

@@ -23,5 +23,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('get-country', [ApiAppController::class,'getCountry']);
 Route::get('get-states/{country_id}', [ApiAppController::class, 'getState']);
 Route::get('get-cities/{state_id}', [ApiAppController::class, 'getCity']);
-Route::get('downloadpdf', [ApiAppController::class,'downloadPDF']);
-Route::get('login-user-detail/{username}/{password}', [ApiAppController::class, 'loginUserDetails']);
+Route::post('downloadpdf', [ApiAppController::class,'downloadPDF']);
+Route::post('login-user-detail', [ApiAppController::class, 'loginUserDetails']);
