@@ -43,6 +43,7 @@ use PDF;
 use App\Models\UserLogin_Model;
 // use App\Http\Controllers\PdfController;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class ApiAppController extends Controller
 {
@@ -1444,7 +1445,7 @@ public function aboutus()
     public function loginUserDetails(Request $request)
     {
              $email = $request->email;
-             $password = $request->password;
+             $password = Hash::make($request->password);
         $currentuser= UserLogin_Model::where(['email'=>$email,'password'=>$password])->first();
         $message = "success";
         return $this->sendResponse($currentuser,$message);

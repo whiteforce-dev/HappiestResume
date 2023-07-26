@@ -79,7 +79,7 @@
                             <!-- mail id -->
                             <div class="col-sm-12 col-md-12 col-lg-12 py-2">
                                 <label class="pb-2 sign-in-email-label" for="email">Email</label>
-                                <input type="email" class="form-control" id="materialRegisterFormEmail" name="email"
+                                <input type="email" class="form-control" id="Email" name="email"
                                     placeholder="Enter your email" required autocomplete="off" />
                             </div>
 
@@ -87,10 +87,15 @@
                             <div class="col-sm-12 col-md-12 col-lg-12 py-2">
                                 <label class="pb-2 sign-in-password-label" for="password">Password</label>
 
-                                <input type="password" class="form-control" id="materialRegisterFormPassword"
+                                <input type="password" class="form-control" id="Password"
                                     name="password" placeholder="Enter your password" required autocomplete="off" />
                             </div>
-
+                            {{-- <div class="form-group mb-4"> --}}
+                                <input type="checkbox" onclick="myFunction()">&nbsp;<label style="margin-right:133px" for="showpassword">Show Password</label>
+                              
+                               <small style="float:right !important;" ><a href="{{ url('forgotpassword') }}" style="font-weight: 700;">
+                                    Forgot Password</a></small>
+                            {{-- </div> --}}
                             <div class="row py-3 align-items-center">
                             
                                 
@@ -135,8 +140,9 @@
                                 <div class="sign-up text-center pt-3">
                                     <p>Don't have an Account<a href="{{ url('sign-up') }}" style="font-weight: 700;">
                                             Sign-up</a> &nbsp;
-                                    <a href="{{ url('forgotpassword') }}" style="font-weight: 700;">
-                                        Forgot Password</a></p>
+                                    {{-- <a href="{{ url('forgotpassword') }}" style="font-weight: 700;">
+                                        Forgot Password</a> --}}
+                                    </p>
                                 </div>
                                 <div class="sign-up text-center pt-3">
                                     
@@ -228,4 +234,20 @@
         </div>
     </div>
 </div>
+<script>
+    $( document ).ready(function() {
+        $('#Password').focus();
+        $('#Email').focus();
+    });
+    </script>
+    <script>
+        function myFunction() {
+          var x = document.getElementById("Password");
+          if (x.type === "password") {
+            x.type = "text";
+          } else {
+            x.type = "password";
+          }
+        }
+        </script>
 @endsection
