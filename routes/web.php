@@ -22,8 +22,8 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('sign-up', [App\Http\Controllers\FrontendController::class,'sign_up'])->name('sign-up');
-Route::Any('/registration', [App\Http\Controllers\FrontendController::class,'registration']);
-Route::Any('forgotpassword', [App\Http\Controllers\FrontendController::class,'forgotpassword']);
-Route::Post('updatepassword', [App\Http\Controllers\FrontendController::class,'updatepassword']);
+Route::get('sign-up', [App\Http\Controllers\FrontendController::class, 'sign_up'])->name('sign-up');
+Route::Any('/registration', [App\Http\Controllers\FrontendController::class, 'registration']);
+Route::Any('forgotpassword', [App\Http\Controllers\FrontendController::class, 'forgotpassword']);
+Route::Post('updatepassword', [App\Http\Controllers\FrontendController::class, 'updatepassword']);
 Route::get('/logout', [HomeController::class, 'logout']);

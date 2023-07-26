@@ -13,8 +13,6 @@ class FrontendController extends Controller
 {
     public function sign_up(Request $request)
     {
-        
-
         $data = (object) [
             'page' => 'simple',
             'jid' => '0',
@@ -22,8 +20,8 @@ class FrontendController extends Controller
         ];
         $request->session()->put('redirect-user', $data);
         $country_code = CountryCode::get();
- 
-       return view('auth.signup', compact('country_code'));
+
+        return view('auth.signup', compact('country_code'));
     }
     public function getResumeCodeForCandiate($name)
     {
@@ -70,7 +68,7 @@ class FrontendController extends Controller
         $regiter_code->user_code = $resume_code;
         $regiter_code->save();
 
-        $lastname = !empty(request('last_name')) ? ' '.request('last_name') : '';
+        $lastname = !empty(request('last_name')) ? ' ' . request('last_name') : '';
         $registration = new RegistrationModel();
         $registration->name = request('name') . '' . $lastname;
         $registration->email = request('reg_email');
@@ -84,18 +82,18 @@ class FrontendController extends Controller
         $registration->candidate_type = request('candidate_type');
         $registration->industry = request('industry');
         $registration->save();
-        
+
         $user = new UserLogin_Model();
         $user->name = request('name') . '' . $lastname;
         $user->email = request('reg_email');
         $user->contact = request('contact');
         $user->password = Hash::make(request('password'));
         $user->save();
-        // return 'registration successful'; 
-        
-        
-        
-        
+        // return 'registration successful';
+
+
+
+
         return view('dashboard');
 
     }
@@ -105,37 +103,37 @@ class FrontendController extends Controller
     }
     public function updatepassword(Request $request)
     {
-    // return $request;
-    $request->validate([
+        // return $request;
+        $request->validate([
 
-        'reg_email' => 'required|max:50',
+            'reg_email' => 'required|max:50',
 
-        'contact' => 'required|max:10|min:10',
+            'contact' => 'required|max:10|min:10',
 
-        'password' => 'required|max:20|min:6',
-        'cpassword' => 'required|max:20|min:6',
-    ]);
-    // return $request;
-    $emailid=$request->reg_email;
-    // return $emailid;
-    $contact = $request->contact;
-    // $password = $request->password;
-    $password = Hash::make($request->password);
+            'password' => 'required|max:20|min:6',
+            'cpassword' => 'required|max:20|min:6',
+        ]);
+        // return $request;
+        $emailid = $request->reg_email;
+        // return $emailid;
+        $contact = $request->contact;
+        // $password = $request->password;
+        $password = Hash::make($request->password);
 
-    $user = UserLogin_Model::where(['email' => $emailid, 'contact' => $contact])->first();
+        $user = UserLogin_Model::where(['email' => $emailid, 'contact' => $contact])->first();
 
-    if($user) {
-        // return 1;
-        $user->password = $password;
-        $user->save();
-        // return $user;
-        //  return 1;
+        if ($user) {
+            // return 1;
+            $user->password = $password;
+            $user->save();
+            // return $user;
+            //  return 1;
 
 
-        return view('auth.login')->with('message', 'Password has been changed successfully');
-    } else {
-        // return 'else';
-        return view('auth.forgotpassword')->with('message', 'Invalid Mobile Number and Email Id');
+            return view('auth.login')->with('message', 'Password has been changed successfully');
+        } else {
+            // return 'else';
+            return view('auth.forgotpassword')->with('message', 'Invalid Mobile Number and Email Id');
+        }
     }
-}
 }
