@@ -1444,12 +1444,47 @@ public function aboutus()
     }
     public function loginUserDetails(Request $request)
     {
-             $email = $request->email;
-             $password = Hash::make($request->password);
-        $currentuser= UserLogin_Model::where(['email'=>$email,'password'=>$password])->first();
-        $message = "success";
-        return $this->sendResponse($currentuser,$message);
+
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
+
+        $credentials = $request->only('email', 'password');
+        if (Auth::attempt($credentials)) {
+
+            // Get the authenticated user details
+            $currentUser = Auth::user();
+            $userWithoutPassword = collect($currentUser)->except(['password']);
+
+            return response()->json(['message' => 'Login successful', 'user' => $userWithoutPassword]);
+        } else {
+            // Authentication failed, user credentials do not match
+            return response()->json(['message' => 'Invalid credentials'], 401);
+        }
+
+
+
+
+        //      $email = $request->email;
+        //      $password = Hash::make($request->password);
+        // $currentuser= UserLogin_Model::where(['email'=>$email,'password'=>$password])->first();
+        // $message = "success";
+        // return $this->sendResponse($currentuser,$message);
+
 
     }
+
+    public function saveData(Request $request)
+    {   
+        $data = $request ?? '';
+        $loggedInUser= Auth::user();
+        $loggedInUserData = UserLogin_Model::where(['id'=> $loggedInUser->id])->first();
+        $loggedInUserData->resume_data = $data ?? '';
+        $loggedInUserData->save();
+        $message = "success";
+        return response()->json(['message' => 'save data'], 200);
+        }
+    
 
 }

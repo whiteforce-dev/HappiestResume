@@ -24,4 +24,5 @@ Route::get('get-country', [ApiAppController::class,'getCountry']);
 Route::get('get-states/{country_id}', [ApiAppController::class, 'getState']);
 Route::get('get-cities/{state_id}', [ApiAppController::class, 'getCity']);
 Route::post('downloadpdf', [ApiAppController::class,'downloadPDF']);
+Route::post('save-data', [ApiAppController::class,'saveData']);
 Route::post('login-user-detail', [ApiAppController::class, 'loginUserDetails']);

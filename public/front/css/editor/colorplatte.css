@@ -1,0 +1,44 @@
+.bootstrap-colorpalette {
+    white-space: normal;
+    line-height: 1;
+}
+
+.bootstrap-colorpalette div {
+    line-height:0;
+}
+
+.bootstrap-colorpalette .btn-color {
+    width: 12.4%;
+    height: 17px;
+    border: 1px solid #ffffffff;
+    margin: 0;
+    padding: 0;
+}
+
+.bootstrap-colorpalette .btn-color:hover {
+    border: 1px solid #000;
+}
+.color_plate_box {
+    width: 96% !important;
+    top: 35px !important;
+    left: 2%;
+    border: none;
+    position: absolute;
+    margin: 0px;
+    padding: 5px 2% 8px .5% !important;
+    color: #666666;
+    text-shadow: 1px 1px #e2e2e2;
+    font-size: 14px;
+    display: none;
+    transition: .5s all;
+    float: left;
+}
+.color_plate_box li {
+    width: 50%;
+    float: left;
+    padding-left: 2%;
+}
+.txt-tool-heading .btn-group
+{
+    position: initial !important;
+}

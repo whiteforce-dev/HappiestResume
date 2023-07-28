@@ -2,15 +2,129 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AboutUsModel;
+use App\Models\Benefit;
+use App\Models\Company;
+use App\Models\ContactModel;
+use App\Models\Count;
 use App\Models\CountryCode;
+use App\Models\HowItWork;
+use App\Models\Job;
 use App\Models\RegistrationModel;
 use App\Models\ResumeCodeModel;
+use App\Models\ResumeSliderModel;
+use App\Models\TestimonialsModel;
 use App\Models\UserLogin_Model;
+use App\Models\WebsiteVisitor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
 class FrontendController extends Controller
 {
+    public function home()
+    {
+
+        #visitors code 
+
+        //  $websiteurl = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+
+        //  $ip= $_SERVER['REMOTE_ADDR'];
+
+        //  $Ipadress= $ip;
+        // function isMobileDevice() {
+        //     return preg_match("/(android|avantgo|blackberry|bolt|boost|cricket|docomo|fone|hiptop|mini|mobi|palm|phone|pie|tablet|up\.browser|up\.link|webos|wos)/i", $_SERVER["HTTP_USER_AGENT"]);
+        // }
+        // if(isMobileDevice()){
+        //    // echo "It is a mobile device";
+        //   $device="mobile device";
+        // }
+        // else {
+        //   $device="Desktop device";
+        //    // echo "It is desktop or computer device";
+        // }
+        // $useragent = $_SERVER['HTTP_USER_AGENT'];
+
+        // $referer = $_SERVER['HTTP_REFERER'] ?? null;
+        // $url = "http://white-force.com/chatbot_admin/api/visitordata";
+        // $data=['ipaddress'=>$Ipadress,
+        // 'device'=>$device,
+        // 'useragent'=>$useragent,
+        // 'refferer_url'=>$referer,
+        // 'websiteurl'=>$websiteurl
+        // ];
+        // $curl = curl_init($url);
+
+        // curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+
+        // curl_setopt($curl, CURLOPT_POST, true);
+
+        // curl_setopt($curl, CURLOPT_POSTFIELDS,($data));
+
+        // $response = curl_exec($curl);
+
+        // echo $response;
+
+        // curl_close($curl);
+
+        if (session('user')) {
+            return redirect('user-dashboard');
+        } else {
+            $contactus = ContactModel::where(['is_del' => 0])->first();
+            $aboutus = AboutUsModel::where(['is_del' => 0])->first();
+            $registerations = UserLogin_Model::where(['is_active' => 1])->orderBy('id', 'desc')->take(2)->get();
+            $counts = Count::where(['is_active' => 1])->limit(4)->get();
+            $howItWorks = HowItWork::where(['is_active' => 1])->orderBy('id', 'desc')->limit(4)->get();
+
+            $resumeSliderModel = ResumeSliderModel::where(['is_del' => 0, 'is_active' => 1])->get();
+
+            $benefits = Benefit::where('is_active', 1)->get();
+
+            $testimonials_active = TestimonialsModel::where(['is_active' => 1])->orderBy('id', 'desc')->take(6)->get();
+
+            $total_jobs = Job::count();
+            $tjobs = 10000 + $total_jobs;
+
+            $total_register = RegistrationModel::count();
+            $tregister = 100000 + $total_register;
+
+            $total_company = Company::count();
+            $tcompany = 1000 + $total_company;
+
+            $visitor = WebsiteVisitor::where('date', date('Y-m-d'))->first();
+            if ($visitor != '') {
+                $visitor->count = $visitor->count + 1;
+                $visitor->save();
+            } else {
+                $visit = new WebsiteVisitor();
+                $visit->count = 1;
+                $visit->date = date('Y-m-d');
+                $visit->save();
+            }
+            //dd($testimonials_active);
+            return view('frontend.newHome')->with([
+                'registerations' => $registerations,
+                'contactus' => $contactus,
+                'aboutus' => $aboutus,
+                'testimonials_active' => $testimonials_active,
+                'counts' => $counts,
+                'howItWorks' => $howItWorks,
+                'resumeSliderModel' => $resumeSliderModel,
+                'benefits' => $benefits,
+                'total_jobs' => $tjobs,
+                'total_register' => $tregister,
+                'total_company' => $tcompany,
+            ]);
+        }
+    }
+
+
+
+
+
+
+
+
+
     public function sign_up(Request $request)
     {
         
