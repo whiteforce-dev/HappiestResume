@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1">
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 
-    <link rel="stylesheet" type="text/css" href="{{ url('public/assets') . '/' }}dist/jquery.convform.css">
-    <link href="{{ url('public/assets') . '/' }}chatBot.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="{{ url('assets/dist/jquery.convform.css') }}">
+    <link href="{{ url('assets/chatBot.css')}}" rel="stylesheet" type="text/css" />
 
 </head>
 
@@ -168,9 +168,9 @@
         </div>
     </section>
 
-    <script type="text/javascript" src="{{ url('public/assets') . '/' }}jquery-1.12.3.min.js"></script>
+    <script type="text/javascript" src="{{ url('assets/jquery-1.12.3.min.js')}}"></script>
 
-    <script type="text/javascript" src="{{ url('public/assets') . '/' }}dist/jquery.convform.js"></script>
+    <script type="text/javascript" src="{{ url('assets/dist/jquery.convform.js') }}"></script>
     <script>
         function google(stateWrapper, ready) {
             window.open("https://happiestresume.com/exclusive-jobs");

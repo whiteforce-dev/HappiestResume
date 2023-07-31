@@ -1486,5 +1486,16 @@ public function aboutus()
         return response()->json(['message' => 'save data'], 200);
         }
     
+    public function saveUserData(Request $request)
+    {   
+        $data = $request ?? '';
+        $loggedInUser= Auth::user();
+        $loggedInUserData = UserLogin_Model::where(['id'=> $loggedInUser->id])->first();
+        $loggedInUserData->user_data = $data ?? '';
+        $loggedInUserData->save();
+        $message = "success";
+        return response()->json(['message' => 'save data'], 200);
+        }
+    
 
 }

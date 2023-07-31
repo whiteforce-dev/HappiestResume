@@ -6,6 +6,7 @@ use App\Models\AboutUsModel;
 use App\Models\Benefit;
 use App\Models\Company;
 use App\Models\ContactModel;
+use App\Models\ContactQuery;
 use App\Models\Count;
 use App\Models\CountryCode;
 use App\Models\HowItWork;
@@ -252,4 +253,27 @@ class FrontendController extends Controller
         return view('auth.forgotpassword')->with('message', 'Invalid Mobile Number and Email Id');
     }
 }
+public function save_contact_query(Request $request )
+    {
+        // return $request;
+        $contact = new ContactQuery();
+        $contact->name = request('name');
+        $contact->email = request('email');
+        $contact->contact = request('contact');
+        $contact->industry = request('industry');
+        $contact->message = request('message');
+        $contact->save();
+        // $industries= Industry::get();
+        $job = Job::orderBy('id', 'desc')->where('industry_type', $contact->industry)->limit(5)->get();
+
+        $content = [
+            'name' => request('name'),
+            'email' => request('email'),
+            'job' => $job
+        ];
+
+        //dispatch(new Sendshortlist($content));
+
+        return back()->with('success', "Your query has been sent w'll get back to you soon...!");
+    }
 }

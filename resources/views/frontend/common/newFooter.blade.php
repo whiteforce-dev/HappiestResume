@@ -179,12 +179,13 @@ $aboutus = \App\Models\AboutUsModel::where(['is_del' => 0])->first();
 <script>
 
 function contactUs() {
-        var recaptcha = $("#g-recaptcha-response").val();
-        if (recaptcha === "") {
-            event.preventDefault();
-            alert("Please check the recaptcha");
-            return false;
-        }
+    // alert('aaya');
+        // var recaptcha = $("#g-recaptcha-response").val();
+        // if (recaptcha === "") {
+        //     event.preventDefault();
+        //     alert("Please check the recaptcha");
+        //     return false;
+        // }
         var name = $('#name_q').val();
         var email = $('#email_q').val();
         var contact = $('#contact_q').val();
@@ -195,7 +196,9 @@ function contactUs() {
         } else if (email.trim() == '') {
             $('#email_q').focus();
         } else {
-            $.post('{{URL::to('save_contact_query ') }}', {
+            $.post('{
+                {URL::to('save_contact_query ') }}', {
+                // alert('aya');
                     name: name,
                     email: email,
                     contact: contact,
@@ -214,12 +217,10 @@ function contactUs() {
                         fixed: true,
                         timeout: 7000
                     });
-                }
+                } 
             );
         }
     }
-
-
     function print_statement() {
         var divToPrint = document.getElementById('append_resume');
 

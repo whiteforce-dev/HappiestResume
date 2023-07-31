@@ -30,6 +30,7 @@ Route::Any('/registration', [App\Http\Controllers\FrontendController::class,'reg
 Route::Any('forgotpassword', [App\Http\Controllers\FrontendController::class,'forgotpassword']);
 Route::Post('updatepassword', [App\Http\Controllers\FrontendController::class,'updatepassword']);
 Route::get('/', [FrontendController::class,'home']);
+Route::any('save_contact_query', [FrontendController::class,'save_contact_query']);
 Route::get('/logout', [HomeController::class, 'logout']);
 
 ////////////////// //////////////////////Api ///////////////////////////////////////////
