@@ -1476,26 +1476,37 @@ public function aboutus()
     }
 
     public function saveData(Request $request)
-    {   
-        $data = $request ?? '';
+    {
+    if($request) {
+        $data = $request ;
         $loggedInUser= Auth::user();
         $loggedInUserData = UserLogin_Model::where(['id'=> $loggedInUser->id])->first();
-        $loggedInUserData->resume_data = $data ?? '';
+        $loggedInUserData->resume_data = $data ;
         $loggedInUserData->save();
         $message = "success";
         return response()->json(['message' => 'save data'], 200);
-        }
+    } else {
+        $message = "error";
+        return response()->json(['message' => 'Null data'], 500);
+    }
+}
     
     public function saveUserData(Request $request)
-    {   
-        $data = $request ?? '';
+    {
+        if($request) 
+        {
+        $data = $request ;
         $loggedInUser= Auth::user();
         $loggedInUserData = UserLogin_Model::where(['id'=> $loggedInUser->id])->first();
-        $loggedInUserData->user_data = $data ?? '';
+        $loggedInUserData->user_data = $data;
         $loggedInUserData->save();
         $message = "success";
         return response()->json(['message' => 'save data'], 200);
-        }
-    
+    } else {
+        $message = "error";
+        return response()->json(['message' => 'Null Data'], 500);
 
+    }
+
+  }
 }
