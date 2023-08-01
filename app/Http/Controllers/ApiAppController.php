@@ -1428,15 +1428,11 @@ public function aboutus()
     {
         
         $data = [
-            'imagePath'    => url('admin\images\logo.png'),
-            'name'         => 'John Doe',
-            'address'      => 'USA',
-            'mobileNumber' => '000000000',
-            'email'        => 'john.doe@email.com'
+            'data'    => $request->resume ,
         ];
         // return view('resume',compact('data'));
         $pdf = PDF::loadView('resume',$data);
-        //   return $pdf->stream('resume.pdf');
+          return $pdf->stream('resume.pdf');
           $pdf->stream('resume.pdf');
         $message = "success";
         return $this->sendResponse($pdf,$message);

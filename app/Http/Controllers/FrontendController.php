@@ -264,16 +264,16 @@ public function save_contact_query(Request $request )
         $contact->message = request('message');
         $contact->save();
         // $industries= Industry::get();
-        $job = Job::orderBy('id', 'desc')->where('industry_type', $contact->industry)->limit(5)->get();
+        // $job = Job::orderBy('id', 'desc')->where('industry_type', $contact->industry)->get();
 
-        $content = [
-            'name' => request('name'),
-            'email' => request('email'),
-            'job' => $job
-        ];
+        // $content = [
+        //     'name' => request('name'),
+        //     'email' => request('email'),
+        //     'job' => $job
+        // ];
 
         //dispatch(new Sendshortlist($content));
-
-        return back()->with('success', "Your query has been sent w'll get back to you soon...!");
+// return  $contact;
+        return 1;
     }
 }

@@ -135,6 +135,7 @@ $aboutus = \App\Models\AboutUsModel::where(['is_del' => 0])->first();
             @php
             $industries= App\Models\Industry::get();
             @endphp
+           
             <div class="col-lg-3 col-sm-6">
                 <div class="link_box bottom_contact">
                     <div class="border-line small_border"></div>
@@ -157,7 +158,6 @@ $aboutus = \App\Models\AboutUsModel::where(['is_del' => 0])->first();
                     <button class="btn btn-sm btn-warning col-md-12" type="button" onclick="contactUs()">Send</button>
                 </div>
             </div>
-
         </div>
     </div>
 
@@ -178,48 +178,39 @@ $aboutus = \App\Models\AboutUsModel::where(['is_del' => 0])->first();
 </footer>
 <script>
 
-function contactUs() {
-    // alert('aaya');
-        // var recaptcha = $("#g-recaptcha-response").val();
-        // if (recaptcha === "") {
-        //     event.preventDefault();
-        //     alert("Please check the recaptcha");
-        //     return false;
-        // }
-        var name = $('#name_q').val();
+ function contactUs() {
+//    alert('aaya');
+        var name = document.getElementById('name_q').value;
+           
         var email = $('#email_q').val();
         var contact = $('#contact_q').val();
+        // alert(contact);
         var industry = $('#industry').val();
         var message = $('#message_q').val();
-        if (name.trim() == '') {
-            $('#name_q').focus();
-        } else if (email.trim() == '') {
-            $('#email_q').focus();
-        } else {
-            $.post('{
-                {URL::to('save_contact_query ') }}', {
-                // alert('aya');
-                    name: name,
-                    email: email,
-                    contact: contact,
-                    industry: industry,
-                    message: message,
+        
+            $.ajax({
+                url:"{{ url('save_contact_query') }}",
+                type:"POST",
+                data: {
+                      name: name,
+                      email: email,
+                      contact: contact,
+                      industry: industry,
+                      message: message,
+                      _token : "{{ csrf_token() }}",
+                  },
+                success:function(response){
+                    console.log(response);
+                    if(response==1){
+                        alert('Your query has been sent wll get back to you soon...!');
+                        location.reload();
+                    }
                 },
-                function (data) {
-                    $('#name_q').val('');
-                    $('#email_q').val('');
-                    $('#contact_q').val('');
-                    $('#industry').val('');
-                    $('#message_q').val('');
-                    SnackBar({
-                        message: "Your query has been sent w'll get back to you soon...!",
-                        status: "success",
-                        fixed: true,
-                        timeout: 7000
-                    });
-                } 
-            );
-        }
+                error:function(error){
+                    console.log(error);
+                }
+            });
+        // }
     }
     function print_statement() {
         var divToPrint = document.getElementById('append_resume');
