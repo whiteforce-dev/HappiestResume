@@ -804,7 +804,7 @@
 
 
                                                 <div style="margin-top:40px">
-                                                    <img src="{{ asset('public/assets/img/office-5.jpg') }}"
+                                                    <img src="{{ asset('assets/img/office-5.jpg') }}"
                                                         style="background-size: cover;background-position: center center;
                                                 background-repeat: no-repeat;">
                                                 </div>

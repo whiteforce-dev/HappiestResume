@@ -1,0 +1,136 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+ 
+  .main-blog{
+    width: 100% !important;
+  }
+  .col-md-4{
+    width: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+  }
+  .btn-sm{
+    border: 1px solid rgb(213, 224, 247);
+    background-color: rgb(219, 225, 243);
+  }
+  
+  .sub-blog{
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center;
+    justify-content: center;
+    margin-top: -80px !important;
+  }
+  .col-md-8{
+    width: 89%;
+    /* border: 2px solid black; */
+  }
+  .swiper-slide{
+    width: 359px !important;
+    margin-top: 10px !important;
+    border-radius: 16px;
+    border: 1px solid #E0E6F7;
+    overflow: hidden;
+    margin-bottom: 0px;
+    
+    margin-right:22px !important;
+    background: #ffffff;
+  }
+  .swiper-slide:hover{
+    border:1px solid #B4C0E0;
+    box-shadow: 0px 10px 20px -5px rgba(10, 42, 105, 0.06);
+        transform: translateY(-3px);
+        transition: all 0.25s cubic-bezier(0.02, 0.01, 0.47, 1);
+  }
+  .only-img{
+margin-top: -25px !important;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+  }
+  .only-img img{
+    width: 93%;
+    border-radius: 15px;
+    margin: 10px auto !important;
+  }
+  .event{
+    width: 90%;
+  }
+  .event button{
+  padding: 1px 10px;
+    background: #E0E6F7;
+    border: none;
+    border-radius: 5px;
+    color: #3C65F5;
+    min-width: 42px;
+    font-size: 12px;
+    line-height: 18px;
+    font-weight: 500;
+}
+.only-para{
+    width: 100%;
+}
+.only-para h2{
+    width: 90%;
+    color: #05264E;
+    font-weight: 600;
+    font-size: 20px;
+    margin: 15px auto;
+}
+.only-para p{
+    font-size: 15px;
+    width: 90%;
+    line-height: 1.5;
+    margin: 0 auto;
+    color:  #4F5E64;
+}
+.admin{
+    width: 95%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 25px auto;
+    margin-bottom: 10px;
+}
+.profile{
+    width: 15%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.profile img{
+    
+    border-radius: 50%;
+}
+.month{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.month span{
+    color: #475566;
+    font-size: 0.85rem;
+    font-weight: 600;
+    /* text-align: left; */
+    width: 90%;
+}
+.month p{
+    color: #66789C;
+    font-size: 0.8rem;
+}
+.time{
+    color: #66789C;
+    width: 35%;
+    font-size: 0.75rem;
+    display: flex;
+    align-items: end;
+    justify-content: center;
+    margin-bottom: -20px !important;
+}

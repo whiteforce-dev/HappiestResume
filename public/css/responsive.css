@@ -1,0 +1,1040 @@
+@media only screen and (max-width: 300px) {
+
+    .input-sec {
+        flex-direction: column;
+        padding-left: 0;
+    } 
+    .what {
+        width: 95%;
+        padding-left: 10px;
+          }
+
+          .left-icon input {
+            width: 90%;
+            margin: 0 auto;
+            height: 42px;
+        }
+        
+        .text-holder {
+            height: 42px;
+            font-size: 11px;
+        }
+        .what label {
+           font-size: 0.75rem;
+        }
+        .where label {
+            font-size: 0.75rem;
+         }
+         .where{
+            width: 95%;
+            padding-left: 10px;
+         }
+         .find-btn {
+            width: 90%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 10px auto;
+            padding-right: 10px;
+        }
+        .find-boost {
+            width: 110px;
+            height: 40px;
+            background: #ff8a00;
+            border-color: #ff8a00;
+            color: white;
+            font-size: 0.8rem;
+            margin-top: 0;
+            cursor: pointer;
+        }
+        .keep-card h1 {
+            font-size: 1.2rem;
+        }
+        .keep-card h1 i{
+            font-size: 1.1rem !important;
+    }
+        .fa-search{
+                font-size: 15px;
+}
+.container-card {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+}
+.box-card {
+    width: 97%;
+}
+.left-top img {
+    width: 38px;
+}
+.card-name-first p{
+    font-size: 12px !important;
+    line-height: 16px !important;
+}
+
+.card-name-first{
+  margin-top: 0px;
+}
+.card-name-first span {
+    width: 84%;
+    margin: 0 auto;
+    margin-top: 5px !important;
+    font-weight: 400;
+    color: #a0abb8;
+    font-size: 11px !important;
+    line-height: 14px !important;
+    font-family: "Plus Jakarta Sans", sans-serif;
+}
+.mid-box h2 {
+    font-size: 0.9rem !important;
+}
+.right-top span {
+    font-size: 0.7rem;
+}
+.right-top p {
+    font-size: 0.7rem;
+}
+.w-full p {
+    font-size: 0.8rem;
+}
+.applied .price {
+    font-size: 0.9rem !important;
+}
+.amount .muted {
+    font-size: 0.8rem !important;
+}
+.app-bttn a button {
+    font-size: 0.75rem !important;
+    height: 30px;
+}
+
+.applied {
+    margin-top: 8px !important;
+}
+.demo-cont {
+     height: 35vh;
+}
+.fnc-slider {
+     height: 35vh;
+}
+.fnc-slide__heading-line {
+    font-size: 19px;
+}
+.fnc-slide__action-btn {
+    position: relative;
+    margin-left: 0px;
+    padding: 5px 15px;
+    font-size: 11px;
+}
+.fnc-slide__action-btn span {
+    position: absolute;
+    left: 43%;
+    top: -10%;
+}
+.fnc-slide__heading-line {
+ font-size: 1.3rem;
+    color: #fff;
+    word-spacing: 2px;
+}
+.fnc-slide__content {
+    z-index: 2;
+    position: absolute;
+    left: 25%;
+    top: 34%;
+}
+.fnc-slide__action-btn span:before {
+   display: none;
+}
+ /* International Section Start */
+
+ .up-location h1{
+    font-size: 1rem;
+ }
+ .up-location h1 i{
+    font-size: 0.9rem !important;
+ }
+ .up-location hr{
+    width: 60% !important;
+ }
+ .up-location p{
+    font-size: 0.9rem;
+ }
+ .lower-one{
+    flex-direction: column;
+ }
+ .denmark{
+    width: 90%;
+ }
+ .france {
+    width: 90%;
+ }
+ .germany{
+    width: 90%;
+ }
+ .lower-two{
+    flex-direction: column;
+ }
+.country h3{
+font-size: 0.9rem;
+}
+.companies p{
+    font-size: 0.7rem;
+}
+.companies span{
+    font-size: 0.7rem;
+}
+.Holland{
+    width: 90%;
+}
+.London{
+    width: 90%;
+}
+.usa{
+    width: 90%;
+}
+ /* International Section End  */
+
+
+} 
+
+
+@media only screen and (min-width: 300px) and (max-width: 500px) {
+
+    .input-sec {
+        width: 80%;
+        flex-direction: column;
+        padding-left: 0;
+    } 
+    .what {
+        width: 95%;
+        padding-left: 10px;
+          }
+
+          .left-icon input {
+            width: 90%;
+            margin: 0 auto;
+            height: 42px;
+        }
+        
+        .text-holder {
+            height: 42px;
+            font-size: 13.5px;
+        }
+        .what label {
+           font-size: 0.95rem;
+        }
+        .where label {
+            font-size: 0.95rem;
+         }
+         .where{
+            width: 95%;
+            padding-left: 10px;
+         }
+         .find-btn {
+            width: 90%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 10px auto;
+            padding-right: 10px;
+        }
+        .find-boost {
+            width: 50%;
+            height: 40px;
+            background: #ff8a00;
+            border-color: #ff8a00;
+            color: white;
+            font-size: 0.9rem;
+            margin-top: 0;
+            cursor: pointer;
+        }
+        .keep-card h1 {
+            font-size: 1.5rem;
+        }
+        .keep-card h1 i{
+            font-size: 1.35rem !important;
+    }
+        .fa-search{
+                font-size: 15px;
+}
+.container-card {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+}
+.box-card {
+    width: 97%;
+}
+.left-top img {
+    width: 55px;
+}
+.card-name-first p{
+    font-size: 17px !important;
+    line-height: 16px !important;
+}
+
+.card-name-first{
+  margin-top: 0px;
+}
+.card-name-first span {
+    width: 84%;
+    /* margin: 0 0; */
+    margin-top: 7px !important;
+    font-weight: 400;
+    color: #a0abb8;
+    font-size: 14.5px !important;
+    line-height: 14px !important;
+    font-family: "Plus Jakarta Sans", sans-serif;
+}
+.mid-box h2 {
+    font-size: 1rem !important;
+}
+.right-top span {
+    font-size: 0.85rem;
+}
+.right-top p {
+    font-size: 0.85rem;
+}
+.w-full p {
+    font-size: 0.95rem;
+}
+.applied .price {
+    font-size: 1rem !important;
+}
+.amount .muted {
+    font-size: 0.95rem !important;
+}
+.app-bttn a button {
+    font-size: 0.9rem !important;
+    height: 35px;
+    padding-top: 3px;
+}
+
+.applied {
+    margin-top: 8px !important;
+}
+.demo-cont {
+     height: 37vh;
+}
+.fnc-slider {
+     height: 37vh;
+}
+.fnc-slide__heading-line {
+    font-size: 19px;
+}
+.fnc-slide__action-btn {
+    position: relative;
+    margin-left: 0px;
+    padding: 5px 15px;
+    font-size: 11px;
+}
+.fnc-slide__action-btn span {
+    position: absolute;
+    left: 43%;
+    top: -10%;
+    font-size: 1.1rem;
+}
+.fnc-slide__heading-line {
+ font-size: 2rem;
+    color: #fff;
+    word-spacing: 2px;
+}
+.fnc-slide__content {
+    z-index: 2;
+    position: absolute;
+    left: 25%;
+    top: 54%;
+}
+.fnc-slide__action-btn span:before {
+   display: none;
+}
+ /* International Section Start */
+
+ .up-location h1{
+    font-size: 1.4rem;
+ }
+ .up-location h1 i{
+    font-size: 1rem !important;
+ }
+ .up-location hr{
+    width: 52% !important;
+ }
+ .up-location p{
+    font-size: 0.9rem;
+ }
+ .lower-one{
+    flex-direction: column;
+ }
+ .denmark{
+    width: 90%;
+ }
+ .france {
+    width: 90%;
+ }
+ .germany{
+    width: 90%;
+ }
+ .lower-two{
+    flex-direction: column;
+ }
+.country h3{
+font-size: 0.95rem;
+}
+.companies p{
+    font-size: 0.75rem;
+}
+.companies span{
+    font-size: 0.75rem;
+}
+.Holland{
+    width: 90%;
+}
+.London{
+    width: 90%;
+}
+.usa{
+    width: 90%;
+}
+ /* International Section End  */
+
+
+
+
+
+
+
+}
+
+
+@media only screen and (min-width: 500px) and (max-width: 800px) {
+
+    .input-sec {
+        width: 99%;
+        padding-left: 0;
+    } 
+    .what {
+        width: 98%;
+        padding-left: 10px;
+    }
+    
+    .left-icon input {
+            width: 100%;
+            margin: 0 auto;
+            height: 42px;
+        }
+        
+        .text-holder {
+            height: 42px;
+            font-size: 13px;
+        }
+        .what label {
+           font-size: 0.9rem;
+        }
+        .where label {
+            font-size: 0.9rem;
+         }
+         .where{
+            width: 95%;
+            padding-left: 10px;
+         }
+         .find-btn {
+            width: 37%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 10px auto;
+            margin-top: 33.3px !important;
+            /* padding-right: 10px; */
+        }
+        .find-boost {
+            width: 98%;
+            height: 40px;
+            background: #ff8a00;
+            border-color: #ff8a00;
+            color: white;
+            font-size: 0.9rem;
+            margin-top: 0;
+            cursor: pointer;
+        }
+        .keep-card h1 {
+            font-size: 1.7rem;
+        }
+        .keep-card h1 {
+            font-size: 1.7rem;
+        }
+        .keep-card h1 i{
+            font-size: 1.5rem !important;
+        }
+        .fa-search{
+                font-size: 14px;
+}
+.container-card {
+    width: 90%;
+    display: flex;
+    /* flex-direction: column; */
+}
+.box-card {
+    width: 47%;
+}
+.left-top img {
+    width: 55px;
+}
+.card-name-first p{
+    font-size: 15px !important;
+    line-height: 16px !important;
+}
+
+.card-name-first{
+  margin-top: 0px;
+}
+.card-name-first span {
+    width: 84%;
+    /* margin: 0 0; */
+    margin-top: 7px !important;
+    font-weight: 400;
+    color: #a0abb8;
+    font-size: 14px !important;
+    line-height: 14px !important;
+    font-family: "Plus Jakarta Sans", sans-serif;
+}
+.mid-box h2 {
+    font-size: 0.95rem !important;
+}
+.right-top span {
+    font-size: 0.8rem;
+}
+.right-top p {
+    font-size: 0.8rem;
+}
+.w-full p {
+    font-size: 0.9rem;
+}
+.applied .price {
+    font-size: 1rem !important;
+}
+.amount .muted {
+    font-size: 0.95rem !important;
+}
+.app-bttn a button {
+    font-size: 0.85rem !important;
+    height: 35px;
+    padding-top: 4px;
+}
+
+.applied {
+    margin-top: 8px !important;
+}
+.demo-cont {
+     height: 45vh;
+}
+.fnc-slider {
+     height: 45vh;
+}
+.fnc-slide__heading-line {
+    font-size: 19px;
+}
+.fnc-slide__action-btn {
+    position: relative;
+    margin-left: 0px;
+    padding: 5px 15px;
+    font-size: 11px;
+    width: 40%;
+}
+.fnc-slide__action-btn span {
+    position: absolute;
+    left: 43%;
+    top: -10%;
+    font-size: 1.2rem;
+}
+.fnc-slide__heading-line {
+ font-size: 3rem;
+    color: #fff;
+    word-spacing: 2px;
+}
+.fnc-slide__content {
+    z-index: 2;
+    position: absolute;
+    left: 25%;
+    top: 54%;
+}
+.fnc-slide__action-btn span:before {
+   display: none;
+}
+ /* International Section Start */
+
+ .up-location h1{
+    font-size: 1.7rem;
+ }
+ .up-location h1 i{
+    font-size: 1.4rem !important;
+ }
+ .up-location hr{
+    width: 37% !important;
+ }
+ .up-location p{
+    font-size: 1rem;
+ }
+ .lower-one{
+    flex-direction: column;
+ }
+ .denmark{
+    width: 70%;
+ }
+ .france {
+    width: 70%;
+ }
+ .germany{
+    width: 70%;
+ }
+ .lower-two{
+    flex-direction: column;
+ }
+.country h3{
+font-size: 0.95rem;
+}
+.companies p{
+    font-size: 0.75rem;
+}
+.companies span{
+    font-size: 0.75rem;
+}
+.Holland{
+    width: 70%;
+}
+.London{
+    width: 70%;
+}
+.usa{
+    width: 70%;
+}
+ /* International Section End  */
+
+
+
+}
+
+@media only screen and (min-width: 800px) and (max-width: 1000px) {
+
+    .input-sec {
+        width: 93%;
+        padding-left: 0;
+    } 
+    .what {
+        width: 98%;
+        padding-left: 10px;
+    }
+    
+    .left-icon input {
+            width: 100%;
+            margin: 0 auto;
+            height: 42px;
+        }
+        
+        .text-holder {
+            height: 42px;
+            font-size: 13px;
+        }
+        .what label {
+           font-size: 0.9rem;
+        }
+        .where label {
+            font-size: 0.9rem;
+         }
+         .where{
+            width: 95%;
+            padding-left: 10px;
+         }
+         .find-btn {
+            width: 37%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 10px auto;
+            margin-top: 33.3px !important;
+            /* padding-right: 10px; */
+        }
+        .find-boost {
+            width: 98%;
+            height: 40px;
+            background: #ff8a00;
+            border-color: #ff8a00;
+            color: white;
+            font-size: 0.9rem;
+            margin-top: 0;
+            cursor: pointer;
+        }
+        .keep-card h1 {
+            font-size: 1.7rem;
+        }
+        .keep-card h1 {
+            font-size: 1.7rem;
+        }
+        .keep-card h1 i{
+            font-size: 1.5rem !important;
+        }
+        .fa-search{
+                font-size: 14px;
+}
+.container-card {
+    width: 90%;
+    display: flex;
+    /* flex-direction: column; */
+}
+.box-card {
+    width: 47%;
+}
+.left-top img {
+    width: 55px;
+}
+.card-name-first p{
+    font-size: 15px !important;
+    line-height: 16px !important;
+}
+
+.card-name-first{
+  margin-top: 0px;
+}
+.card-name-first span {
+    width: 84%;
+    /* margin: 0 0; */
+    margin-top: 7px !important;
+    font-weight: 400;
+    color: #a0abb8;
+    font-size: 14px !important;
+    line-height: 14px !important;
+    font-family: "Plus Jakarta Sans", sans-serif;
+}
+.mid-box h2 {
+    font-size: 0.95rem !important;
+}
+.right-top span {
+    font-size: 0.8rem;
+}
+.right-top p {
+    font-size: 0.8rem;
+}
+.w-full p {
+    font-size: 0.9rem;
+}
+.applied .price {
+    font-size: 1.1rem !important;
+}
+.amount .muted {
+    font-size: 0.95rem !important;
+}
+.app-bttn a {
+    width: 63% !important;
+}
+.app-bttn a button {
+    font-size: 0.85rem !important;
+    height: 35px;
+    padding-top: 4px;
+}
+
+.applied {
+    margin-top: 8px !important;
+}
+.demo-cont {
+     height: 75vh;
+}
+.fnc-slider {
+     height: 75vh;
+}
+.fnc-slide__heading-line {
+    font-size: 19px;
+}
+.fnc-slide__action-btn {
+    position: relative;
+    margin-left: 0px;
+    padding: 5px 15px;
+    font-size: 11px;
+    width: 40%;
+}
+.fnc-slide__action-btn span {
+    position: absolute;
+    left: 43%;
+    top: -10%;
+    font-size: 1.2rem;
+}
+.fnc-slide__heading-line {
+ font-size: 3.5rem;
+    color: #fff;
+    word-spacing: 2px;
+}
+.fnc-slide__content {
+    z-index: 2;
+    position: absolute;
+    left: 25%;
+    top: 54%;
+}
+.fnc-slide__action-btn span:before {
+   display: none;
+}
+
+ /* International Section Start */
+
+ .up-location h1{
+    font-size: 1.8rem;
+ }
+ .up-location h1 i{
+    font-size: 1.6rem !important;
+ }
+ .up-location hr{
+    width: 35% !important;
+ }
+ .up-location p{
+    font-size: 1.1rem;
+ }
+ .lower-one{
+    /* flex-direction: column; */
+ }
+ .denmark{
+    width: 25%;
+ }
+ .france {
+    width: 33%;
+ }
+ .germany{
+    width: 42%;
+ }
+ .lower-two{
+    /* flex-direction: column; */
+ }
+.country h3{
+font-size: 0.95rem;
+}
+.companies p{
+    font-size: 0.75rem;
+}
+.companies span{
+    font-size: 0.75rem;
+}
+.Holland{
+    width: 34%;
+}
+.London{
+    width: 41%;
+}
+.usa{
+    width: 25%;
+}
+ /* International Section End  */
+
+
+
+
+
+}
+
+@media only screen and (min-width: 1000px) and (max-width: 1300px) {
+
+    .input-sec {
+        width: 90%;
+        padding-left: 0;
+    } 
+    .what {
+        width: 90%;
+        padding-left: 10px;
+    }
+    
+    .left-icon input {
+            width: 90%;
+            margin: 0 auto;
+            height: 42px;
+        }
+        
+        .text-holder{
+            height: 42px;
+            font-size: 15px;
+        }
+        .what label {
+           font-size: 1rem;
+        }
+        .where label {
+            font-size: 1rem;
+         }
+         .where{
+            width: 95%;
+            padding-left: 10px;
+         }
+         .find-btn {
+            width: 37%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 10px auto;
+            margin-top: 33.3px !important;
+            /* padding-right: 10px; */
+        }
+        .find-boost {
+            width: 98%;
+            height: 40px;
+            background: #ff8a00;
+            border-color: #ff8a00;
+            color: white;
+            font-size: 1rem;
+            margin-top: 0;
+            cursor: pointer;
+        }
+        .keep-card h1 {
+            font-size: 2rem !important;
+        }
+       
+        .keep-card h1 i{
+            font-size: 1.85rem !important;
+        }
+        .fa-search{
+                font-size: 14px;
+}
+.container-card {
+    width: 92%;
+    display: flex;
+    flex-wrap: wrap;
+    /* flex-direction: column; */
+}
+.box-card {
+    width: 31.33%;
+}
+.left-top img {
+    width: 55px;
+}
+.card-name-first p{
+    font-size: 16px !important;
+    line-height: 16px !important;
+}
+
+.card-name-first{
+  margin-top: 0px;
+}
+.card-name-first span {
+    width: 84%;
+    /* margin: 0 0; */
+    margin-top: 7px !important;
+    font-weight: 400;
+    color: #a0abb8;
+    font-size: 15px !important;
+    line-height: 14px !important;
+    font-family: "Plus Jakarta Sans", sans-serif;
+}
+.mid-box h2 {
+    font-size: 1.05rem !important;
+}
+.right-top span {
+    font-size: 0.9rem;
+}
+.right-top p {
+    font-size: 0.9rem;
+}
+.w-full p {
+    font-size: 0.98rem;
+}
+.applied .price {
+    font-size: 1.15rem !important;
+}
+.amount .muted {
+    font-size: 1rem !important;
+}
+.app-bttn a {
+    width: 63% !important;
+}
+.app-bttn a button {
+    font-size: 0.9rem !important;
+    height: 35px;
+    padding-top: 4px;
+}
+
+.applied {
+    margin-top: 8px !important;
+}
+.demo-cont {
+     height: 100vh;
+}
+.fnc-slider {
+     height: 100vh;
+}
+.fnc-slide__heading-line {
+    font-size: 19px;
+}
+.fnc-slide__action-btn {
+    position: relative;
+    margin-left: 0px;
+    padding: 5px 15px;
+    font-size: 11px;
+    width: 40%;
+}
+.fnc-slide__action-btn span {
+    position: absolute;
+    left: 43%;
+    top: -10%;
+    font-size: 1.2rem;
+}
+.fnc-slide__heading-line {
+ font-size: 3.7rem;
+    color: #fff;
+    word-spacing: 2px;
+}
+.fnc-slide__content {
+    z-index: 2;
+    position: absolute;
+    right: 5%;
+    top: 54%;
+}
+.fnc-slide__action-btn span:before {
+   display: none;
+}
+
+ /* International Section Start */
+
+ .up-location h1{
+    font-size: 2rem;
+ }
+ .up-location h1 i{
+    font-size: 1.8rem !important;
+ }
+ .up-location hr{
+    width: 32% !important;
+ }
+ .up-location p{
+    font-size: 1.1rem;
+ }
+ .lower-one{
+    /* flex-direction: column; */
+ }
+ .denmark{
+    width: 25%;
+ }
+ .france {
+    width: 33%;
+ }
+ .germany{
+    width: 42%;
+ }
+ .lower-two{
+    /* flex-direction: column; */
+ }
+.country h3{
+font-size: 0.95rem;
+}
+.companies p{
+    font-size: 0.75rem;
+}
+.companies span{
+    font-size: 0.75rem;
+}
+.Holland{
+    width: 34%;
+}
+.London{
+    width: 41%;
+}
+.usa{
+    width: 25%;
+}
+ /* International Section End  */
+
+
+
+
+
+
+}

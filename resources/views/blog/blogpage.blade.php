@@ -1,555 +1,334 @@
-@extends('frontend.frontmaster')
-@section('title','Home')
-@section('content')
-<style>
-:after,:before{box-sizing:border-box}
-.clearfix:after,.clearfix:before{content:'';display:table}
-.clearfix:after{clear:both;display:block}
-a{color:inherit;text-decoration:none}
-
-.login-wrap{
-	width:100%;
-	margin:auto;
-	max-width:525px;
-	min-height:770px;
-	position:relative;
-	
-
-	box-shadow:0 12px 15px 0 rgba(0,0,0,.24),0 17px 50px 0 rgba(0,0,0,.19);
-}
-.login-html{
-	width:100%;
-	height:100%;
-	position:absolute;
-	padding:16px 70px 50px 70px;
-	background:#333d8214;
-}
-.login-html .sign-in-htm,
-.login-html .for-pwd-htm{
-	top:0;
-	left:0;
-	right:0;
-	bottom:0;
-	position:absolute;
-	-webkit-transform:rotateY(180deg);
-	        transform:rotateY(180deg);
-	-webkit-backface-visibility:hidden;
-	        backface-visibility:hidden;
-	-webkit-transition:all .4s linear;
-	transition:all .4s linear;
-}
-.login-html .sign-in,
-.login-html .for-pwd,
-.login-form .group .check{
-	display:none;
-}
-.login-html .tab,
-.login-form .group .label,
-.login-form .group .button{
-	text-transform:uppercase;
-}
-.login-html .tab{
-    color: white;
-	font-size:22px;
-	margin-right:15px;
-	padding-bottom:5px;
-	margin:0 15px 10px 0;
-	display:inline-block;
-	border-bottom:2px solid transparent;
-}
-.login-html .sign-in:checked + .tab,
-.login-html .for-pwd:checked + .tab{
-	color:#ff0;
-	border-color:#1161ee;
-}
-.login-form{
-    margin-top: 38px;
-	min-height:345px;
-	position:relative;
-	-webkit-perspective:1000px;
-	        perspective:1000px;
-	-webkit-transform-style:preserve-3d;
-	        transform-style:preserve-3d;
-}
-.login-form .group{
-	margin-bottom:15px;
-}
-.login-form .group .label,
-.login-form .group .input,
-.login-form .group .button{
-    width: 100%;
-    color: #fffdfd;
-    font-weight: 600;
-    display: block;
-}
-.login-form .group .input,
-.login-form .group .button{
-	border:none;
-	padding:15px 20px;
-	border-radius:25px;
-    
-	background:rgb(255 255 255 / 54%);
-
-}
-.login-form .group input[data-type="password"]{
-	text-security:circle;
-	-webkit-text-security:circle;
-}
-.login-form .group .label{
-    color: #efdd09;
-    font-size: 14px;
-    font-weight: 500;
-}
-.login-form .group .button{
-    background: linear-gradient(to right, #f37407, #d1de11);
-}
-.login-form .group label .icon{
-	width:15px;
-	height:15px;
-	border-radius:2px;
-	position:relative;
-	display:inline-block;
-	background:rgba(255,255,255,.1);
-}
-.login-form .group label .icon:before,
-.login-form .group label .icon:after{
-	content:'';
-	width:10px;
-	height:2px;
-	background:#fff;
-	position:absolute;
-	-webkit-transition:all .2s ease-in-out 0s;
-	transition:all .2s ease-in-out 0s;
-}
-.login-form .group label .icon:before{
-	left:3px;
-	width:5px;
-	bottom:6px;
-	-webkit-transform:scale(0) rotate(0);
-	        transform:scale(0) rotate(0);
-}
-.login-form .group label .icon:after{
-	top:6px;
-	right:0;
-	-webkit-transform:scale(0) rotate(0);
-	        transform:scale(0) rotate(0);
-}
-.login-form .group .check:checked + label{
-	color:#fff;
-}
-.login-form .group .check:checked + label .icon{
-	background:#1161ee;
-}
-.login-form .group .check:checked + label .icon:before{
-	-webkit-transform:scale(1) rotate(45deg);
-	        transform:scale(1) rotate(45deg);
-}
-.login-form .group .check:checked + label .icon:after{
-	-webkit-transform:scale(1) rotate(-45deg);
-	        transform:scale(1) rotate(-45deg);
-}
-.login-html .sign-in:checked + .tab + .for-pwd + .tab + .login-form .sign-in-htm{
-	-webkit-transform:rotate(0);
-	        transform:rotate(0);
-}
-.login-html .for-pwd:checked + .tab + .login-form .for-pwd-htm{
-	-webkit-transform:rotate(0);
-	        transform:rotate(0);
-}
-
-.hr{
-	height:2px;
-	margin:60px 0 50px 0;
-	background:rgba(255,255,255,.2);
-}
-.foot-lnk{
-	text-align:center;
-}
-#top_navigation_bar{
-    background: white;
-}
-.blog-item {
-  -webkit-transition: 0.5s;
-  transition: 0.5s;
-}
-
-.blog-item .single-blog-item {
-  -webkit-box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
-  background-color: #ffffff;
-  border-top: none;
-  padding: 20px 25px;
-  -webkit-transition: 0.5s;
-  transition: 0.5s;
-  position: relative;
-  margin-bottom: 30px;
-}
-
-.blog-item .single-blog-item .blog-content {
-  -webkit-transition: 0.5s;
-  transition: 0.5s;
-  position: relative;
-}
-
-.blog-item .single-blog-item .blog-content h3 {
-  color: #343846;
-  font-size: 20px;
-  margin: 0 0px 10px 0;
-  line-height: 30px;
-  -webkit-transition: 0.5s;
-  transition: 0.5s;
-  position: relative;
-}
-
-.blog-item .single-blog-item .blog-content h3::before {
-  position: absolute;
-  content: "";
-  height: 2px;
-  width: 60px;
-  background-color: #fbd666;
-  left: -54px;
-  top: 28px;
-  -webkit-transform: rotate(90deg);
-  transform: rotate(90deg);
-}
-
-.blog-item .single-blog-item .blog-content p {
-  margin: 0;
-  color: #6a6c72;
-  font-weight: 400;
-}
-
-.blog-item .single-blog-item .blog-content a {
-  text-decoration: none;
-}
-
-.blog-item .single-blog-item .blog-list {
-  padding-left: 0;
-  margin-bottom: 0;
-  -webkit-transition: 0.5s;
-  transition: 0.5s;
-  margin-top: 15px;
-  background-color: #f7f7f7;
-  padding: 10px 15px;
-}
-
-.blog-item .single-blog-item .blog-list li {
-  list-style-type: none;
-  display: inline-block;
-  font-size: 11px;
-  font-weight: 400;
-  margin-right: 20px;
-  color: #6b6f76;
-}
-
-.blog-item .single-blog-item .blog-list li:last-child {
-  margin-right: 0;
-}
-
-.blog-item .single-blog-item .blog-list li i::before {
-  font-size: 14px;
-  margin-right: 5px;
-}
-
-.blog-item .single-blog-item .blog-list a {
-  color: #93908f;
-  text-decoration: none;
-}
-
-.blog-item .single-blog-item .blog-list i::before {
-  font-size: 14px;
-  color: #93908f;
-  margin-right: 5px;
-}
-
-.blog-item:hover {
-  -webkit-box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
-          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
-}
-
-.blog-item:hover .blog-content h3 {
-  color: #ffbf00;
-}
-
-.blog-item:hover {
-  -webkit-transform: translateY(-5px);
-          transform: translateY(-5px);
-}
-.seo-blog-section .single-blog .blog-image {
-  position: relative;
-  background-color: #ffe6db;
-  text-align: center;
-  padding: 20px;
-}
-
-.seo-blog-section .single-blog .blog-image .blog-bate {
-  position: absolute;
-  bottom: -10px;
-  left: 20px;
-  background-color: #7cb900;
-  padding: 10px 20px;
-  text-align: center;
-}
-
-.seo-blog-section .single-blog .blog-image .blog-bate span {
-  display: block;
-  font-size: 20px;
-  color: #fff;
-  line-height: 1;
-}
-.footer_container{
-    margin-top: 50px;
-}
-</style>
-<section style="margin-top:111px">
-    <div class="container">
-        
-        <div class="row mt-3 mb-5">
-        @if(count($blog))
-            @foreach ($blog as $key => $item)
-            <a href="{{ url('read-more').'/'.$item->id }}">
-            <div class="col-lg-4 col-md-6" data-aos="fade-down" data-aos-duration="1000">
-            <div class="blog-item">
-            <div class="blog-image">
-    
-            <img src="{{ url($item->image) }}" alt="image" style="width:100%;" height="250">
-        
-            </div>
-            <div class="single-blog-item">
-            <div class="blog-content">
-            
-            <h3>{{ $item->title }}</h3>
-            
-            
-            </div>
-            <ul class="blog-list">
-            <li>
-            <a href="hotel-management-in-few-easy-steps.html">
-            <i class="flaticon-appointment"></i>
-            {{ date('d-m-Y',strtotime($item->publish_date)) }}
-            </a>
-            </li>
-            <li>
-            <i class="flaticon-user"></i>
-            {{ $item->author_name }}
-            </li>
-            </ul>
-            <a href="{{ url('read-more').'/'.$item->id }}" style="float:right;font-size:16px">Read More</a>
-            </div>
-            </a>
-            </div>
-            </div>
-            @endforeach
-            @endif
-        </div>   
-           
-    </div>
-</section>
-
-@include('frontend.common.footer')
-{{-- <div class="modal fade" id="modal_login2" role="dialog" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content m_login">
-            <div class="modal-header m_header">
-                <h5 class="modal-title"><b>log in</b></h5>
-                <button type="button" class="close login_close" data-dismiss="modal">×</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="modal fade" id="forgot_password" role="dialog" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content m_login">
-            <div class="modal-header m_header">
-                <h5 class="modal-title"><b>Forgot Password ?</b></h5>
-                <button type="button" class="close m_close" data-dismiss="modal" onclick="forgetReload()">×</button>
-            </div>
-            <div class="modal-body">
-                <form action="{{ url('candidate/recoverPassword') }}" method="post">
-                    @csrf
-                    <div class="md-form mt-3">
-                        <input type="text" name="username" maxlength="50" minlength="10" id="forgotEmail" required
-                            class="form-control" autocomplete="off">
-                        <label for="forgotEmail" class="">Provide valid email or contact no.</label>
-                    </div>
-                    <button id="btnsubmit_forgot" type="submit"
-                        class="btn btn-primary btn-lg btn-block req_btn text-white">Submit
-                    </button>
-                </form>
-            </div>
-        </div>
-    </div>
-</div> --}}
-<style>
-        video.bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            z-index: -100;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Section</title>
+    <link rel="stylesheet" href="{{ url('css/theme.min.css') }}">
+    {{-- <link rel="stylesheet" href="{{ url('assets/happiestNewAssets/css/bootstrap.min.css') }}"> --}}
+    {{-- <link rel="stylesheet" href="{{ url('assets/happiestNewAssets/css/theme.min.css') }}"> --}}
+    <link rel="stylesheet" media="screen" href="{{url('vendor/boxicons/css/boxicons.min.css') }}"/>
+    <link rel="stylesheet" media="screen" href="{{ url('vendor/swiper/swiper-bundle.min.css') }}"/>
+    <link rel="stylesheet" href="{{ url('css/blog.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,900&family=Rubik:wght@300;400;600;700&display=swap"
+    rel="stylesheet"/>
+    <!-- <link rel="stylesheet" media="screen" href="vendor/img-comparison-slider/dist/styles.css"/> -->
+    <style>
+      div#navbarNav.active-header ul li a {
+            color: black;
+            font-size: 0.9rem;
+        }
+        .first-black:hover{
+          color: orange !important;
+        }
+        .blogtap {
+            color: orange !important;
         }
 
-        video {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            object-fit: cover; / combined with 'absolute', works like background-size, but for DOM elements /
+        .nav-link {
+            font-weight: 500;
+            color: #000000;
+            font-size: 0.9rem;
         }
 
+        .fixed-top {
+            height: 72px;
+        }
+
+        .fixed-top{
+            box-shadow: 0 0 2px 2px #b9c2d7;
+        }
+        .back-btn:hover {
+    background-color: #fd390e !important;
+    border-color: #fd390e !important;
+    color: #fff;
+    box-shadow: 0 0.25rem 0.25rem 0.125rem rgba(253, 86, 49, .1), 0 0.375rem 0.75rem -0.125rem rgba(253, 86, 49, .4);
+}
+.mb-2 a{
+text-decoration: none;
+
+}
+.list-unstyled li a{
+  font-size: 0.9rem !important;
+    font-weight: 500 !important;
+    /* color: #423f50 !important; */
+}
+.btn-warning{
+  background-color:  orange !important;
+  font-size: 0.9rem;
+}
+.btn-warning:hover{
+  background-color:  orange !important;
+  background-color: #fd390e !important;
+    border-color: #fd390e !important;
+    color: #fff;
+    box-shadow: 0 0.25rem 0.25rem 0.125rem rgba(253, 86, 49, .1), 0 0.375rem 0.75rem -0.125rem rgba(253, 86, 49, .4);
+}
+.small_border p{
+font-size: 0.9rem !important;
+}
+.p-0{
+  padding-left: 11px !important;
+  width: 91%;
+}
+.px-6{
+  max-width: 84%;
+}
     </style>
+</head>
+<body style="font-family: Poppins, sans-serif;">
 
-{{-- <div class="modal fade" id="modal_registration" role="dialog" aria-hidden="true">
 
+  <nav >
+    <header id="" class="navbar navbar-expand-lg fixed-top py-4" data-scroll-header="" style="background-color: white;">
+        <div class="container p-0" style="width: 90%;">
+            <a class="navbar-brand me-0 me-xl-4" href="#">
+                <img src="http://127.0.0.1:8000/assets/happiestNewAssets/img/logo.png" alt="Happiest Resume"
+                    style="width: 110px;" loading="lazy">
+            </a>
+            <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <div id="nav-icon4">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </button>
 
-    <div class="login-wrap">
- 
-   
-    <div class="videobg">
-    <video autoplay loop muted>
-        <source src="public/resume_yellow/assets/video/video2.mp4" type="video/mp4">
-
-    </video>
-    </div>
-                
-    <div class="login-html">
- 
-                       
-    <button data-dismiss="modal" type = "button" style="color: #f7f3f3;margin-right: -69px;margin-top: -14px;height: 55px;font-weight: 900;width: 8px;float: right;font-size: 17px;" class="hide btn">x</button>
-		<input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Log In</label>
-		<input id="tab-2" type="radio" name="tab" class="for-pwd"><label for="tab-2" class="tab">Register</label>
-		
-        <div class="login-form">
-        
-        <form action="{{url('user-login')}}" method="post">
-        @csrf
-			<div class="sign-in-htm">
-            <div class="form-group login_social_btnbox">
-
-                        <a target="_blank" href="{{url('redirect/facebook')}}"
-                            class="waves-effect waves-light login_btn_facebook login_btn">
-                            <i class="mdi mdi-facebook"></i>
-                            Log in with Facebook
+            <div class="collapse navbar-collapse order-lg-2" id="navbarNav" style="justify-content: end;">
+                <ul class="navbar-nav navbar-nav-scroll" style="max-height: 35rem; width: 50%;">
+                    <!-- Menu items-->
+                    <li class="nav-item">
+                      <li class="nav-item active">
+                        <a class="nav-link " href="{{Request::is('/') ? " #home" : URL::to('/#home')}}" role="button" aria-expanded="false">Home
                         </a>
-                        <a target="_blank" href="{{url('redirect/google')}}"
-                            class="login_btn_google_plus login_btn waves-effect waves-light">
-                            <i class="mdi mdi-google"></i>
-                            Log in with Google
+                    </li>
+                    </li>
+
+                    <li class="nav-item">
+                      <li class="nav-item">
+                        <a class="nav-link"  href="{{URL::to('exclusive-jobs')}}" role="button" aria-expanded="false">Jobs
                         </a>
-                      
-                    </div>
-                    <div class="form-group">
-                        <div class="or_border">OR</div>
-                    </div>
-				<div class="group">
-					<label for="email" class="label">Username or Email</label>
-					<input id="materialRegisterFormEmail" name="email"  type="email" class="input">
-				</div>
-				<div class="group">
-					<label for="pass" class="label">Password</label>
-					<input id="materialRegisterFormPassword" minlength="4" maxlength="20" type="password" name="password" class="input" data-type="password">
-				</div>
-				
-				<div class="group" style="margin-top: 56px;">
-					<input type="submit" class="button" value="Sign In">
-				</div>
-				<div class="hr"></div>
-				<div class="foot-lnk">
-                <!-- <a class="forgot_txt" data-dismiss="modal" href="#" data-toggle="modal"
-                        data-target="#forgot_password">Forgot Password?</a> -->
-                <a class="forgot_txt" onclick="frogetModal()" style="color: white;font-size:17px"><b>Forgot Password?</b></a>
-				</div>
-			</div>
-            </form>
-            <form action="{{url('registration')}}" method="post">
-            @csrf
-			<div class="for-pwd-htm">
-				<div class="group">
-					<label for="name" class="label">Name</label>
-					<input id="name" name="name" autocomplete="off" type="text" class="input" required>
-				</div>
-                <div class="group">
-					<label for="email" class="label">Email</label>
-					<input type="email" name="reg_email" id="reg_email" autocomplete="off" class="input" required>
-                    <small id="email_error" style="color:red"></small>
-				</div>
-                
-                <div class="group">
-					<label for="contact" class="label">Contact Number</label>
-					<input type="text" name="contact" id="reg_contact" autocomplete="off" minlength="10" maxlength="10"
-                            oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
-                            class="input" required>
-                    <small id="contact_error" style="color:red"></small>
-				</div>
-                <div class="group">
-					<label for="password" class="label">Password</label>
-					<input type="password" name="password" id="password" autocomplete="off" class="input" required>
-				</div>
-                <div class="group">
-					<label for="cpassword" class="label">Confirm Password</label>
-					<input type="password" name="cpassword" id="cpassword" autocomplete="off" class="input" required>
-				</div>
-                <div class="group">
-					<label for="workExp" class="label">Work Experience</label>
-                     <select name="is_fresher" id="is_fresher" class="input" required>
-                      <option value="" style="color:black">Select Any One</option>
-                      <option value="1" style="color:black">Fresher</option>
-                      <option value="0" style="color:black">Experienced</option>
-                     </select>
-                    
-                  
-				</div>
-				<div class="group">
-					<input type="submit" class="button" value="Register" style="margin-top: 40px;">
-				</div>
-				<div class="hr"></div>
-			</div>
-            </form>
-		</div>
-	</div>
- </div>
+                    </li>
+                    </li>
+                    <li class="nav-item ">
+                      <a class="nav-link" href="{{Request::is('/') ? " #about" : URL::to('/#about')}}" role="button" aria-expanded="false">About
+                      </a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="{{Request::is('/') ? " #templates" : URL::to('/#templates')}}" role="button" aria-expanded="false">Templates
+                      </a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link first-black blogtap" href="{{ url('blog') }}" role="button"
+                            aria-expanded="false">Blog
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link"  href="{{Request::is('/') ? " #contact" :
+                      URL::to('/#contact')}}" role="button" aria-expanded="false">Contact
+                      </a>
+                    </li>
+                </ul>
 
-    
-</div> --}}
+                <div>
+                    <a style="    background-color: #FF9900;
+                    border-color: #FF9900;padding: 0.425rem 1rem;
+    font-size: 0.875rem;
+    border-radius: 0.375rem; width:91px;" class="btn btn-primary btn-sm ms-2 back-btn" href="{{ url('/') }}">
+                    Back
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+</nav>
 
 
-<script type="text/javascript">
-    window.onscroll = function () {
-            scrollFunction()
-        };
 
-        function scrollFunction() {
-            if (document.body.scrollTop > 180 || document.documentElement.scrollTop > 20) {
-                $('#top_navigation_bar').addClass('logowithmenu_bar_fixed');
-            } else {
-                $('#top_navigation_bar').removeClass('logowithmenu_bar_fixed');
-            }
-        }
-</script>
-<script>
-$(document).ready(function(){
+    <section class="container py-5 my-2 my-md-4 my-lg-5 main-blog">
+        <div class="row pt-2 py-xl-3 sub-blog">
+          <div class="col-lg-3 col-md-4">
+            <!-- <h2 class="h1 text-center text-md-start mx-auto mx-md-0 pt-md-2">Blog</h2> -->
 
-  $(".hide").click(function(){
+            <!-- Slider controls (Prev / next buttons) -->
+            <div class="d-flex justify-content-end justify-content-md-start pb-4 mb-2 pt-2 pt-md-4 mt-md-5">
+              <button type="button" id="prev-testimonial" class="btn btn-prev btn-icon btn-sm me-2">
+                <i class="bx bx-chevron-left"></i>
+              </button>
+              <button type="button" id="next-testimonial" class="btn btn-next btn-icon btn-sm ms-2">
+                <i class="bx bx-chevron-right"></i>
+              </button>
+            </div>
+          </div>
+          <div class="col-lg-9 col-md-8">
+            <div class="swiper mx-n2" data-swiper-options='{
+              "slidesPerView": 1,
+              "spaceBetween": 8,
+              "loop": true,
+              "navigation": {
+                "prevEl": "#prev-testimonial",
+                "nextEl": "#next-testimonial"
+              },
+              "breakpoints": {
+                "500": {
+                  "slidesPerView": 2
+                },
+                "1000": {
+                  "slidesPerView": 2
+                },
+                "1200": {
+                  "slidesPerView": 3
+                }
+              }
+            }'>
+              <div class="swiper-wrapper">
+  
+                <!-- Item -->
+                <div class="swiper-slide h-auto pt-4">
+         <div class="only-img">
+          <img src="{{url ('assets/image/img-big3-403x257.png') }}" alt="">
+          <div class="event">
+            <button>Events</button>
+            <button>Job Tips</button>
+          </div>
+         </div>
+         <div class="only-para">
+          <h2>21 Job Interview Tips: How To Make a Great Impression</h2>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus accusamus laboriosam, sint mollitia alias possimus  deserunt aspernatur rem explicabo...</p>
+          <div class="admin">
+            <div class="profile">
+              <img src="{{ url('assets/image/profile.png') }}" alt="" width="35" height="35">
+            </div>
+            <div class="month">
+              <span>Administrator</span>
+              <p>September 4, 2023</p>
+            </div>
+            <div class="time">2 mins to read</div>
+          </div>
+         </div>
+                </div>
+  
+                <!-- Item -->
+                <div class="swiper-slide h-auto pt-4">
+                  <div class="only-img">
+                   <img src="{{ url('assets/image/img-big1-403x257.png') }}" alt="">
+                   <div class="event">
+                     <button>Events</button>
+                     <button>Job Tips</button>
+                   </div>
+                  </div>
+                  <div class="only-para">
+                   <h2>Email Example : How To Respond To Employer Interview Requests</h2>
+                   <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus accusamus laboriosam, sint mollitia...</p>
+                   <div class="admin">
+                     <div class="profile">
+                       <img src="{{ url ('assets/image/profile.png') }}" alt="" width="35" height="35">
+                     </div>
+                     <div class="month">
+                       <span>Administrator</span>
+                       <p>December 4, 2023</p>
+                     </div>
+                     <div class="time">2 mins to read</div>
+                   </div>
+                  </div>
+                         </div>
+  
+                <!-- Item -->
+                <div class="swiper-slide h-auto pt-4">
+                  <div class="only-img">
+                   <img src="{{ url('assets/image/img-single-403x257.png') }}" alt="">
+                   <div class="event">
+                     <button>Events</button>
+                     <button>Job Tips</button>
+                   </div>
+                  </div>
+                  <div class="only-para">
+                   <h2>How To Write an Application Letter (With Examples) </h2>
+                   <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus accusamus laboriosam, sint mollitia alias possimus  deserunt aspernatur rem explicabo...</p>
+                   <div class="admin">
+                     <div class="profile">
+                       <img src="{{ url('assets/image/profile.png') }}" alt="" width="35" height="35">
+                     </div>
+                     <div class="month">
+                       <span>Administrator</span>
+                       <p>November 4, 2023</p>
+                     </div>
+                     <div class="time">2 mins to read</div>
+                   </div>
+                  </div>
+                         </div>
+  
+                <!-- Item -->
+                <div class="swiper-slide h-auto pt-4">
+                  <div class="only-img">
+                   <img src="{{ url('assets/image/img8-403x257.png') }}" alt="">
+                   <div class="event">
+                     <button>Events</button>
+                     <button>Job Tips</button>
+                   </div>
+                  </div>
+                  <div class="only-para">
+                   <h2>15 Important Tips : How To Write Organized Resume</h2>
+                   <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus accusamus laboriosam, sint mollitia alias possimus  deserunt aspernatur rem explicabo...</p>
+                   <div class="admin">
+                     <div class="profile">
+                       <img src="{{ url('assets/image/profile.png') }}" alt="" width="35" height="35">
+                     </div>
+                     <div class="month">
+                       <span>Administrator</span>
+                       <p>october 4, 2023</p>
+                     </div>
+                     <div class="time">2 mins to read</div>
+                   </div>
+                  </div>
+                         </div>
 
-    $('#modal_registration').modal().hide();
-    location.reload(); 
-  });
-})
-</script>
+                            <!-- Item -->
+                <div class="swiper-slide h-auto pt-4">
+                  <div class="only-img">
+                   <img src="{{ ('assets/image/img-big2-403x257.png') }}" alt="">
+                   <div class="event">
+                     <button>Events</button>
+                     <button>Job Tips</button>
+                   </div>
+                  </div>
+                  <div class="only-para">
+                   <h2>Recruiter and Land Your Dream Job Explore Nice Jobs</h2>
+                   <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus accusamus laboriosam, sint mollitia alias possimus  deserunt aspernatur rem explicabo...</p>
+                   <div class="admin">
+                     <div class="profile">
+                       <img src="{{ ('assets/image/profile.png') }}" alt="" width="35" height="35">
+                     </div>
+                     <div class="month">
+                       <span>Administrator</span>
+                       <p>September 4, 2023</p>
+                     </div>
+                     <div class="time">2 mins to read</div>
+                   </div>
+                  </div>
+                         </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+     
+      <section class="pb-4 pt-8 bg-white" id="contact">
+        @include('frontend.common.newFooter')
+        </section>
 
-<script>
-function frogetModal(){
-    $('#modal_registration').modal().hide();
-    $('#forgot_password').modal().show();
-}
+      <!-- <script src="vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script> -->
+      <script src="{{ url('vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js') }}"></script>
+      <!-- <script src="vendor/vanilla-tilt/dist/vanilla-tilt.min.js"></script> -->
+      <!-- <script src="vendor/rellax/rellax.min.js"></script> -->
+      <script src="{{ url('vendor/swiper/swiper-bundle.min.js') }}"></script>
+      <!-- <script src="vendor/img-comparison-slider/dist/index.js"></script> -->
 
-function forgetReload(){
-    location.reload(); 
-}
-</script>
-@stop
+      <script src="{{ url('js/theme.min.js') }}"></script>
+      <script src="https://kit.fontawesome.com/66f2518709.js" crossorigin="anonymous"></script>
+
+</body>
+</html>

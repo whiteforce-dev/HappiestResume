@@ -58,13 +58,13 @@ a.waves-effect, a.waves-light {
 </style>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
-<link rel="stylesheet" href="{{url('public/front').'/'}}css/newlogin.css" type="text/css" />
-<link rel="stylesheet" href="{{URL::to('public/front').'/'}}css/js-snackbar.css?v=2.0.0" />
-<link rel="stylesheet" href="{{url('public/front').'/'}}css/materialdesignicons.css" type="text/css" />
+<link rel="stylesheet" href="{{url('front/css/newlogin.css')}}" type="text/css" />
+<link rel="stylesheet" href="{{url('front/css/js-snackbar.css')}}" />
+<link rel="stylesheet" href="{{url('front/css/materialdesignicons.css')}}" type="text/css" />
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-<script src="{{URL::to('public/front').'/'}}js/js-snackbar.js?v=1.1.0"></script>
+<script src="{{url('front/js/js-snackbar.js')}}"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 
 
@@ -118,7 +118,7 @@ a.waves-effect, a.waves-light {
             <div class="heading">
                <!-- <h2>Happiest Resume</h2>
                <p>Your Right Choice</p> -->
-               <img src="{{url('public/front').'/'}}images/HAPPIEST-RESUME.png" alt="" class="responsive" width="600" height="400">
+               <img src="{{url('front/images/HAPPIEST-RESUME.png')}}" alt="" class="responsive" width="600" height="400">
             </div>
 
             <div class="success-msg">

@@ -46,8 +46,446 @@
         width: 100%;
         z-index: 9999;
     }
-    body{
+
+    body {
         overflow-x: hidden !important;
+    }
+
+
+    /* Loader Start  */
+
+    body {
+        overflow: hidden;
+    }
+
+    body:has(.wrap-loader.remove) {
+        overflow: auto;
+    }
+
+    .wrap-loader.remove {
+        display: none;
+        z-index: -5;
+        pointer-events: none
+    }
+
+    .wrap-loader {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background: #fff;
+        z-index: 50000;
+    }
+
+    .loader {
+        position: relative;
+        width: 20rem;
+        height: 20rem;
+    }
+
+    .loader::before {
+        z-index: 1;
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 8.6956521739rem;
+        height: 8.6956521739rem;
+        background: #fff;
+        border-radius: 50%;
+    }
+
+    .loader .box {
+        position: absolute;
+        width: 10rem;
+        height: 10rem;
+        overflow: hidden;
+    }
+
+    .loader .box::before {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        opacity: 0.1;
+    }
+
+    .loader .box:nth-child(1) {
+        top: 0;
+        left: 0;
+    }
+
+    .loader .box:nth-child(1)::before {
+        top: 50%;
+        left: 50%;
+        background: #4185F3;
+        -webkit-animation: lightMe1 4.4s ease-out infinite normal;
+        animation: lightMe1 4.4s ease-out infinite normal;
+    }
+
+    .loader .box:nth-child(2) {
+        top: 0;
+        right: 0;
+    }
+
+    .loader .box:nth-child(2)::before {
+        top: 50%;
+        right: 50%;
+        background: #33A753;
+        -webkit-animation: lightMe2 4.4s ease-out infinite normal;
+        animation: lightMe2 4.4s ease-out infinite normal;
+    }
+
+    .loader .box:nth-child(3) {
+        bottom: 0;
+        right: 0;
+    }
+
+    .loader .box:nth-child(3)::before {
+        bottom: 50%;
+        right: 50%;
+        background: #FABB04;
+        -webkit-animation: lightMe3 4.4s ease-out infinite normal;
+        animation: lightMe3 4.4s ease-out infinite normal;
+    }
+
+    .loader .box:nth-child(4) {
+        bottom: 0;
+        left: 0;
+    }
+
+    .loader .box:nth-child(4)::before {
+        bottom: 50%;
+        left: 50%;
+        background: #E94234;
+        -webkit-animation: lightMe4 4.4s linear infinite normal;
+        animation: lightMe4 4.4s linear infinite normal;
+    }
+
+    .loader .wrap-text {
+        z-index: 2;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 40px;
+        height: 40px;
+        overflow: hidden;
+    }
+
+    .loader .text {
+        position: relative;
+        width: 40px;
+        height: 40px;
+        line-height: 40px;
+        -webkit-animation: slider 4.4s ease-in infinite;
+        animation: slider 4.4s ease-in infinite;
+    }
+
+    .loader .text span {
+        display: block;
+        width: 40px;
+        height: 40px;
+        line-height: 40px;
+        text-align: center;
+        font-size: 2em;
+        color: #000;
+    }
+
+    .loader-text {
+        color: #000;
+        transform: translateY(-2rem);
+        letter-spacing: 6px;
+        opacity: 0.2;
+        -webkit-animation: blink 400ms ease-out infinite alternate;
+        animation: blink 400ms ease-out infinite alternate;
+    }
+
+    @-webkit-keyframes lightMe1 {
+        0% {
+            opacity: 0.1;
+        }
+
+        25% {
+            opacity: 1;
+        }
+
+        100% {
+            opacity: 1;
+        }
+    }
+
+    @keyframes lightMe1 {
+        0% {
+            opacity: 0.1;
+        }
+
+        25% {
+            opacity: 1;
+        }
+
+        100% {
+            opacity: 1;
+        }
+    }
+
+    @-webkit-keyframes lightMe2 {
+        0% {
+            opacity: 0.1;
+        }
+
+        25% {
+            opacity: 0.1;
+        }
+
+        50% {
+            opacity: 1;
+        }
+
+        100% {
+            opacity: 1;
+        }
+    }
+
+    @keyframes lightMe2 {
+        0% {
+            opacity: 0.1;
+        }
+
+        25% {
+            opacity: 0.1;
+        }
+
+        50% {
+            opacity: 1;
+        }
+
+        100% {
+            opacity: 1;
+        }
+    }
+
+    @-webkit-keyframes lightMe3 {
+        0% {
+            opacity: 0.1;
+        }
+
+        50% {
+            opacity: 0.1;
+        }
+
+        75% {
+            opacity: 1;
+        }
+
+        100% {
+            opacity: 1;
+        }
+    }
+
+    @keyframes lightMe3 {
+        0% {
+            opacity: 0.1;
+        }
+
+        50% {
+            opacity: 0.1;
+        }
+
+        75% {
+            opacity: 1;
+        }
+
+        100% {
+            opacity: 1;
+        }
+    }
+
+    @-webkit-keyframes lightMe4 {
+        0% {
+            opacity: 0.1;
+        }
+
+        75% {
+            opacity: 0.1;
+        }
+
+        100% {
+            opacity: 1;
+        }
+    }
+
+    @keyframes lightMe4 {
+        0% {
+            opacity: 0.1;
+        }
+
+        75% {
+            opacity: 0.1;
+        }
+
+        100% {
+            opacity: 1;
+        }
+    }
+
+    @-webkit-keyframes slider {
+        0% {
+            transform: translateY(0);
+        }
+
+        10.5% {
+            transform: translateY(0);
+        }
+
+        12.5% {
+            transform: translateY(-40px);
+        }
+
+        23% {
+            transform: translateY(-40px);
+        }
+
+        25% {
+            transform: translateY(-80px);
+        }
+
+        35% {
+            transform: translateY(-80px);
+        }
+
+        37.5% {
+            transform: translateY(-120px);
+        }
+
+        47.5% {
+            transform: translateY(-120px);
+        }
+
+        50% {
+            transform: translateY(-160px);
+        }
+
+        60% {
+            transform: translateY(-160px);
+        }
+
+        62.5% {
+            transform: translateY(-200px);
+        }
+
+        72.5% {
+            transform: translateY(-200px);
+        }
+
+        75% {
+            transform: translateY(-240px);
+        }
+
+        85% {
+            transform: translateY(-240px);
+        }
+
+        87.5% {
+            transform: translateY(-280px);
+        }
+
+        100% {
+            transform: translateY(-280px);
+        }
+    }
+
+    @keyframes slider {
+        0% {
+            transform: translateY(0);
+        }
+
+        10.5% {
+            transform: translateY(0);
+        }
+
+        12.5% {
+            transform: translateY(-40px);
+        }
+
+        23% {
+            transform: translateY(-40px);
+        }
+
+        25% {
+            transform: translateY(-80px);
+        }
+
+        35% {
+            transform: translateY(-80px);
+        }
+
+        37.5% {
+            transform: translateY(-120px);
+        }
+
+        47.5% {
+            transform: translateY(-120px);
+        }
+
+        50% {
+            transform: translateY(-160px);
+        }
+
+        60% {
+            transform: translateY(-160px);
+        }
+
+        62.5% {
+            transform: translateY(-200px);
+        }
+
+        72.5% {
+            transform: translateY(-200px);
+        }
+
+        75% {
+            transform: translateY(-240px);
+        }
+
+        85% {
+            transform: translateY(-240px);
+        }
+
+        87.5% {
+            transform: translateY(-280px);
+        }
+
+        100% {
+            transform: translateY(-280px);
+        }
+    }
+
+    @-webkit-keyframes blink {
+        from {
+            opacity: 0.2;
+        }
+
+        to {
+            opacity: 0.75;
+        }
+    }
+
+    @keyframes blink {
+        from {
+            opacity: 0.2;
+        }
+
+        to {
+            opacity: 0.75;
+        }
     }
 </style>
 
@@ -59,11 +497,31 @@
                 <div class="loader-inner"></div>
             </div>
         </div> --}}
-        <div class="preloader">
+        {{-- <div class="preloader">
 
             <lottie-player src="{{ url('assets/happiestNewAssets/loader/lottie-anim.json') }}" background="transparent"
                 speed="1" style="width: 600px; height: 600px;" loop autoplay></lottie-player>
+        </div> --}}
+
+
+        <div class="wrap-loader">
+            <div class="loader">
+                <div class="box"></div>
+                <div class="box"></div>
+                <div class="box"></div>
+                <div class="box"></div>
+                <div class="wrap-text">
+                    <div class="text">
+                        {{-- <span>L</span><span>O</span><span>A</span><span>D</span><span>I</span><span>N</span><span>G</span><span><i class="fa-solid fa-face-smile-beam" style="color: #fa9e00;"></i></span> --}}
+
+                        <span>H</span><span>A</span><span>P</span><span>P</span><span>I</span><span>E</span><span>S</span> <span>T</span> <span><i class="fa-solid fa-face-smile-beam" style="color: #fa9e00;"></i></span>
+                    </div>
+                </div>
+            </div>
+            <div class="loader-text">wait please</div>
         </div>
+
+
         <nav>
             @include('frontend.common.newNav')
 
@@ -178,6 +636,14 @@
 
 
     <script>
+        setTimeout(() => {
+            console.log("is runnning");
+            let wrapLoader = document.querySelector(".wrap-loader");
+            wrapLoader.classList.add("remove");
+        }, 4300);
+        
+    </script>
+    <script>
         const preloader = document.querySelector('.preloader');
         const fadeEffect = setInterval(() => {
             // if we don't set opacity 1 in CSS, then
@@ -199,14 +665,14 @@
         const videoContainer = document.querySelectorAll(".showcase__video");
 
         function changevideo(event) {
-            container.forEach(function (node) {
+            container.forEach(function(node) {
                 if (event.target.innerText === node.innerText) {
                     node.classList.add('showcase__feature--active')
                     const childItem = node.getElementsByClassName("showcase__feature-subtitle");
                     childItem[0].classList.add("subtitle--active");
 
                     // video
-                    videoContainer.forEach(function (node) {
+                    videoContainer.forEach(function(node) {
                         const nodeText = node.innerText.trim();
                         if (event.target.innerText === nodeText) {
                             node.classList.add('swiper-slide-active')
@@ -252,6 +718,10 @@
             document.getElementById("contact-form-query").submit();
         }
     </script>
+        <script
+        src="https://kit.fontawesome.com/66f2518709.js"
+        crossorigin="anonymous"
+      ></script>
 </body>
 
 </html>

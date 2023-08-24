@@ -1,0 +1,13 @@
+.bottom-sec{padding: 10px 20px;text-align:center; } 
+.bottom-sec .btn{padding:10px 35px}
+/*.app-download{display:none!important}*/
+	
+@media only screen and (max-width: 767px) {
+
+}
+
+/* Smartphones (portrait) */
+@media only screen and (max-width: 320px) {
+
+
+}

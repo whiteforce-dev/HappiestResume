@@ -44,6 +44,7 @@ use App\Models\UserLogin_Model;
 // use App\Http\Controllers\PdfController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 class ApiAppController extends Controller
 {
@@ -1505,4 +1506,46 @@ public function aboutus()
     }
 
   }
+  public function saveUserImage(Request $request)
+  {
+    // return $request->all();
+    $id = $request->user_id;
+    $image = $request->image;
+    $user = UserLogin_Model::find($id);
+    $request->validate([
+        'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+    ]);
+
+    if ($request->hasFile('image')) {
+
+        $file = $request->file('image');
+        $name = $file->getClientOriginalName();
+        // return $name;
+        $filePath = 'images/' . $name;
+        $path = Storage::disk('s3')->put($filePath, file_get_contents($file));
+        $user->image = $path;
+        $user->save();
+    }
+
+}
+
+
+// if(!empty($image)) {
+//     $imageName = time().'.'.$request->image->extension();
+
+//     $path = Storage::disk('s3')->put('images', $request->image);
+//     // $path = Storage::disk('s3')->url($path);
+
+//     $user->image = $path;
+//     $user->save();
+// }
+
+    // if(!empty($image))
+    // {
+    //     $filepath = time() . '_' . rand() . '.png';
+    //     // Storage::disk('s3')->put($filepath, base64_decode($image_code), 'public');
+    //     Storage::disk('s3')->put($filepath, file_get_contents($fileName), 'public');
+    //     $user->image = $filepath;
+    // }
+  
 }

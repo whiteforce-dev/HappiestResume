@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Blog;
 use App\Models\BlogsComment;
+use App\Models\TestimonialsModel;
 use Illuminate\Http\Request;
 
 class BlogController extends Controller
@@ -11,6 +12,7 @@ class BlogController extends Controller
     
     public function blog(){
         $blog = Blog::where('blogs_for','happiest')->where('status',1)->orderBy('id', 'desc')->get();
+       
         return view('blog/blogpage')->with(compact('blog'));
     }
 

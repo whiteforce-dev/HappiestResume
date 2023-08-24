@@ -49,6 +49,19 @@
     body{
         overflow-x: hidden !important;
     }
+
+    /* Loader start */
+    /* @import url("https://fonts.googleapis.com/css?family=Exo:300");
+*, *::before, *::after {
+  box-sizing: border-box;
+} */
+
+/* body {
+  font-family: "Exo", sans-serif;
+  font-size: 16px;
+} */
+
+
 </style>
 
 <body>
@@ -59,11 +72,19 @@
                 <div class="loader-inner"></div>
             </div>
         </div> --}}
-        <div class="preloader">
+        {{-- <div class="preloader">
 
             <lottie-player src="{{ url('assets/happiestNewAssets/loader/lottie-anim.json') }}" background="transparent"
                 speed="1" style="width: 600px; height: 600px;" loop autoplay></lottie-player>
-        </div>
+        </div> --}}
+
+{{-- Loader Start  --}}
+
+
+{{-- Loader End  --}}
+
+
+
         <nav>
             @include('frontend.common.newNav')
 

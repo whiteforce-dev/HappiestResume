@@ -39,19 +39,19 @@ $aboutus = \App\Models\AboutUsModel::where(['is_del' => 0])->first();
                 <div class="row" style="color: #000;">
 
                     @if(isset($contactus->address))
-                    <div class="col-md-2" style="width: 10% !important; color: #989898;">
+                    <div class="col-md-2" style="width: 10% !important; color:#423f50;">
                         <i class="bi bi-envelope-fill"  target="_blank" ></i>
                     </div>
                     <div class="col-md-8 p-0 ">
-                        <p style="color:#989898;">{{$contactus->address}}</p>
+                        <p style="color:#423f50;">{{$contactus->address}}</p>
                     </div>
                     @endif
-                    <div class="col-md-2" style="width: 10% !important; color: #989898;">
+                    <div class="col-md-2" style="width: 10% !important; color:#423f50;">
                         <i class="bi bi-envelope-fill"  target="_blank" ></i>
                     </div>
                     <div class="col-md-8 p-0 ">
                         <p><a href="mailto: {{isset($contactus->email)?$contactus->email:'info@happiestresume.com'}}"
-                                style="color:#989898;"  target="_blank" >{{isset($contactus->email)?$contactus->email:'info@happiestresume.com'}}</a>
+                                style="color:#423f50;"  target="_blank" >{{isset($contactus->email)?$contactus->email:'info@happiestresume.com'}}</a>
                         </p>
                     </div>
 
@@ -71,26 +71,26 @@ $aboutus = \App\Models\AboutUsModel::where(['is_del' => 0])->first();
                 <h6>Quick Links</h6>
                 <ul class="list-unstyled mb-0">
                     <li class="mb-2">
-                        <a href="{{Request::is('/') ? " #about" : URL::to('/#about')}}" style="color: #989898;"  target="_blank" >About
+                        <a href="{{Request::is('/') ? " #about" : URL::to('/#about')}}" style="color: #423f50;"  target="_blank" >About
                             Us</a>
                     </li>
                     <li class="mb-2">
                         <a href="{{Request::is('/') ? " #how-it-works" : URL::to('/#how-it-works')}}"
-                            style="color: #989898;"  target="_blank" >How It Works</a>
+                            style="color:#423f50;"  target="_blank" >How It Works</a>
                     </li>
                     <li class="mb-2">
                         <a href="{{Request::is('/') ? " #templates" : URL::to('/#templates')}}"
-                            style="color: #989898;"  target="_blank" >Templates</a>
+                            style="color: #423f50;"  target="_blank" >Templates</a>
                     </li>
                     <li class="mb-2">
                         <a href="{{Request::is('/') ? " #testimonial" : URL::to('/#testimonial')}}"
-                            style="color: #989898;"  target="_blank" >Testimonials</a>
+                            style="color: #423f50;"  target="_blank" >Testimonials</a>
                     </li>
                     <li class="mb-2">
-                        <a href="{{ url('term-Condition') }}"  target="_blank"  style="color: #989898;">Terms & Conditions</a>
+                        <a href="{{ url('term-Condition') }}"  target="_blank"  style="color: #423f50;">Terms & Conditions</a>
                     </li>
                     <li class="mb-2">
-                        <a href="{{ url('privacy-policy') }}"  target="_blank"  style="color: #989898;">Privacy Policy</a>
+                        <a href="{{ url('privacy-policy') }}"  target="_blank"  style="color:#423f50;">Privacy Policy</a>
                     </li>
                 </ul>
             </div>

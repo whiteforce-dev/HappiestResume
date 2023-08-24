@@ -9,8 +9,10 @@ use App\Models\ContactModel;
 use App\Models\ContactQuery;
 use App\Models\Count;
 use App\Models\CountryCode;
+use App\Models\Countryy;
 use App\Models\HowItWork;
 use App\Models\Job;
+use App\Models\JobType;
 use App\Models\RegistrationModel;
 use App\Models\ResumeCodeModel;
 use App\Models\ResumeSliderModel;
@@ -138,7 +140,7 @@ class FrontendController extends Controller
         $request->session()->put('redirect-user', $data);
         $country_code = CountryCode::get();
  
-       return view('auth.signup', compact('country_code'));
+       return view('auth.signupchanges', compact('country_code'));
     }
     public function getResumeCodeForCandiate($name)
     {
@@ -276,4 +278,299 @@ public function save_contact_query(Request $request )
 // return  $contact;
         return 1;
     }
+
+
+    public function hotjobnew(Request $request)
+    {
+        // return $request;
+        $category = $request->job_category ?? 'fresher';
+        $location = '';
+        $designation = '';
+
+        if (!empty($request->all())) {
+            
+            $location = $request->job_location ? explode(", ", $request->job_location) : null;
+            // return $location;
+            $designation = $request->designation ? explode(", ", $request->designation) : null;
+
+// return $designation;
+            $jobCat = $request->job_category ?? 'fresher';
+
+            $jobs = $jobs = Job::query();
+
+            if ($jobCat == 'fresher') {
+                $jobs = $jobs->where('experience_year_from', 0);
+            }
+            if ($jobCat == 'female') {
+                $jobs = $jobs->where('gender', '!=', 'Male Only');
+            }
+            if ($jobCat == 'national') {
+                $jobs = $jobs->where('nationality', 1);
+            }
+            if ($jobCat == 'international') {
+                $jobs = $jobs->where('nationality', 2);
+            }
+            if (!empty($location)) {
+                $jobs = $jobs->whereIn('job_location', $location);
+                // $jobs = $jobs->where('job_location', 'like', '%' . $location . '%');
+            }
+            if (!empty($designation)) {
+                $jobs = $jobs->whereIn('position', $designation);
+                // $jobs = $jobs->where('position', 'like', '%' . $designation . '%');
+            }
+
+            $jobs = $jobs->latest()->paginate(12);
+            $jobs1 = $jobs;
+            $jobsNat = $jobs;
+            $jobsint = $jobs;
+
+            $location = $request->job_location;
+            $designation = $request->designation;
+        } else {
+
+            $jobs = Job::where('experience_year_from', 0)->latest()->paginate(12);
+
+            $jobs1 = Job::where('gender', '!=', 'Male Only')->latest()->paginate(12);
+            // dd($jobs1);
+
+            $jobsNat = Job::where('nationality', 1)->latest()->paginate(12);
+
+            $jobsint = Job::where('nationality', 2)->latest()->paginate(12);
+        }
+        $countries = Countryy::get();
+        //  dd($countries);
+
+
+
+        return view('all_jobs.fresher_jobs', compact('jobs', 'jobs1', 'jobsNat', 'jobsint', 'location', 'designation', 'countries', 'category'));
+    }
+    public function job_description($jid)
+    {
+        // return $jid;
+        if (session()->has('user')) {
+            $is_user = 1;
+        } else {
+            $is_user = 0;
+        }
+        $job = Job::find($jid);
+        // return $job;
+        if (isset($job)) {
+           
+            $job_types = JobType::where(['is_active' => 1])->get();
+            $companies = Company::where(['is_active' => 1])->get();
+
+            $related_jobs = Job::where(['is_active' => 1, 'position' => $job->position])->where('id', '!=', $job->id)->inRandomOrder()->take(2)->get();
+            return view('frontend.jobs.newjobdetails', compact('job', 'companies', 'job_types', 'related_jobs', 'is_user', 'jid'));
+        } else {
+            return 'else';
+            return redirect('hot-jobs');
+        }
+    }
+    public function femalejobs(Request $request)
+    {
+        $category = $request->job_category ?? 'female';
+        $location = '';
+        $designation = '';
+
+        if (!empty($request->all())) {
+            
+            $location = $request->job_location ? explode(", ", $request->job_location) : null;
+            // return $location;
+            $designation = $request->designation ? explode(", ", $request->designation) : null;
+
+// return $designation;
+            $jobCat = $request->job_category ?? 'female';
+
+            $jobs = $jobs = Job::query();
+
+            // if ($jobCat == 'fresher') {
+            //     $jobs = $jobs->where('experience_year_from', 0);
+            // }
+            if ($jobCat == 'female') {
+                $jobs = $jobs->where('gender', '!=', 'Male Only');
+            }
+            // if ($jobCat == 'national') {
+            //     $jobs = $jobs->where('nationality', 1);
+            // }
+            // if ($jobCat == 'international') {
+            //     $jobs = $jobs->where('nationality', 2);
+            // }
+            if (!empty($location)) {
+                $jobs = $jobs->whereIn('job_location', $location);
+                // $jobs = $jobs->where('job_location', 'like', '%' . $location . '%');
+            }
+            if (!empty($designation)) {
+                $jobs = $jobs->whereIn('position', $designation);
+                // $jobs = $jobs->where('position', 'like', '%' . $designation . '%');
+            }
+
+            $jobs = $jobs->latest()->paginate(12);
+            $jobs1 = $jobs;
+            // $jobsNat = $jobs;
+            // $jobsint = $jobs;
+
+            $location = $request->job_location;
+            $designation = $request->designation;
+        } else {
+
+            // $jobs = Job::where('experience_year_from', 0)->latest()->paginate(12);
+
+            $jobs = Job::where('gender', '!=', 'Male Only')->latest()->paginate(12);
+            // dd($jobs1);
+
+            // $jobsNat = Job::where('nationality', 1)->latest()->paginate(12);
+
+            // $jobsint = Job::where('nationality', 2)->latest()->paginate(12);
+        }
+        $countries = Countryy::get();
+        //  dd($countries);
+
+
+
+        return view('all_jobs.female_job', compact('jobs', 'location', 'designation', 'countries', 'category'));
+        // return view('all_jobs.female_job');
+    }
+    public function nationaljobs(Request $request)
+    {
+        $category = $request->job_category ?? 'national';
+        $location = '';
+        $designation = '';
+
+        if (!empty($request->all())) {
+            
+            $location = $request->job_location ? explode(", ", $request->job_location) : null;
+            // return $location;
+            $designation = $request->designation ? explode(", ", $request->designation) : null;
+
+// return $designation;
+            $jobCat = $request->job_category ?? 'national';
+
+            $jobs = $jobs = Job::query();
+
+            if ($jobCat == 'fresher') {
+                $jobs = $jobs->where('experience_year_from', 0);
+            }
+            if ($jobCat == 'female') {
+                $jobs = $jobs->where('gender', '!=', 'Male Only');
+            }
+            if ($jobCat == 'national') {
+                $jobs = $jobs->where('nationality', 1);
+            }
+            if ($jobCat == 'international') {
+                $jobs = $jobs->where('nationality', 2);
+            }
+            if (!empty($location)) {
+                $jobs = $jobs->whereIn('job_location', $location);
+                // $jobs = $jobs->where('job_location', 'like', '%' . $location . '%');
+            }
+            if (!empty($designation)) {
+                $jobs = $jobs->whereIn('position', $designation);
+                // $jobs = $jobs->where('position', 'like', '%' . $designation . '%');
+            }
+
+            $jobs = $jobs->latest()->paginate(12);
+            // $jobs1 = $jobs;
+            // $jobsNat = $jobs;
+            // $jobsint = $jobs;
+
+            $location = $request->job_location;
+            $designation = $request->designation;
+        } else {
+
+            // $jobs = Job::where('experience_year_from', 0)->latest()->paginate(12);
+
+            // $jobs1 = Job::where('gender', '!=', 'Male Only')->latest()->paginate(12);
+            // dd($jobs1);
+
+            $jobs = Job::where('nationality', 1)->latest()->paginate(12);
+
+            // $jobsint = Job::where('nationality', 2)->latest()->paginate(12);
+        }
+        $countries = Countryy::get();
+        //  dd($countries);
+
+
+
+        return view('all_jobs.national_jobs', compact('jobs', 'location', 'designation', 'countries', 'category'));
+    }
+
+     
+    public function internationaljobs(Request $request){
+        $category = $request->job_category ?? 'international';
+        $location = '';
+        $designation = '';
+
+        if (!empty($request->all())) {
+            
+            $location = $request->job_location ? explode(", ", $request->job_location) : null;
+            // return $location;
+            $designation = $request->designation ? explode(", ", $request->designation) : null;
+
+// return $designation;
+            $jobCat = $request->job_category ?? 'international';
+
+            $jobs = $jobs = Job::query();
+
+            if ($jobCat == 'fresher') {
+                $jobs = $jobs->where('experience_year_from', 0);
+            }
+            if ($jobCat == 'female') {
+                $jobs = $jobs->where('gender', '!=', 'Male Only');
+            }
+            if ($jobCat == 'national') {
+                $jobs = $jobs->where('nationality', 1);
+            }
+            if ($jobCat == 'international') {
+                $jobs = $jobs->where('nationality', 2);
+            }
+            if (!empty($location)) {
+                $jobs = $jobs->whereIn('job_location', $location);
+                // $jobs = $jobs->where('job_location', 'like', '%' . $location . '%');
+            }
+            if (!empty($designation)) {
+                $jobs = $jobs->whereIn('position', $designation);
+                // $jobs = $jobs->where('position', 'like', '%' . $designation . '%');
+            }
+
+            $jobs = $jobs->latest()->paginate(12);
+            $jobs1 = $jobs;
+            $jobsNat = $jobs;
+            $jobsint = $jobs;
+
+            $location = $request->job_location;
+            $designation = $request->designation;
+        } else {
+
+            $jobs =Job::where('nationality', 2)->latest()->paginate(12);
+
+            // $jobs1 = Job::where('gender', '!=', 'Male Only')->latest()->paginate(12);
+            // // dd($jobs1);
+
+            // $jobsNat = Job::where('nationality', 1)->latest()->paginate(12);
+
+            // $jobsint = Job::where('nationality', 2)->latest()->paginate(12);
+        }
+        $countries = Countryy::get();
+        //  dd($countries);
+
+
+
+        return view('all_jobs.International_jobs', compact('jobs','location', 'designation', 'countries', 'category'));
+
+
+
+
+        
+        
+    }
+     public function internew(Request $request, $countryname)
+    {
+        // return $countryname;
+        $category = 'international';
+        $country = Countryy::where(['countryname' => $countryname])->first();
+        $jobsint = Job::where('nationality', 2)->where('country_code', $countryname)->latest()->paginate(16);
+        return view('all_jobs.InternationalPage', compact('jobsint', 'country', 'category'));
+    }
+
+    
 }
