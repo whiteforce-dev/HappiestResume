@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<!-- saved from url=(0021)http://www.dtf-v.com/ -->
+<html lang="en" style="" class=" js flexbox canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers no-applicationcache svg inlinesvg smil svgclippaths"><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="author" content="">
+	<link rel="shortcut icon" type="image/x-icon" href="http://www.dtf-v.com/images/favicon.ico">
+	<link rel="stylesheet" href="./DTF-V_files/bootstrap.min.css">
+	<script src="./DTF-V_files/bootstrap.min.js.download"></script>
+	<title>DTF-V</title>
+	
+	
+    <!-- Responsive Menu Style -->
+   
+    <meta http-equiv="X-UA-Compatible" content="IE10">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="./DTF-V_files/style.css">  
+	
+
+     
+    
+    
+    <link rel="stylesheet" type="text/css" href="./DTF-V_files/Main.css">
+	
+		
+	
+	<link rel="stylesheet" type="text/css" href="./DTF-V_files/zoomslider.css">
+	<script type="text/javascript" src="./DTF-V_files/modernizr-2.6.2.min.js.download"></script>
+	
+	<style>
+		/* Basic styling */
+		
+		html, body {
+			margin: 0;
+			padding: 0;
+			background-color: #fff;
+			font-family: Arial;
+			line-height: 1.4;
+			text-align: center;
+			
+		}
+		h1, h2, h3, h4, h5, h6 {
+			font-weight: normal;
+			font-style: italic;
+		}
+		code {
+			display: block;
+			background-color: #eee;
+			padding: 2em;
+			overflow: hidden;
+			white-space: nowrap;
+		}
+		.body {
+			max-width: 800px;
+			padding: 40px;
+			margin: 0 auto;
+		}
+		.meta {
+			margin: 0 0 40px 0;
+			font-size: 0.8em;
+		}
+		.properties-table {
+			width: 100%;
+			padding: 0;
+			border-spacing: 0;
+			margin-top: 2em;
+			font-size: .85em;
+			background-color: #eee;
+		}
+		.properties-table th, .properties-table td {
+			text-align: left;
+			padding: 10px;
+		}
+		.properties-table th {
+			border-bottom: 1px solid #333;
+			line-height: 2;
+		}
+		/* End Basic styling */
+
+		
+		
+		#demo-1 {
+			position: fixed; /* can either be relative, absolute or fixed. If position is not set (i.e. static), it would be set to "relative" by script */
+			overflow: hidden; /* to bound the empty top space created by inner elements top margin */
+			width: 100%;
+			height: 100%;
+			background-color: #999;
+		}
+		
+		.demo-inner-content {
+			position: relative; /* if position is not set, the script will set it to 'relative'. */
+			z-index: 2; /* if z-index is not set, the script will set it to '2'. */
+			margin: 180px auto;
+			padding: 40px;
+			max-width: 600px;
+			color: #fff;
+			text-align: center;
+			font-size: 1.5em;
+		}
+		.demo-inner-content h1 {
+			font-size: 2.5em;
+			margin: 0;
+		}
+		
+		
+		
+		
+		/* Dropdown Button */
+.dropbtn {
+    background: transparent;
+    color: #5E6B70 !important;
+    padding: 0 30px;
+    border: none;
+    cursor: pointer;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+    color: black;
+    text-decoration: none;
+    display: block;
+}
+
+/* Change color of dropdown links on hover */
+
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.mobile_res{display:none;}
+@media screen and (max-width: 768px) {.mobile_res{display:block;}}
+		
+		
+		
+	</style>
+</head>
+<body style="">
+
+	
+								
+		<div class="TopMenu" style="min-height:40px; position:fixed; z-index: 5;">	
+		
+		
+			<!-- Begin Drop Down Menu -->
+				
+			<navv>
+			
+			  <label for="drop" class="togglemenutitle">
+			  
+			  <img border="0" src="./DTF-V_files/Hamburger.png" width="24" height="12">
+			  
+			  </label>	
+			  				  			  
+			  <input type="checkbox" id="drop">	
+			  			  
+			  <ull class="menu">
+			  
+			  
+			  
+			  	<!-- Home -->
+		  
+			    <lii><a href="http://www.dtf-v.com/index.html"><font color="#1a90b3">Home</font></a></lii>
+			    			    
+			    
+			    
+			    
+			    <!-- Who We Are -->
+			    
+			    
+			    <lii> 
+			        	
+  <div class="dropdown mobile_res">
+				  <a class="dropbtn">Who We Are</a>
+				  <div class="dropdown-content">
+			 <a href="http://www.dtf-v.com/About.html#secondPage">About us</a>
+				    <a href="http://www.dtf-v.com/Whyus.html#secondPage">Our Expertise</a>
+				  </div>
+				</div>
+			      <!--<label for="drop-1" class="toggle tgl1">Who We Are +</label>-->  
+			      <a href="http://www.dtf-v.com/#">Who We Are</a>				      
+			      <input type="checkbox" id="drop-1">
+			      
+			      <ull class="asd">
+			   
+			       <lii><a href="http://www.dtf-v.com/About.html#secondPage">About us</a></lii>
+			        <lii><a href="http://www.dtf-v.com/Whyus.html#secondPage">Our Expertise</a></lii>
+			      
+			      </ull>
+			      
+			    </lii>
+			       
+			    <!-- Portfolio -->				    
+			     <lii><a href="http://www.dtf-v.com/Services.html">Industry Focus</a></lii>
+			      <lii><a href="http://www.dtf-v.com/resource.html">Resources</a></lii>
+			      
+			       <lii>
+                               <div class="dropdown mobile_res">
+				  <a class="dropbtn">Businesses</a>
+				  <div class="dropdown-content">
+				    <a href="http://www.dtf-v.com/News/post.html">Business Divisions </a>
+				    <a href="http://www.dtf-v.com/News/strategic_alliance_program.html">DTF leadership</a>
+				    <a href="http://www.dtf-v.com/News/inovation.html">Innovation</a>				    
+				  </div>
+				</div>			      		      
+			      <!--<label for="drop-1" class="toggle tgl1">Strategic Partners +</label>-->  
+			      <a href="http://www.dtf-v.com/#">Businesses</a>				      
+			      <input type="checkbox" id="drop-1">
+			      
+			      <ull class="asd">
+			     <lii><a href="http://www.dtf-v.com/News/post.html">Business Divisions </a></lii>
+			     <lii>  <a href="http://www.dtf-v.com/News/strategic_alliance_program.html">DTF leadership</a></lii>
+			        <lii><a href="http://www.dtf-v.com/News/inovation.html">Innovation</a></lii>
+			        
+			      
+			      </ull>
+
+                           </lii>
+
+
+                               
+
+			         <lii><a href="http://www.dtf-v.com/contact/contact_us.php">Contact Us</a></lii>
+			     
+			     
+			     <lii>  				      
+			      			      
+			      <label for="drop-4" class="toggle">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+			      <a href="http://www.dtf-v.com/"><font color="#1a90b3"></font></a>		      
+			      <input type="checkbox" id="drop-4">
+			      
+			      <ull>
+			      
+			        <lii><a href="http://www.dtf-v.com/"></a></lii>
+			      
+			      </ull>
+			      
+			    </lii>
+
+			     <lii>  				      
+			      			      
+			      <label for="drop-4" class="toggle">&nbsp;&nbsp;&nbsp;&nbsp;</label>
+			      <a href="http://www.dtf-v.com/"><font color="#1a90b3"></font></a>		      
+			      <input type="checkbox" id="drop-4">
+			      
+			      <ull>
+			      
+			        <lii><a href="http://www.dtf-v.com/"></a></lii>
+			      
+			      </ull>
+			      
+			    </lii>
+			    
+			    
+			    
+
+			    				    
+			    <!-- What We Do -->  
+			    
+			   <!--  <lii>				        
+			      
+			      <label for="drop-2" class="toggle">What We Do +</label>				      
+			      <a href="Services.html">What We Do</a>				      
+			      <input type="checkbox" id="drop-2"/>
+			      
+			      				      
+			      <ull>
+			      
+			      
+			        Services  
+			        
+			        <lii><a href="Services.html#firstPage">Our Services</a></lii>				        				               
+			              
+
+			             
+			        <lii>
+			        				          			          
+			          <label for="drop-3" class="toggle">Our Divisions ></label>
+			          <a href="Services.html#secondPage">Our Divisions ></a>
+			          <input type="checkbox" id="drop-3"/>
+			          
+			          <ull>
+				        <lii><a href="Divisions/Architecture.html">Architecture</a></lii>
+				        <lii><a href="Divisions/Infrastructure.html">Infrastructure</a></lii>
+				        <lii><a href="Divisions/Energy.html">Energy</a></lii>
+				        <lii><a href="Divisions/GSI.html">GSI</a></lii>
+				        <lii><a href="Divisions/PMS.html">PMS</a></lii>
+			          </ull>
+			          
+			        </lii>
+			        
+			        
+			        <lii><a href="Services.html#3rdPage">Our Awards</a></lii>
+				        
+			        
+			      </ull>
+			      
+			    </lii>
+			    
+			    
+			    				    
+			    <lii>  				      
+			      			      
+			      <label for="drop-4" class="toggle">Portfolio +</label>
+			      <a href="Portfolio.html">Portfolio</a>		      
+			      <input type="checkbox" id="drop-4"/>
+			      
+			      <ull>
+			      
+			        <lii><a href="Portfolio/Architecture.html">Architecture</a></lii>
+			        <lii><a href="Portfolio/Infrastructure.html">Infrastructure</a></lii>
+			        <lii><a href="Portfolio/Energy.html">Energy</a></lii>
+			        <lii><a href="Portfolio/GSI.html">GSI</a></lii>
+			        <lii><a href="Portfolio/PMS.html">PMS</a></lii>
+
+			      </ull>
+			      
+			    </lii>
+			    
+			    
+			    
+			
+			    <lii><a href="CEO.html">Our CEO</a></lii>
+			    
+			    
+			    
+			   
+			    <lii><a href="Board.html">Our Board of Directors</a></lii>
+			    
+			    
+			    
+					    
+			    <lii>  				      
+			      			      
+			      <label for="drop-5" class="toggle">Our People +</label>
+			      <a href="People.html">Our People</a>		      
+			      <input type="checkbox" id="drop-5"/>
+			      
+			      <ull>
+			      
+			        <lii><a href="People.html#firstPage">Architecture</a></lii>
+			        <lii><a href="People.html#secondPage">Infrastructure</a></lii>
+			        <lii><a href="People.html#3rdPage">Energy</a></lii>
+			        <lii><a href="People.html#4thPage">GSI</a></lii>
+			        <lii><a href="People.html#5thPage">PMS</a></lii>
+			        <lii><a href="People.html#6thPage">Engineering Services</a></lii>
+			        
+			      </ull>
+			      
+			    </lii>				    
+			    
+		    
+			    
+			    <lii>  				      
+			      			      
+			      <label for="drop-6" class="toggle">360¡Æ Perspective +</label>
+			      <a href="360.html">360¡Æ Perspective</a>		      
+			      <input type="checkbox" id="drop-6"/>
+			      
+			      <ull>
+			      
+			        <lii><a href="360.html#firstPage">Insights</a></lii>
+			        <lii><a href="360.html#secondPage">Systems & Tools</a></lii>
+			        <lii><a href="360.html#3rdPage">Technology</a></lii>
+
+			      </ull>
+			      
+			    </lii>
+			    
+			    
+			    
+			    
+			  			    
+			    <lii>  				      
+			      			      
+			      <label for="drop-7" class="toggle">Multimedia +</label>
+			      <a href="Multimedia.html">Multimedia</a>		      
+			      <input type="checkbox" id="drop-7"/>
+			      
+			      <ull>
+			      
+			        <lii><a href="Multimedia.html#firstPage">Media</a></lii>
+			        <lii><a href="Multimedia.html#secondPage">Publications</a></lii>
+			        <lii><a href="Multimedia.html#3rdPage">News & Events</a></lii>
+
+			      </ull>
+			      
+			    </lii>
+			    
+			    
+			    
+			  	
+			    <lii><a href="Careers.html">Careers</a></lii>
+			    
+			    
+			    
+			  
+			    <lii><a href="Contact.html">Contact Us</a></lii>
+			    
+			    
+			     Employee Area-->				    
+			  <!--   <lii>  				      
+			      			      
+			      <label for="drop-8" class="toggle">Employee +</label>
+			      <a href="EmployeeArea.html" style="border: 1px solid #1a90b3;"> Employee Area</a>			            
+			      <input type="checkbox" id="drop-8"/>
+			      
+			      <ull>
+			      
+			        <lii><a href="https://intranet.khatibalami.com/" target="_blank">K&A Intranet</a></lii>
+			        <lii><a href="https://owa.khatibalami.com/owa" target="_blank">K&A Webmail</a></lii>
+
+			      </ull>
+			      
+			    </lii> -->
+			    
+			    
+			    
+			  </ull>
+			  
+			</navv>	
+			
+			<!-- End Drop Down Menu -->
+					
+		</div>
+	<div id="demo-1" data-zs-src="[&quot;images/1.jpg&quot;, &quot;images/41.jpg&quot;, &quot;images/tech.jpg&quot;, &quot;images/32.jpg&quot;, &quot;images/66.jpg&quot;]" data-zs-overlay="none" class="zs-enabled"><div class="zs-slideshow"><div class="zs-slides"><div class="zs-slide zs-slide-0" style="background-image: url(&quot;http://www.dtf-v.com/images/1.jpg&quot;);"></div><div class="zs-slide zs-slide-1" style="background-image: url(&quot;http://www.dtf-v.com/images/41.jpg&quot;);"></div><div class="zs-slide zs-slide-2" style="background-image: url(&quot;http://www.dtf-v.com/images/tech.jpg&quot;);"></div><div class="zs-slide zs-slide-3" style="background-image: url(&quot;http://www.dtf-v.com/images/32.jpg&quot;);"></div><div class="zs-slide zs-slide-4 active" style="background-image: url(&quot;images/66.jpg&quot;); transition: transform 8000ms ease-out 0s, opacity 800ms ease 0s; opacity: 1; transform: scale(1, 1); z-index: 2;"></div></div><div class="zs-bullets"><div class="zs-bullet zs-bullet-0"></div><div class="zs-bullet zs-bullet-1"></div><div class="zs-bullet zs-bullet-2"></div><div class="zs-bullet zs-bullet-3"></div><div class="zs-bullet zs-bullet-4 active"></div></div></div>
+	
+		<div class="demo-inner-content">
+			<h1><span></span></h1>
+			<p></p>
+		</div>
+	
+	</div>	
+
+<script type="text/javascript" src="./DTF-V_files/jquery.min.js.download"></script>
+	<script type="text/javascript" src="./DTF-V_files/jquery.zoomslider.min.js.download"></script>
+
+<script>'undefined'=== typeof _trfq || (window._trfq = []);'undefined'=== typeof _trfd && (window._trfd=[]),_trfd.push({'tccl.baseHost':'secureserver.net'}),_trfd.push({'ap':'cpsh'},{'server':'sg2plcpnl0158'}) // Monitoring performance to make your website faster. If you want to opt-out, please contact web hosting support.</script><script src="./DTF-V_files/tcc_l.combined.1.0.6.min.js.download"></script></body></html>

@@ -1,0 +1,16 @@
+.background-image{
+    /* background: url('https://images.pexels.com/photos/2031726/pexels-photo-2031726.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940') no-repeat fixed center; */
+
+    width: 100%;
+    height: 88vh;
+    background-size: cover !important;
+    background-repeat: no-repeat;
+    
+    
+}  
+.text-custom{
+    font-size:50px;
+    font-weight: bold;
+    justify-content:center;
+    display:flex;
+}

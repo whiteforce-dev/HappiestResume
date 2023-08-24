@@ -1,0 +1,361 @@
+
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&amp;display=swap");
+    /* @import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap'); */
+
+    @import url("https://use.typekit.net/xip0ugk.css");
+
+.content {
+    display: none
+}
+
+.content:first-of-type {
+    display: block
+}
+
+a {
+    display: inline-block;
+    /* margin-right: 10px; */
+    /* padding: 5px 0; */
+}
+
+
+img {
+    object-fit: cover;
+    height: 48px;
+}
+
+#container {
+    display: inline-block;
+    margin: 20px;
+    border: 1px solid black;
+    overflow: hidden;
+    border: 0;
+    box-shadow: 0 1px 3px rgba(3, 0, 71, .09)
+    
+}
+
+.card {
+    border: 0;
+    box-shadow: 0 1px 3px rgb(3 0 71 / 9%);
+    height: 385px;
+    width: 330px;
+    /* width: 300px; */
+}
+
+
+#container img {
+    display: block;
+    transition: transform .4s;
+   
+}
+
+#container:hover img {
+    transform: scale(1.3);
+    transform-origin: 50% 50%;
+}
+
+.number {
+    font-size: 18px;
+    font-weight: 700
+}
+
+.text1 {
+    font-size: 18px;
+    font-weight: 700
+}
+
+.years1 {
+    font-size: 18px;
+    font-weight: 700
+}
+
+.suitcase {
+    font-size: 25px;
+    font-weight: 700;
+}
+
+.dollar {
+    font-size: 25px;
+    font-weight: 700;
+}
+
+.loc-res {
+    font-size: 25px;
+    font-weight: 700;
+}
+
+/*--------responsiveness----------*/
+
+
+@media only screen and (max-width: 768px) {
+
+    .years1 {
+        font-size: 12px;
+
+    }
+
+    .suitcase {
+        font-size: 17px;
+    }
+
+    .dollar {
+        font-size: 17px;
+
+    }
+
+    .number {
+        font-size: 14px;
+    }
+
+
+    .loc-res {
+        font-size: 18px;
+
+    }
+
+    .text1 {
+        font-size: 13px;
+    }
+
+    .job-posted {
+        font-size: 9px !important;
+        margin: 0px;
+    }
+}
+
+
+
+
+@media only screen and (max-width: 320px) {
+    .number {
+        font-size: 15px;
+    }
+
+    .text1 {
+        font-size: 15px;
+
+    }
+
+    .years1 {
+        font-size: 15px;
+
+    }
+
+    .job-posted {
+        margin: 14px;
+    }
+
+}
+
+/*---------------------------------------------*/
+
+.container_sm {
+    /* flex-grow: 1;
+    margin-left: 100px;
+
+    margin-top: 50px;
+    margin-bottom: 50px; */
+    flex-grow: 1;
+    padding-left:100px;
+    padding-top: 50px;
+    margin-bottom: 50px;
+    background-image:url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/1462889/pat-back.svg') ;
+    background-position: center;
+    background-repeat: repeat;
+    background-size: 5%;
+}
+
+
+.cards {
+  
+    margin: 20px;
+    padding: 0;
+    list-style: none;
+}
+
+
+.card {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #000;
+}
+
+.card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 20;
+    width: 50%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.1);
+    pointer-events: none;
+}
+
+
+
+.card:nth-child(1) {
+  
+        
+    background: linear-gradient( 90deg, rgb(248, 231, 28) 0%, rgb(241, 232, 124) 100%, rgb(255, 255, 255) 100%, rgb(255, 255, 255) 100%, rgb(255, 255, 255) 100%, rgb(255, 255, 255) 100%);
+}
+
+.card__frame {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    color: #000;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+
+.card__picture img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+.card__title {
+    margin: 0;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.card__overlay {
+    color: #fff;
+    position: absolute;
+    bottom:21px;
+    right: 11px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width:52px;
+    height: 52px;
+    border-radius: 50%;
+    box-shadow: 0 2px 4px rgb(0 0 0 / 20%);
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+.card__overlay::before {
+    content: "Read";
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    color: #000;
+
+  
+}
+
+.card__overlay:hover,
+.card__overlay:focus {
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    box-shadow: none;
+    border-radius: 0;
+  
+}
+
+.card__overlay:hover::before,
+.card__overlay:focus::before {
+    content: none;
+}
+
+
+.card:nth-child(1) .card__overlay {
+    border-radius:28px;
+    border:1px solid  #343434; 
+    /* background:#FFDB58;  */
+    background:#F7F1B9; 
+}
+
+.card__content {
+    z-index: 1;
+    padding: 20px;
+    line-height: 1.4;
+    
+    opacity: 0;
+    visibility: hidden;
+    box-sizing: border-box;
+    pointer-events: none;
+    transition: 0s;
+    width: 310px;
+}
+
+.card__overlay:hover~.card__content {
+    color: #000;
+    opacity: 1;
+    visibility: visible;
+    transition: 0.2s 0.3s;
+}
+
+.card__content h2 {
+    margin: 0;
+    margin-bottom: 16px;
+}
+
+/*-------------------------------------*/
+
+
+.flip-card {
+    background-color: transparent;
+    width:55%;
+    height:40px;
+    
+  }
+  
+  .flip-card-inner {
+    position: relative;
+    width:98%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  }
+  
+  .flip-card:hover .flip-card-inner {
+    transform: rotateX(180deg); 
+  }
+  
+  .flip-card-front, .flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+  }
+  
+  .flip-card-front {
+
+    background-color: #f44336;
+    border-radius: 0.25rem;
+    color: #fff;
+    width: 180px;
+    padding: 10px;
+  }
+  
+  .flip-card-back {
+    background-color: #fff;
+    color: white;
+     transform: rotateX(180deg); 
+  }
+ .blue{
+    text-transform: uppercase;
+    padding: 10px;
+    width: 178px;
+ }
+/*--------------------------------*/
