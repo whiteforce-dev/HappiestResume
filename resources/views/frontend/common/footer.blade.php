@@ -189,7 +189,7 @@
 
             <div class="col-sm-12">
                 <div class="footer_copy">
-                    © 2020 Happiest Resume All Right Reserved
+                    © {{ date('Y') }} Happiest Resume All Right Reserved
                 </div>
             </div>
         </div>

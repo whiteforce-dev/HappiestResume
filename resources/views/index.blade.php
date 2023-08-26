@@ -20,8 +20,8 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
     
-    <script type="module" crossorigin src="/assets/index-66b38c58.js"></script>
-    <link rel="stylesheet" href="/assets/index-a247ad24.css">
+    <script type="module" crossorigin src="/assets/index-e9f178cd.js"></script>
+    <link rel="stylesheet" href="/assets/index-7bd6cf36.css">
     <script>
       let userData = '<?php echo Auth::user(); ?>';
       localStorage.setItem("userData", userData.replaceAll('""', '"'))

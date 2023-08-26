@@ -380,71 +380,18 @@
 
 <body>
     <main class="main_block">
-        <div id="loader-overlay" class="loader_overlay">
+        {{-- <div id="loader-overlay" class="loader_overlay">
             <div class="loader">
                 <div class="loader-inner"></div>
             </div>
-        </div>
-        <nav>
+        </div> --}}
+        {{-- <nav>
             <div class="logowithmenu_bar {{Request::is('job-description/*')?"logowithmenu_bar_fixed":''}}{{Request::is('hot-jobs')?"logowithmenu_bar_fixed":''}}"
                 id="top_navigation_bar">
                 @include('frontend.common.nav')
-                {{-- <div class="container">
-                    <div class="row">
-                        <div class="col-lg-3">
-                            <div class="logo main">
-                                <a href="{{URL::to('/')}}">
-                <img class="top_logowhite" src="{{URL::to('public/front').'/'}}images/logo1.png" alt="Happiest Logo">
-                <img class="top_logoblack" src="{{URL::to('public/front').'/'}}images/logo1.png" alt="Happiest Logo">
-                </a>
+             
             </div>
-            </div>
-            <div class="col-lg-9 pull-right">
-                <nav class="text-right main-menu">
-                    <div class="res_menu_btn" onclick="ResponsiveMenu();">
-                        <i class="mdi mdi-menu"></i>
-                    </div>
-                    <ul class="top_menu_ul list-unstyled" id="res_menucontainer">
-                        <li><a class="page-scroll" href="{{Request::is('/') ? "#home" : URL::to('/#home')}}">HOME</a>
-                        </li>
-                        <li><a class="page-scroll" href="{{Request::is('/') ? "#about" : URL::to('/#about')}}">About</a>
-                        </li>
-                        <li><a class="page-scroll"
-                                href="{{Request::is('/') ? "#templates" : URL::to('/#templates')}}">Templates</a>
-                        </li>
-                        <li><a class="page-scroll"
-                                href="{{Request::is('/') ? "#testimonial" : URL::to('/#testimonial')}}">Testimonial</a>
-                        </li>
-                        <li><a class="page-scroll"
-                                href="{{Request::is('/') ? "#contact" : URL::to('/#contact')}}">contact</a>
-                        </li>
-                        <li><a class="page-scroll" target="_blank" href="{{URL::to('hot-jobs')}}">Jobs</a>
-                        </li>
-                    </ul>
-                    <div class="before_login">
-                        @if(session()->has('user'))
-                        <button type="button"
-                            class="text-white btn btn-danger nav_button btn-sm margin-right0 waves-effect waves-light theam_btn"
-                            data-target="#modal_logout" data-toggle="modal">LOGOUT
-                        </button>
-                        @else
-                        <button type="button"
-                            class="text-white btn btn-primary nav_button mr-1 btn-sm waves-effect waves-light theam_btn"
-                            data-toggle="modal" data-target="#modal_registration">SIGNUP
-                        </button>
-                        <button type="button"
-                            class="text-white btn btn-warning nav_button btn-sm margin-right0 waves-effect waves-light theam_btn"
-                            data-target="#modal_login" id="login_btn" data-toggle="modal">LOGIN
-                        </button>
-                        @endif
-                    </div>
-
-                </nav>
-            </div>
-            </div>
-            </div> --}}
-            </div>
-        </nav>
+        </nav> --}}
         @yield('content')
         @if(session()->has('flashError'))
         <script type="text/javascript">

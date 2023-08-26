@@ -280,7 +280,7 @@
                             <p style="margin-right: 15px">
                                 <i class="fa-solid fa-building"
                                     style="margin-right: 5px; color: rgb(79, 144, 241)"></i>
-                                {{ $job->company->name }}
+                                {{ $job->company->name ?? 'Not Specified' }}
                             </p>
                             <p>
                                 <i class="fa-solid fa-location-dot"

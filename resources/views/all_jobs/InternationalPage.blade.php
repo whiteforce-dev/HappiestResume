@@ -376,25 +376,29 @@
                     {{-- {{ $jobsint->links() }} --}}
                     @if (count($jobsint))
                         @foreach ($jobsint as $job)
+                        {{-- @dump($job->company->hh_img ?? '') --}}
                             <div class="box-card">
                                 <div class="top-box">
                                     <div class="left-top">
                                         @php
-                                            $str_path = str_replace('public/', ' ', $job->company->image);
+                                            $str_path = str_replace('public/', ' ', $job->company->image ?? '' );
                                             // dd($str_path)
-                                        @endphp
-                                        @if (file_exists($job->company->hh_img))
-                                            <img class="img-fluid" src="{{ $job->company->hh_img }}" alt="image">
-                                        @elseif(isset($job->company->image) && file_exists($job->company->image))
-                                            <img style="height:50px;width:70px" class="img-fluid"
+                                        @endphp 
+                                       @if (file_exists($job->company->hh_img ?? ''))
+                                        
+                                            <img class="img-fluid" src="{{ $job->company->hh_img ?? ''}}" alt="image">
+                                        @elseif(isset($job->company->image ) && file_exists($job->company->image))
+                                       
+                                            <img  class="img-fluid"
                                                 src="{{ url($str_path) }}"alt="image">
                                         @else
-                                            {{-- {{ url($str_path) }}   --}}
+                                     
+                                        
                                             <img class="img-fluid" src="{{ url('images/company/white_force.png') }}"
                                                 alt="image">
                                         @endif
                                         <div class="card-name-first">
-                                            <p class="">{{ substr($job->company->name, 0, 14) }}
+                                            <p class="">{{ substr($job->company->name ?? '', 0, 14) }}
 
                                             </p>
                                             <span>
@@ -432,8 +436,13 @@
                                     </div>
                                 </div>
                                 <div class="w-full">
+                                    @php 
+                                    $job_description = strip_tags($job->job_description);
+                                    
+                                    
+                                    @endphp
                                     <p>
-                                        {!! substr($job->job_description, 0, 75) !!} ... <a style="text-decoration: none;"
+                                       {{ substr($job_description, 0, 75) }} ... <a style="text-decoration: none;"
                                             href={{ url('job-description', [$job->id]) }}><span class="trigger"
                                                 style=" 
                                 color: #1d1d22;

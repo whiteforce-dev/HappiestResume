@@ -27,7 +27,7 @@ class FrontendController extends Controller
     public function home()
     {
 
-        #visitors code 
+        #visitors code
 
         //  $websiteurl = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 
@@ -130,7 +130,7 @@ class FrontendController extends Controller
 
     public function sign_up(Request $request)
     {
-        
+
 
         $data = (object) [
             'page' => 'simple',
@@ -139,8 +139,8 @@ class FrontendController extends Controller
         ];
         $request->session()->put('redirect-user', $data);
         $country_code = CountryCode::get();
- 
-       return view('auth.signupchanges', compact('country_code'));
+
+        return view('auth.signupchanges', compact('country_code'));
     }
     public function getResumeCodeForCandiate($name)
     {
@@ -201,61 +201,62 @@ class FrontendController extends Controller
         $registration->candidate_type = request('candidate_type');
         $registration->industry = request('industry');
         $registration->save();
-        
+
         $user = new UserLogin_Model();
         $user->name = request('name') . '' . $lastname;
         $user->email = request('reg_email');
         $user->contact = request('contact');
         $user->password = Hash::make(request('password'));
         $user->save();
-        // return 'registration successful'; 
-        
-        
-        
-        
-        return view('dashboard');
+        // return 'registration successful';
+
+
+
+
+        return view('index');
 
     }
     public function forgotpassword()
     {
+        
         return view('auth.forgotpassword');
     }
     public function updatepassword(Request $request)
     {
-    // return $request;
-    $request->validate([
+        // return $request;
+        $request->validate([
 
-        'reg_email' => 'required|max:50',
+            'reg_email' => 'required|max:50',
 
-        'contact' => 'required|max:10|min:10',
+            'contact' => 'required|max:10|min:10',
 
-        'password' => 'required|max:20|min:6',
-        'cpassword' => 'required|max:20|min:6',
-    ]);
-    // return $request;
-    $emailid=$request->reg_email;
-    // return $emailid;
-    $contact = $request->contact;
-    // $password = $request->password;
-    $password = Hash::make($request->password);
+            'password' => 'required|max:20|min:6',
+            'cpassword' => 'required|max:20|min:6',
+        ]);
+        // return $request;
+        $emailid = $request->reg_email;
+        // return $emailid;
+        $contact = $request->contact;
+        // $password = $request->password;
+        $password = Hash::make($request->password);
 
-    $user = UserLogin_Model::where(['email' => $emailid, 'contact' => $contact])->first();
+        $user = UserLogin_Model::where(['email' => $emailid, 'contact' => $contact])->first();
 
-    if($user) {
-        // return 1;
-        $user->password = $password;
-        $user->save();
-        // return $user;
-        //  return 1;
+        if($user) {
+            // return 1;
+            $user->password = $password;
+            $user->save();
+            // return $user;
+            //  return 1;
 
 
-        return view('auth.login')->with('message', 'Password has been changed successfully');
-    } else {
-        // return 'else';
-        return view('auth.forgotpassword')->with('message', 'Invalid Mobile Number and Email Id');
+            return view('auth.login')->with('message', 'Password has been changed successfully');
+        } else {
+            // return 'else';
+            return view('auth.forgotpassword')->with('message', 'Invalid Mobile Number and Email Id');
+        }
     }
-}
-public function save_contact_query(Request $request )
+    public function save_contact_query(Request $request)
     {
         // return $request;
         $contact = new ContactQuery();
@@ -275,7 +276,7 @@ public function save_contact_query(Request $request )
         // ];
 
         //dispatch(new Sendshortlist($content));
-// return  $contact;
+        // return  $contact;
         return 1;
     }
 
@@ -288,12 +289,12 @@ public function save_contact_query(Request $request )
         $designation = '';
 
         if (!empty($request->all())) {
-            
+
             $location = $request->job_location ? explode(", ", $request->job_location) : null;
             // return $location;
             $designation = $request->designation ? explode(", ", $request->designation) : null;
 
-// return $designation;
+            // return $designation;
             $jobCat = $request->job_category ?? 'fresher';
 
             $jobs = $jobs = Job::query();
@@ -355,7 +356,7 @@ public function save_contact_query(Request $request )
         $job = Job::find($jid);
         // return $job;
         if (isset($job)) {
-           
+
             $job_types = JobType::where(['is_active' => 1])->get();
             $companies = Company::where(['is_active' => 1])->get();
 
@@ -373,12 +374,12 @@ public function save_contact_query(Request $request )
         $designation = '';
 
         if (!empty($request->all())) {
-            
+
             $location = $request->job_location ? explode(", ", $request->job_location) : null;
             // return $location;
             $designation = $request->designation ? explode(", ", $request->designation) : null;
 
-// return $designation;
+            // return $designation;
             $jobCat = $request->job_category ?? 'female';
 
             $jobs = $jobs = Job::query();
@@ -437,12 +438,12 @@ public function save_contact_query(Request $request )
         $designation = '';
 
         if (!empty($request->all())) {
-            
+
             $location = $request->job_location ? explode(", ", $request->job_location) : null;
             // return $location;
             $designation = $request->designation ? explode(", ", $request->designation) : null;
 
-// return $designation;
+            // return $designation;
             $jobCat = $request->job_category ?? 'national';
 
             $jobs = $jobs = Job::query();
@@ -494,19 +495,20 @@ public function save_contact_query(Request $request )
         return view('all_jobs.national_jobs', compact('jobs', 'location', 'designation', 'countries', 'category'));
     }
 
-     
-    public function internationaljobs(Request $request){
+
+    public function internationaljobs(Request $request)
+    {
         $category = $request->job_category ?? 'international';
         $location = '';
         $designation = '';
 
         if (!empty($request->all())) {
-            
+
             $location = $request->job_location ? explode(", ", $request->job_location) : null;
             // return $location;
             $designation = $request->designation ? explode(", ", $request->designation) : null;
 
-// return $designation;
+            // return $designation;
             $jobCat = $request->job_category ?? 'international';
 
             $jobs = $jobs = Job::query();
@@ -541,7 +543,7 @@ public function save_contact_query(Request $request )
             $designation = $request->designation;
         } else {
 
-            $jobs =Job::where('nationality', 2)->latest()->paginate(12);
+            $jobs = Job::where('nationality', 2)->latest()->paginate(12);
 
             // $jobs1 = Job::where('gender', '!=', 'Male Only')->latest()->paginate(12);
             // // dd($jobs1);
@@ -555,15 +557,15 @@ public function save_contact_query(Request $request )
 
 
 
-        return view('all_jobs.International_jobs', compact('jobs','location', 'designation', 'countries', 'category'));
+        return view('all_jobs.International_jobs', compact('jobs', 'location', 'designation', 'countries', 'category'));
 
 
 
 
-        
-        
+
+
     }
-     public function internew(Request $request, $countryname)
+    public function internew(Request $request, $countryname)
     {
         // return $countryname;
         $category = 'international';
@@ -572,5 +574,5 @@ public function save_contact_query(Request $request )
         return view('all_jobs.InternationalPage', compact('jobsint', 'country', 'category'));
     }
 
-    
+
 }

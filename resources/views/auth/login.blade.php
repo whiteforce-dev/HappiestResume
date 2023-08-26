@@ -64,13 +64,17 @@
 
                         <div class="input">
                             <label class="email-label" for="username">Email</label>
-                            <input type="email" name="email" id="username" placeholder="Eg: aadishriz@gmail.com"
+                            <input type="email" name="email" id="Email" placeholder="Eg: aadishriz@gmail.com"
                                 onkeyup="getUsername();" class="col-sm no-padding click click-courier" />
                             <label class="email-label" for="password" style="margin-top: 10px">Password</label>
-                            <input type="password" name="password" id="password" placeholder="Eg: Password123"
+                            <input type="password" name="password" id="Password" placeholder="Eg: Password123"
                                 onkeyup="getUserPassword();" class="col-sm no-padding click click-vendor" />
+                                <input type="checkbox" onclick="myFunction()" style="height:18px;width:18px;margin-left:68px;">&nbsp;&nbsp;<label  for="showpassword" style="margin-top:-48px;margin-left:68px;">Show Password</label>
+                                <small style="float:right !important;margin-top:-18px;margin-left:295px" ><a href="{{ url('forgotpassword') }}" style="font-weight: 500; font-family: Poppins, sans-serif;">
+                                    Forgot Password</a></small>
                         </div>
-
+                       
+                       
 
 
 
@@ -251,12 +255,12 @@
 
         <script>
             function getUsername() {
-                var username = $("#username").val();
+                var username = $("#Email").val();
                 $("#username-preview").text(username);
             }
 
             function getUserPassword() {
-                var password = $("#password").val();
+                var password = $("#Password").val();
                 $("#password-preview").text(password);
             }
         </script>
@@ -284,4 +288,20 @@
             }
         });
     </script>
+    <script>
+    $( document ).ready(function() {
+        $('#Password').focus();
+        $('#Email').focus();
+    });
+    </script>
+    <script>
+        function myFunction() {
+          var x = document.getElementById("Password");
+          if (x.type === "password") {
+            x.type = "text";
+          } else {
+            x.type = "password";
+          }
+        }
+        </script>
 @endsection

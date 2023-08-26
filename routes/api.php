@@ -27,4 +27,4 @@ Route::post('downloadpdf', [ApiAppController::class,'downloadPDF']);
 Route::post('save-data', [ApiAppController::class,'saveData']);
 Route::post('save-user-data', [ApiAppController::class,'saveUserData']);
 Route::post('login-user-detail', [ApiAppController::class, 'loginUserDetails']);
-Route::post('save-user-image', [ApiAppController::class, 'saveUserImage']);
+Route::post('store-image', [ApiAppController::class, 'saveUserImage']);

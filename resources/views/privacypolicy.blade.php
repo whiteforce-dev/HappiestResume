@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog Section</title>
+    <title>Privacy Policy</title>
     <link rel="stylesheet" href="{{ url('css/theme.min.css') }}">
     {{-- <link rel="stylesheet" href="{{ url('assets/happiestNewAssets/css/bootstrap.min.css') }}"> --}}
     {{-- <link rel="stylesheet" href="{{ url('assets/happiestNewAssets/css/theme.min.css') }}"> --}}
+    <link rel="stylesheet" href="https://happiestresume.com/public/front/css/style.css">
     <link rel="stylesheet" media="screen" href="{{url('vendor/boxicons/css/boxicons.min.css') }}"/>
     <link rel="stylesheet" media="screen" href="{{ url('vendor/swiper/swiper-bundle.min.css') }}"/>
     <link rel="stylesheet" href="{{ url('css/blog.css') }}">
@@ -83,7 +84,7 @@ font-size: 0.9rem !important;
     <header id="" class="navbar navbar-expand-lg fixed-top py-4" data-scroll-header="" style="background-color: white;">
         <div class="container p-0" style="width: 90%;">
             <a class="navbar-brand me-0 me-xl-4" href="#">
-                <img src="http://127.0.0.1:8000/assets/happiestNewAssets/img/logo.png" alt="Happiest Resume"
+                <img src="{{ url('assets/happiestNewAssets/img/logo.png') }}" alt="Happiest Resume"
                     style="width: 110px;" loading="lazy">
             </a>
             <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse"
@@ -149,7 +150,7 @@ font-size: 0.9rem !important;
 
 
     <section class="container py-5 my-2 my-md-4 my-lg-5 main-blog">
-        <div class="container" style="margin-top: 125px;margin-bottom: 60px">
+        <div class="container" style="margin-bottom: 60px">
             <p><strong><u>Privacy Policy</u></strong></p>
             <p>Last updated: April 02, 2021</p>
             <p>This Privacy Policy describes Our policies and procedures on the collection, use, and disclosure of Your information when You use the Service and tells You about Your privacy rights and how the law protects You.</p>
@@ -410,6 +411,7 @@ font-size: 0.9rem !important;
      
       <section class="pb-4 pt-8 bg-white" id="contact">
         @include('frontend.common.footer')
+        {{-- @include('frontend.common.footer') --}}
         </section>
 
       <!-- <script src="vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script> -->

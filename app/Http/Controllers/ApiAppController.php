@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 header('Access-Control-Allow-Origin: http://localhost:8100');
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Headers: X-Requested-With,Content-Type');
@@ -61,7 +62,7 @@ class ApiAppController extends Controller
         return response()->json($response, 200);
     }
 
-  public function sendError($error, $errorMessages = [], $code = 200)
+    public function sendError($error, $errorMessages = [], $code = 200)
     {
         $response = [
             'status' => false,
@@ -78,123 +79,122 @@ class ApiAppController extends Controller
     {
         $message = "Your Request OTP Generated Successfully.";
         $data = file_get_contents("php://input");
-        $request = json_decode($data, TRUE);
+        $request = json_decode($data, true);
         if ($request) {
             $mobileNumber = $request['mobile'] ;//8518023376;
             $otp = rand('100000', '999999');
-            $device =$request ['deviceId'];
+            $device = $request ['deviceId'];
             $token = $request['token'];
             $usertype = $request['user_type'];
             $msg = "OTP for HappiestResume registration is $otp. Please enter to verify. Don't share with others. Regards Team HappiestResume.";
             $str = urlencode("$msg");
             $api_key = '46066D0E0C9185';
             $from = 'HAPIES';
-            $template_id='1707162140834220666';
+            $template_id = '1707162140834220666';
             $api_url = "http://webmsg.smsbharti.com/app/smsapi/index.php?key=".$api_key."&campaign=0&routeid=9&type=text&contacts=".$mobileNumber."&senderid=".$from."&msg=".$str."&template_id=".$template_id;
             $response = file_get_contents($api_url);
-         
+
             $token = $request['token'];
-            if(isset($token)){
-             Appuser::send_notification($msg,$token);
+            if(isset($token)) {
+                Appuser::send_notification($msg, $token);
             }
-            
+
             $check = RegistrationModel::where(['contact' =>   $mobileNumber ])->first();
             if($check != '') {
                 $user_id = $check->id;
-            
+
                 $saveRes1 = Appuser::where('user_id', $user_id)->first();
-                if($saveRes1 != ''){
+                if($saveRes1 != '') {
                     $saveRes1->mobile =  $mobileNumber;
-                    $saveRes1->otp =$otp;
+                    $saveRes1->otp = $otp;
                     $saveRes1->deviceId = $device;
-                    $saveRes1->token =$token;
-                    $saveRes1->user_type =$usertype;
+                    $saveRes1->token = $token;
+                    $saveRes1->user_type = $usertype;
                     $saveRes1->save();
-                }
-                else{
+                } else {
                     $saveRes1 = new Appuser();
                     $saveRes1->user_id =  $user_id;
                     $saveRes1->mobile =  $mobileNumber;
-                    $saveRes1->otp =$otp;
+                    $saveRes1->otp = $otp;
                     $saveRes1->deviceId = $device;
-                    $saveRes1->token =$token;
-                    $saveRes1->user_type =$usertype;
+                    $saveRes1->token = $token;
+                    $saveRes1->user_type = $usertype;
                     $saveRes1->save();
                 }
-            
+
                 $saveRes2 = UserProfile::where('user_id', $user_id)->first();
-                if(!isset($saveRes2) || $saveRes2 == ""){
+                if(!isset($saveRes2) || $saveRes2 == "") {
                     $saveRes2 = new UserProfile();
                     $saveRes2->user_id =  $user_id;
                     $saveRes2->save();
                 }
-                
+
                 $saveRes3 = UserWorkExp::where('user_id', $user_id)->first();
-                if(!isset($saveRes3) || $saveRes3 == ""){
-                $saveRes3 = new UserWorkExp();
-                $saveRes3->user_id =  $user_id;
-                $saveRes3->save();
+                if(!isset($saveRes3) || $saveRes3 == "") {
+                    $saveRes3 = new UserWorkExp();
+                    $saveRes3->user_id =  $user_id;
+                    $saveRes3->save();
                 }
-            
+
                 $user_edu =  UserEducation::where('user_id', $user_id)->first();
-                if(!isset($user_edu) || $user_edu == ""){
-                $user_edu = new UserEducation();
-                $user_edu->user_id = $user_id;
-                $user_edu->save();
+                if(!isset($user_edu) || $user_edu == "") {
+                    $user_edu = new UserEducation();
+                    $user_edu->user_id = $user_id;
+                    $user_edu->save();
                 }
-            
+
                 $user_ach = UserAchievementModel::where('user_id', $user_id)->first();
-                if(!isset($user_ach) || $user_ach == ""){
-                $user_ach = new UserAchievementModel();
-                $user_ach->user_id = $user_id;
-                $user_ach->save();
+                if(!isset($user_ach) || $user_ach == "") {
+                    $user_ach = new UserAchievementModel();
+                    $user_ach->user_id = $user_id;
+                    $user_ach->save();
                 }
- 
+
                 $user_sk = UserSkill::where('user_id', $user_id)->first();
-                if(!isset($user_sk) || $user_sk == ""){
-                $user_sk = new UserSkill();
-                $user_sk->user_id = $user_id;
-                $user_sk->save();
+                if(!isset($user_sk) || $user_sk == "") {
+                    $user_sk = new UserSkill();
+                    $user_sk->user_id = $user_id;
+                    $user_sk->save();
                 }
- 
+
                 $user_pr = UserSocial::where('user_id', $user_id)->first();
-                if(!isset($user_pr) || $user_pr == ""){
-                $user_pr = new UserSocial();
-                $user_pr->user_id = $user_id;
-                $user_pr->save();
+                if(!isset($user_pr) || $user_pr == "") {
+                    $user_pr = new UserSocial();
+                    $user_pr->user_id = $user_id;
+                    $user_pr->save();
                 }
             } else {
                 $saveRes = new RegistrationModel();
                 $saveRes->contact =  $mobileNumber;
                 $saveRes->register_from = 'app';
                 $saveRes->save();
-            
-                $user_id =$saveRes->id;
+
+                $user_id = $saveRes->id;
                 $saveRes1 = new Appuser();
                 $saveRes1->user_id =  $user_id;
                 $saveRes1->mobile =  $mobileNumber;
-                $saveRes1->otp =$otp;
+                $saveRes1->otp = $otp;
                 $saveRes1->deviceId = $device;
-                $saveRes1->token =$token;
-                $saveRes1->user_type =$usertype;
+                $saveRes1->token = $token;
+                $saveRes1->user_type = $usertype;
                 $saveRes1->save();
 
                 $saveRes2 = new UserProfile();
                 $saveRes2->user_id =  $user_id;
                 $saveRes2->save();
-            
+
                 $saveRes3 = new UserWorkExp();
                 $saveRes3->user_id =  $user_id;
                 $saveRes3->save();
-            
+
                 $user_edu = new UserEducation();
                 $user_edu->user_id = $user_id;
                 $user_edu->save();
-                
+
                 $user_ach = new UserAchievementModel();
                 $user_ach->user_id = $user_id;
                 $user_ach->save();
-            
+
                 $user_sk = new UserSkill();
                 $user_sk->user_id = $user_id;
                 $user_sk->save();
@@ -204,123 +204,122 @@ class ApiAppController extends Controller
                 $user_pr->save();
             }
 
-          return $this->sendResponse($otp, $message);
-        
-      }
+            return $this->sendResponse($otp, $message);
+
+        }
     }
-    
+
     public function appLoginCheck()
     {
-     $data = file_get_contents("php://input");
-     $request = json_decode($data, TRUE);
-     if ($request) {
+        $data = file_get_contents("php://input");
+        $request = json_decode($data, true);
+        if ($request) {
 
             $mobile = $request['mobile'];
             $otp = $request['otp'];
-            
+
             $check = DB::table('registrations')
-                  ->join('app_user','registrations.id' ,'=','app_user.user_id')
+                  ->join('app_user', 'registrations.id', '=', 'app_user.user_id')
                   ->where(['app_user.mobile' => $mobile, 'app_user.otp' => $otp])->first();
-            
-            if(!empty($check)){
+
+            if(!empty($check)) {
                 $check_array = json_decode(json_encode($check), true);
-                $user_skill = UserSkill::where('user_id',$check->user_id)->select('skills','career_obj')->first();
-                if(!empty($user_skill)){
-                    $user_skill->skills = !empty($user_skill->skills) ? explode(',',$user_skill->skills) : [];
+                $user_skill = UserSkill::where('user_id', $check->user_id)->select('skills', 'career_obj')->first();
+                if(!empty($user_skill)) {
+                    $user_skill->skills = !empty($user_skill->skills) ? explode(',', $user_skill->skills) : [];
                     $user_skill = json_decode(json_encode($user_skill), true);
-                    $check_array = array_merge($check_array,$user_skill);
-                }
-                
-                $user_social = UserSocial::where('user_id',$check->user_id)->first();
-                if(!empty($user_social)){
-                $user_social = json_decode(json_encode($user_social), true);
-                $check_array = array_merge($check_array,$user_social);
+                    $check_array = array_merge($check_array, $user_skill);
                 }
 
-               
-                
+                $user_social = UserSocial::where('user_id', $check->user_id)->first();
+                if(!empty($user_social)) {
+                    $user_social = json_decode(json_encode($user_social), true);
+                    $check_array = array_merge($check_array, $user_social);
+                }
+
+
+
                 $profile = UserProfile::where(['user_id' => $check->user_id])->first();
-                if(!empty($profile)){
-                $profile = json_decode(json_encode($profile), true);
-                $check_array = array_merge($check_array,$profile);
+                if(!empty($profile)) {
+                    $profile = json_decode(json_encode($profile), true);
+                    $check_array = array_merge($check_array, $profile);
                 }
                 $check = (object)$check_array;
-                if(!empty($check->industry)){
-                    $check->industry = Industry::where('id',$check->industry)->value('industry_name');
+                if(!empty($check->industry)) {
+                    $check->industry = Industry::where('id', $check->industry)->value('industry_name');
                 } else {
                     $check->industry = "";
                 }
                 $check->id = isset($check->user_id) ? $check->user_id : "";
-                $check->relocate = isset($check->willing_to_relocate) ? $check->willing_to_relocate :"";
-                $check->adhaar = isset($check->adhar_num) ? $check->adhar_num :"";
-                $check->pan = isset($check->pan_num) ? $check->pan_num :"";
-                $check->address = isset($check->user_address) ? $check->user_address :"";
-                $check->city = isset($check->user_city) ? $check->user_city :"";
-                $check->state = isset($check->user_state) ? $check->user_state :"";
-                $check->country = isset($check->user_country) ? $check->user_country :"";
-                $check->latitude = isset($check->lat) ? $check->lat :"";
-                $check->longitude = isset($check->lng) ? $check->lng :"";
-                $check->current_experience = isset($check->total_exp) ? $check->total_exp :"";
-                $check->current_salary = isset($check->current_ctc) ? $check->current_ctc :"";
-                $check->languages = !empty($check->language) ? explode(',',$check->language) : [];
-                $check->hobbies = !empty($check->interest_hobies) ? explode(',',$check->interest_hobies) : [];
+                $check->relocate = isset($check->willing_to_relocate) ? $check->willing_to_relocate : "";
+                $check->adhaar = isset($check->adhar_num) ? $check->adhar_num : "";
+                $check->pan = isset($check->pan_num) ? $check->pan_num : "";
+                $check->address = isset($check->user_address) ? $check->user_address : "";
+                $check->city = isset($check->user_city) ? $check->user_city : "";
+                $check->state = isset($check->user_state) ? $check->user_state : "";
+                $check->country = isset($check->user_country) ? $check->user_country : "";
+                $check->latitude = isset($check->lat) ? $check->lat : "";
+                $check->longitude = isset($check->lng) ? $check->lng : "";
+                $check->current_experience = isset($check->total_exp) ? $check->total_exp : "";
+                $check->current_salary = isset($check->current_ctc) ? $check->current_ctc : "";
+                $check->languages = !empty($check->language) ? explode(',', $check->language) : [];
+                $check->hobbies = !empty($check->interest_hobies) ? explode(',', $check->interest_hobies) : [];
 
                 $check->education = [];
                 $check->company = [];
                 $check->achievement = [];
-                $education = UserEducation::where(['user_id' => $check->user_id])->select('type as education_type','education_name','year as education_year')->get();
-                foreach($education as $edu){
-                    if(!empty($edu->education_name) && is_numeric($edu->education_name)){
-                        $edication_name = Degrees::where('id',$edu->education_name)->value('degree_name');
+                $education = UserEducation::where(['user_id' => $check->user_id])->select('type as education_type', 'education_name', 'year as education_year')->get();
+                foreach($education as $edu) {
+                    if(!empty($edu->education_name) && is_numeric($edu->education_name)) {
+                        $edication_name = Degrees::where('id', $edu->education_name)->value('degree_name');
                         $edu->education_name = !empty($edication_name) ? $edication_name : $edu->education_name;
                     }
                 }
-                if(!empty($education)){
+                if(!empty($education)) {
                     $check->education = $education;
                 }
-                
-                $work = UserWorkExp::where(['user_id' => $check->user_id])->select('company as company_name','designation','start_date as exp_from','end_date as exp_to','is_current_working as exp_to_present','description as company_description')->get();
-                if(!empty($work)){
+
+                $work = UserWorkExp::where(['user_id' => $check->user_id])->select('company as company_name', 'designation', 'start_date as exp_from', 'end_date as exp_to', 'is_current_working as exp_to_present', 'description as company_description')->get();
+                if(!empty($work)) {
                     $check->company = $work;
                 }
 
-                $user_achiev = UserAchievementModel::where('user_id',$check->user_id)->first();
-                if(!empty($user_achiev)){
-                $check->achievement = !empty($user_achiev->title) ? explode(',',$user_achiev->title) : [];
+                $user_achiev = UserAchievementModel::where('user_id', $check->user_id)->first();
+                if(!empty($user_achiev)) {
+                    $check->achievement = !empty($user_achiev->title) ? explode(',', $user_achiev->title) : [];
                 }
-        }
-        else{
-            $check = "";
-        }
-        
-        if (isset($check) && $check != "") {
-            $message = "Login Success";
-            return $this->sendResponse($check, $message);
-        } else {
-            $message = " Invalid";
-            return $this->sendError($message, $message);
-        }
+            } else {
+                $check = "";
+            }
+
+            if (isset($check) && $check != "") {
+                $message = "Login Success";
+                return $this->sendResponse($check, $message);
+            } else {
+                $message = " Invalid";
+                return $this->sendError($message, $message);
+            }
 
             // return $this->sendResponse($inputs, $message);
-     }
+        }
     }
 
     public function insertUserNew()
     {
         $message = "Your Resume Completed Successfuly. Now You can Apply for different jobs.";
         $datarec = file_get_contents("php://input");
-        $request = json_decode($datarec, TRUE);
-       
+        $request = json_decode($datarec, true);
+
         if ($request) {
-            
-        $userid = $request['id'];
-        
-        $check = RegistrationModel::where(['id' => $userid])->first();
-  
-        if (isset($check)) {
+
+            $userid = $request['id'];
+
+            $check = RegistrationModel::where(['id' => $userid])->first();
+
+            if (isset($check)) {
                 $id = $check->id;
                 $inputs = RegistrationModel::find($id);
-                if($inputs->resumeCode_id == ''){
+                if($inputs->resumeCode_id == '') {
                     $candidate_name = $request['name'];
                     $resumeCode = new FrontendController();
                     $arr = $resumeCode->getResumeCodeForCandiate($candidate_name);
@@ -332,141 +331,140 @@ class ApiAppController extends Controller
                     $regiter_code->save();
                     $inputs->resumeCode_id = $regiter_code->id;
                 }
-        $file =  $request['image'];
-        if ($file != '') {
-            $data2 = base64_decode($file);
-            $image_name = rand(10000, 99999) . '.png';
-            $destinationPath = public_path('app_user') . '/' . $image_name;
-            file_put_contents($destinationPath, $data2);
-            $inputs->image =  'https://happiestresume.com/public/app_user/'.$image_name;
-        }
+                $file =  $request['image'];
+                if ($file != '') {
+                    $data2 = base64_decode($file);
+                    $image_name = rand(10000, 99999) . '.png';
+                    $destinationPath = public_path('app_user') . '/' . $image_name;
+                    file_put_contents($destinationPath, $data2);
+                    $inputs->image =  'https://happiestresume.com/public/app_user/'.$image_name;
+                }
 
-            $inputs->name = $request['name'];
-            $inputs->email = $request['email'];
-            $inputs->experience = $request['experience'];
-            $inputs->lat = $request['latitude'];
-            $inputs->lng =$request['longitude'];
-            if($request['experience'] == "yes"){
-                $inputs->is_fresher = '0';
-            }else{
-                $inputs->is_fresher = '1';
+                $inputs->name = $request['name'];
+                $inputs->email = $request['email'];
+                $inputs->experience = $request['experience'];
+                $inputs->lat = $request['latitude'];
+                $inputs->lng = $request['longitude'];
+                if($request['experience'] == "yes") {
+                    $inputs->is_fresher = '0';
+                } else {
+                    $inputs->is_fresher = '1';
+                }
+                $inputs->profile_complete_percent = '90';
+                $inputs->is_edited = 1;
+                $inputs->save();
+                $user_id = $inputs->id;
+
+                $profile = UserProfile::where('user_id', $id)->first();
+                if($profile == "") {
+                    $profile = new UserProfile();
+                }
+
+                $profile->user_id = $id;
+                $profile->gender = $request['gender'];
+                $profile->marital_status = $request['marital_status'];
+                $profile->age = $request['age'];
+                $profile->willing_to_relocate = $request['relocate'];
+                $profile->adhar_num = $request['adhaar'];
+                $profile->pan_num = $request['pan'];
+                $profile->user_address  = $request['address'];
+                $profile->user_city = $request['city'];
+                $profile->user_state = $request['state'];
+                $profile->user_country = $request['country'];
+                if(isset($request['postalcode'])) {
+                    $profile->user_pincode = $request['postalcode'];
+                }
+                $profile->current_location = $request['city'];
+                $profile->pref_location = $request['pref_location'];
+                $profile->expected_salary = $request['expected_salary'];
+                $profile->total_exp  = $request['current_experience'];
+
+                $industry = Industry::where('industry_name', $request['industry'])->value('id');
+                $profile->industry = $industry;
+
+                //$profile->current_ctc = $request['current_salary'];
+                //$profile->notice_period = $request['notice_period'];
+                //$profile->language = $request['languages'];
+                // $profile->interest_hobies = $request['hobbies'];
+                $profile->save();
+
+
+
+                $education = $request['education'];
+                $is_edu = UserEducation::where('user_id', $id)->first();
+                if($is_edu != '') {
+                    DB::table('user_education')->where('user_id', $id)->delete();
+                }
+
+                foreach($education as $edu) {
+                    $ed = new UserEducation();
+                    $ed->user_id = $id;
+                    if($edu['education_name'] == '10th' || $edu['education_name'] == '12th') {
+                        $ed->education_name = $edu['education_name'];
+                    } else {
+                        $degree = Degrees::where('degree_name', $edu['education_name'])->value('id');
+                        $ed->education_name = $degree;
+                    }
+                    $ed->type =  $edu['education_type'];
+                    $ed->year =  $edu['education_year'];
+                    $ed->save();
+                }
+                $is_work = UserWorkExp::where('user_id', $id)->first();
+                if($is_work != '') {
+                    DB::table('user_work_exp')->where('user_id', $id)->delete();
+                }
+                $workExp = $request['company'];
+                foreach($workExp as $work) {
+                    $user_we = new UserWorkExp();
+                    $user_we->user_id = $id;
+                    $user_we->company = $work['company'];
+                    $user_we->designation = $work['designation'];
+                    $user_we->save();
+                }
+                // $skill = UserSkill::where('user_id',$id)->first();
+                // $skill->user_id = $id;
+                // $skill->skills = $request['skills'];
+                // $skill->career_obj = $request['carrer_obj'];
+                // $skill->save();
+
+                // $user_pr = UserSocial::where('user_id',$id)->first();
+                // $user_pr->user_id = $id;
+                // $user_pr->fb = $request['fb'];
+                // $user_pr->linkedin = $request['linkedin'];
+                // $user_pr->twitter = $request['twitter'];
+                // $user_pr->save();
+
+                $inputs2 = Appuser::where('user_id', $id)->first();
+                //   $inputs2->qualification =  $request['education_type'];
+                $inputs2->city =  $request['city'];
+                $inputs2->state =  $request['state'];
+                //$inputs2->user_project = $request['project'];
+                //$inputs2->user_achievments = $request['achievments'];
+                $inputs2->isFormFilled = '1';
+                $inputs2->save();
+
+                if($file != '') {
+                    $request['image'] = 'https://happiestresume.com/public/app_user/'.$image_name;
+                }
+
+                $request['isFormFilled'] =   $inputs2->isFormFilled;
+
+
+
+                return $this->sendResponse($request, $message);
+            } else {
+                $message = " Invalid";
+                return $this->sendError($message, $message);
             }
-            $inputs->profile_complete_percent = '90';
-            $inputs->is_edited = 1;
-            $inputs->save();
-            $user_id= $inputs->id;
-
-            $profile= UserProfile::where('user_id',  $id)->first();
-            if($profile == ""){
-                $profile = new UserProfile();
-            }
-            
-            $profile->user_id = $id;
-            $profile->gender = $request['gender'];
-            $profile->marital_status = $request['marital_status'];
-            $profile->age = $request['age'];
-            $profile->willing_to_relocate = $request['relocate'];
-            $profile->adhar_num = $request['adhaar'];
-            $profile->pan_num = $request['pan'];
-            $profile->user_address  = $request['address'];
-            $profile->user_city = $request['city'];
-            $profile->user_state = $request['state'];
-            $profile->user_country = $request['country'];
-            if(isset($request['postalcode'])){
-             $profile->user_pincode = $request['postalcode'];
-            }
-            $profile->current_location = $request['city'];
-            $profile->pref_location = $request['pref_location'];
-            $profile->expected_salary = $request['expected_salary'];
-            $profile->total_exp  = $request['current_experience'];
-
-            $industry = Industry::where('industry_name',$request['industry'])->value('id');
-            $profile->industry = $industry;
-
-            //$profile->current_ctc = $request['current_salary'];
-            //$profile->notice_period = $request['notice_period'];
-            //$profile->language = $request['languages'];
-           // $profile->interest_hobies = $request['hobbies'];
-            $profile->save();
-            
-    
-
-        $education = $request['education'];
-        $is_edu = UserEducation::where('user_id',$id)->first();
-        if($is_edu != ''){
-            DB::table('user_education')->where('user_id',$id)->delete();
-        }
-        
-        foreach($education as $edu){
-               $ed = new UserEducation();
-               $ed->user_id = $id;
-               if($edu['education_name'] == '10th' || $edu['education_name'] == '12th'){
-                   $ed->education_name = $edu['education_name'];
-               }
-               else{
-                   $degree = Degrees::where('degree_name',$edu['education_name'])->value('id');
-                   $ed->education_name = $degree;
-               }
-               $ed->type =  $edu['education_type'];
-               $ed->year =  $edu['education_year'];
-               $ed->save();
-              }
-        $is_work = UserWorkExp::where('user_id',$id)->first();
-        if($is_work != ''){
-            DB::table('user_work_exp')->where('user_id',$id)->delete();
-        }     
-              $workExp = $request['company'];       
-              foreach($workExp as $work){
-                     $user_we = new UserWorkExp();
-                     $user_we->user_id = $id;
-                     $user_we->company = $work['company'];
-                     $user_we->designation = $work['designation'];
-                     $user_we->save(); 
-                     }
-            // $skill = UserSkill::where('user_id',$id)->first();
-            // $skill->user_id = $id;
-            // $skill->skills = $request['skills'];
-            // $skill->career_obj = $request['carrer_obj'];
-            // $skill->save();
-
-            // $user_pr = UserSocial::where('user_id',$id)->first();
-            // $user_pr->user_id = $id;
-            // $user_pr->fb = $request['fb'];
-            // $user_pr->linkedin = $request['linkedin'];
-            // $user_pr->twitter = $request['twitter'];
-            // $user_pr->save();
-
-            $inputs2 = Appuser::where('user_id',  $id)->first();
-         //   $inputs2->qualification =  $request['education_type'];
-            $inputs2->city =  $request['city'];
-            $inputs2->state =  $request['state'];
-            //$inputs2->user_project = $request['project'];
-            //$inputs2->user_achievments = $request['achievments'];
-            $inputs2->isFormFilled = '1';
-            $inputs2->save();
-
-           if($file != ''){
-           $request['image'] = 'https://happiestresume.com/public/app_user/'.$image_name;
-           }
-       
-           $request['isFormFilled'] =   $inputs2->isFormFilled;
-
-          
-
-           return $this->sendResponse( $request , $message);
-        }
-        else {
-            $message = " Invalid";
-            return $this->sendError($message, $message);
         }
     }
-    }
 
-    public function saveAppUserImage(){
+    public function saveAppUserImage()
+    {
         $message = "Image Updated Successfuly";
         $datarec = file_get_contents("php://input");
-        $request = json_decode($datarec, TRUE);
-        
+        $request = json_decode($datarec, true);
+
         if ($request) {
             $file =  $request['image'];
             if ($file != '') {
@@ -480,7 +478,7 @@ class ApiAppController extends Controller
                 $inputs->save();
                 $request['image'] = 'https://happiestresume.com/public/app_user/'.$image_name;
             }
-            return $this->sendResponse( $request , $message);
+            return $this->sendResponse($request, $message);
         } else {
             $message = " Invalid";
             return $this->sendError($message, $message);
@@ -488,18 +486,19 @@ class ApiAppController extends Controller
 
     }
 
-    public function insertAppUserWithAllFeilds(Request $request){
+    public function insertAppUserWithAllFeilds(Request $request)
+    {
         $message = "Your Resume Completed Successfuly. Now You can Apply for different jobs.";
         $datarec = file_get_contents("php://input");
-        $request = json_decode($datarec, TRUE);
-        
+        $request = json_decode($datarec, true);
+
         if ($request) {
             $userid = $request['id'];
             $check = RegistrationModel::where(['id' => $userid])->first();
             if (isset($check)) {
                 $id = $check->id;
                 $register = RegistrationModel::find($id);
-                if($register->resumeCode_id == ''){
+                if($register->resumeCode_id == '') {
                     $candidate_name = $request['name'];
                     $resumeCode = new FrontendController();
                     $arr = $resumeCode->getResumeCodeForCandiate($candidate_name);
@@ -511,15 +510,15 @@ class ApiAppController extends Controller
                     $regiter_code->save();
                     $register->resumeCode_id = $regiter_code->id;
                 }
-        
+
                 $register->name = $request['name'];
                 $register->name = $request['name'];
                 $register->contact = $request['contact'];
                 $register->email = $request['email'];
                 $register->experience = $request['experience'];
-                if($request['experience'] == "yes"){
+                if($request['experience'] == "yes") {
                     $register->is_fresher = '0';
-                }else{
+                } else {
                     $register->is_fresher = '1';
                 }
                 $register->lat = $request['address_latitude'];
@@ -528,13 +527,13 @@ class ApiAppController extends Controller
                 $register->profile_complete_percent = '50';
                 $register->is_edited = 1;
                 $register->save();
-                $user_id= $register->id;
+                $user_id = $register->id;
 
-                $profile= UserProfile::where('user_id',  $id)->first();
-                if($profile == ""){
+                $profile = UserProfile::where('user_id', $id)->first();
+                if($profile == "") {
                     $profile = new UserProfile();
                 }
-            
+
                 $profile->user_id = $register->id;
                 $profile->gender = $request['gender'];
                 $profile->marital_status = $request['marital_status'];
@@ -549,40 +548,39 @@ class ApiAppController extends Controller
                 $profile->communication_expertise = $request['communication'];
                 $profile->date_of_birth = $request['dob'];
                 $profile->father_name = $request['fathersname'];
-                if(isset($request['postalcode'])){
-                 $profile->user_pincode = $request['postalcode'];
+                if(isset($request['postalcode'])) {
+                    $profile->user_pincode = $request['postalcode'];
                 }
                 $profile->current_location = $request['city'];
                 // $profile->current_comapny = $request['current_comapny'];
-                 $profile->current_title = $request['current_designation'];
-                 $profile->pref_location = $request['pref_location'];
-                 $profile->expected_salary = $request['expected_salary'];
-                 $total_exp_year = !empty($request['total_experience_year']) ? $request['total_experience_year'] : 0;
-                 $total_exp_month = !empty($request['total_experience_month']) ? $request['total_experience_month'] : 0;
-                 $profile->total_exp  = $total_exp_year. '.' . $total_exp_month;
-                 $industry = Industry::where('industry_name',$request['industry'])->value('id');
-                 $profile->industry = $industry;
-                 //$lang = $this->convert_multi_array($request['language']);
-                 $lang = implode(',',$request['language']);
-                 $profile->language = $lang;
-                 //$hobby = $this->convert_multi_array_skills($request['hobbies']);
-                 $hobby = implode(',',$request['hobbies']);
-                 $profile->interest_hobies = $hobby;
-                 $profile->save();
-        
+                $profile->current_title = $request['current_designation'];
+                $profile->pref_location = $request['pref_location'];
+                $profile->expected_salary = $request['expected_salary'];
+                $total_exp_year = !empty($request['total_experience_year']) ? $request['total_experience_year'] : 0;
+                $total_exp_month = !empty($request['total_experience_month']) ? $request['total_experience_month'] : 0;
+                $profile->total_exp  = $total_exp_year. '.' . $total_exp_month;
+                $industry = Industry::where('industry_name', $request['industry'])->value('id');
+                $profile->industry = $industry;
+                //$lang = $this->convert_multi_array($request['language']);
+                $lang = implode(',', $request['language']);
+                $profile->language = $lang;
+                //$hobby = $this->convert_multi_array_skills($request['hobbies']);
+                $hobby = implode(',', $request['hobbies']);
+                $profile->interest_hobies = $hobby;
+                $profile->save();
+
                 $education = $request['education'];
-                $is_edu = UserEducation::where('user_id',$id)->first();
-                if($is_edu != ''){
-                    DB::table('user_education')->where('user_id',$id)->delete();
+                $is_edu = UserEducation::where('user_id', $id)->first();
+                if($is_edu != '') {
+                    DB::table('user_education')->where('user_id', $id)->delete();
                 }
-                foreach($education as $edu){
+                foreach($education as $edu) {
                     $ed = new UserEducation();
                     $ed->user_id = $register->id;
-                    if($edu['education_name'] == '10th' || $edu['education_name'] == '12th'){
+                    if($edu['education_name'] == '10th' || $edu['education_name'] == '12th') {
                         $ed->education_name = $edu['education_name'];
-                    }
-                    else{
-                        $degree = Degrees::where('degree_name',$edu['education_name'])->value('id');
+                    } else {
+                        $degree = Degrees::where('degree_name', $edu['education_name'])->value('id');
                         $ed->education_name = $degree;
                     }
                     $ed->type =  $edu['education_type'];
@@ -590,13 +588,13 @@ class ApiAppController extends Controller
                     $ed->save();
                 }
 
-                $is_work = UserWorkExp::where('user_id',$id)->first();
-                if($is_work != ''){
-                    DB::table('user_work_exp')->where('user_id',$id)->delete();
-                }  
-              
-                $workExp = $request['company'];       
-                foreach($workExp as $work){
+                $is_work = UserWorkExp::where('user_id', $id)->first();
+                if($is_work != '') {
+                    DB::table('user_work_exp')->where('user_id', $id)->delete();
+                }
+
+                $workExp = $request['company'];
+                foreach($workExp as $work) {
                     $user_we = new UserWorkExp();
                     $user_we->user_id = $register->id;
                     $user_we->company = $work['company_name'];
@@ -604,36 +602,35 @@ class ApiAppController extends Controller
                     $user_we->description = $work['company_description'];
                     $user_we->start_date = $work['exp_from'];
                     $user_we->end_date = $work['exp_to'];
-                    if($work['exp_to_present'] == "yes"){
+                    if($work['exp_to_present'] == "yes") {
                         $user_we->is_current_working = 1;
-                    }
-                    else{
+                    } else {
                         $user_we->is_current_working = 0;
                     }
-                    $user_we->save(); 
+                    $user_we->save();
                 }
 
-                $user_ach= UserAchievementModel::where('user_id',  $id)->first();
-                if($user_ach == ""){
+                $user_ach = UserAchievementModel::where('user_id', $id)->first();
+                if($user_ach == "") {
                     $user_ach = new UserAchievementModel();
                 }
                 $user_ach->user_id = $register->id;
                 //$user_ach->title = $this->convert_multi_array_skills($request['achievement']);
-                $user_ach->title = implode(',',$request['achievement']);
+                $user_ach->title = implode(',', $request['achievement']);
                 $user_ach->save();
 
-                $user_sk= UserSkill::where('user_id',  $id)->first();
-                if($user_sk == ""){
+                $user_sk = UserSkill::where('user_id', $id)->first();
+                if($user_sk == "") {
                     $user_sk = new UserSkill();
                 }
                 $user_sk->user_id = $register->id;
                 //$user_sk->skills = $this->convert_multi_array_skills($request['skills']);
-                $user_sk->skills = implode(',',$request['skills']);
+                $user_sk->skills = implode(',', $request['skills']);
                 $user_sk->career_obj = $request['career_objective'];
                 $user_sk->save();
-    
-                $user_pr= UserSocial::where('user_id',  $id)->first();
-                if($user_pr == ""){
+
+                $user_pr = UserSocial::where('user_id', $id)->first();
+                if($user_pr == "") {
                     $user_pr = new UserSocial();
                 }
                 $user_pr->user_id = $register->id;
@@ -643,13 +640,13 @@ class ApiAppController extends Controller
                 $user_pr->save();
 
 
-                $inputs2 = Appuser::where('user_id',  $id)->first();
+                $inputs2 = Appuser::where('user_id', $id)->first();
                 $inputs2->city =  $request['city'];
                 $inputs2->state =  $request['state'];
                 $inputs2->isFormFilled = '1';
                 $inputs2->save();
                 $request['isFormFilled'] =   $inputs2->isFormFilled;
-                return $this->sendResponse( $request , $message);
+                return $this->sendResponse($request, $message);
             } else {
                 $message = " Invalid";
                 return $this->sendError($message, $message);
@@ -657,9 +654,10 @@ class ApiAppController extends Controller
         }
     }
 
-    
 
-    function convert_multi_array($arrays){
+
+    public function convert_multi_array($arrays)
+    {
         $imploded = array();
         foreach($arrays as $array) {
             $imploded[] = $array['language'];
@@ -667,26 +665,27 @@ class ApiAppController extends Controller
         return implode(",", $imploded);
     }
 
-    function convert_multi_array_skills($arrays){
+    public function convert_multi_array_skills($arrays)
+    {
         $imploded = array();
         foreach($arrays as $array) {
             $imploded[] = $array['value'];
         }
         return implode(",", $imploded);
-      }
-  
+    }
+
     public function insertUser()
     {
         $message = "User Inserted Successfully.";
         $datarec = file_get_contents("php://input");
-        $request = json_decode($datarec, TRUE);
+        $request = json_decode($datarec, true);
         if ($request) {
 
-           
+
 
             $userid = $request['user_id'];
 
-           $check = RegistrationModel::where(['id' => $userid])->first();
+            $check = RegistrationModel::where(['id' => $userid])->first();
 
             if (isset($check)) {
                 $id = $check->id;
@@ -701,122 +700,120 @@ class ApiAppController extends Controller
                 $regiter_code->user_code = $resume_code;
                 $regiter_code->save();
 
-            $inputs = RegistrationModel::find($id);
+                $inputs = RegistrationModel::find($id);
 
-         
 
-            $file =  $request['image'];
 
-            if ($file != '') {
-                $data2 = base64_decode($file);
-                $image_name = rand(10000, 99999) . '.png';
-                $destinationPath = public_path('app_user') . '/' . $image_name;
-                file_put_contents($destinationPath, $data2);
-                  $inputs->image =  'https://happiestresume.com/public/app_user/'.$image_name;
+                $file =  $request['image'];
+
+                if ($file != '') {
+                    $data2 = base64_decode($file);
+                    $image_name = rand(10000, 99999) . '.png';
+                    $destinationPath = public_path('app_user') . '/' . $image_name;
+                    file_put_contents($destinationPath, $data2);
+                    $inputs->image =  'https://happiestresume.com/public/app_user/'.$image_name;
+                }
+
+
+
+
+
+
+
+                $inputs->name = $request['name'];
+                //  $inputs->mobile = $request['mobile'];
+                $inputs->email = $request['email'];
+                $inputs->experience = $request['experience'];
+                $inputs->lat = $request['lat'];
+                $inputs->lng = $request['lng'];
+                $inputs->resumeCode_id = $regiter_code->id;
+                $inputs->save();
+                //  $inputs->password = $request['password '];
+
+                $user_id = $inputs->id;
+
+
+
+
+                $inputs1 = UserProfile::where('user_id', $id)->first();
+
+
+                $inputs1->current_location = $request['current_location'];
+                $inputs1->gender = $request['gender'];
+                $inputs1->total_exp = $request['total_exp'];
+                $inputs1->current_ctc = $request['current_ctc'];
+
+
+                $inputs1->save();
+
+
+
+
+                $inputs2 = Appuser::where('user_id', $user_id)->first();
+
+
+                $inputs2->qualification =  $request['qualification'];
+                $inputs2->city =  $request['city'];
+                // dd($inputs->id);
+                $inputs2->state =  $request['state'];
+
+                $inputs2->save();
+
+
+                $inputs3 = UserWorkExp::where('user_id', $id)->first();
+
+                $inputs3->company =  $request['company'];
+                $inputs3->designation =  $request['designation'];
+
+
+
+
+
+                $inputs3->save();
+
+
+
+
+                if($file != '') {
+                    $request['image'] = 'https://happiestresume.com/public/app_user/'.$image_name;
+                }
+
+
+
+                return $this->sendResponse($request, $message);
+            } else {
+                $message = " Invalid";
+                return $this->sendError($message, $message);
             }
-
-
-
-          
-       
-     
-    
-            $inputs->name = $request['name'];
-          //  $inputs->mobile = $request['mobile'];
-            $inputs->email = $request['email'];
-            $inputs->experience = $request['experience'];
-            $inputs->lat = $request['lat'];
-            $inputs->lng =$request['lng'];
-            $inputs->resumeCode_id = $regiter_code->id;
-            $inputs->save();
-          //  $inputs->password = $request['password '];
-
-            $user_id= $inputs->id;
-
-
-           
-           
-             $inputs1= UserProfile::where('user_id',  $id)->first();
-             
-          
-             $inputs1->current_location = $request['current_location'];
-             $inputs1->gender = $request['gender'];
-             $inputs1->total_exp = $request['total_exp'];
-             $inputs1->current_ctc = $request['current_ctc'];
-            
-
-            $inputs1->save();
-            
-           
-
-
-             $inputs2 = Appuser::where('user_id',  $user_id)->first();
-      
-           
-            $inputs2->qualification =  $request['qualification'];
-            $inputs2->city =  $request['city'];
-           // dd($inputs->id);
-            $inputs2->state =  $request['state'];
-        
-            $inputs2->save();
-
-
-             $inputs3= UserWorkExp::where('user_id',  $id)->first();
-           
-             $inputs3->company =  $request['company'];
-             $inputs3->designation =  $request['designation'];
-         
-           
-
-
-            
-            $inputs3->save();
-
-          
-          
-        
-if($file != ''){
-           $request['image'] = 'https://happiestresume.com/public/app_user/'.$image_name;
-       }
-
-        
-
-            return $this->sendResponse( $request , $message);
-        }
-        else {
-            $message = " Invalid";
-            return $this->sendError($message, $message);
         }
     }
-    }
 
-    
- 
-    
 
-       public function viewUser()
+
+
+
+    public function viewUser()
     {
         $message = "User Detail";
         $datarec = file_get_contents("php://input");
-        $request = json_decode($datarec, TRUE);
+        $request = json_decode($datarec, true);
         if ($request) {
             $id = $request['user_id'];
-             $user = DB::table('registrations')
-                  ->join('app_user','registrations.id' ,'=','app_user.user_id')
-                  ->join('user_profile','registrations.id' ,'=','user_profile.user_id')
-                  ->join('user_work_exp','registrations.id' ,'=','user_work_exp.user_id')
-                  ->where('registrations.id',$id)->first();
-           // $user = Appuser::where(['id' => $id])->first();
-        return $this->sendResponse($user, $message);
+            $user = DB::table('registrations')
+                 ->join('app_user', 'registrations.id', '=', 'app_user.user_id')
+                 ->join('user_profile', 'registrations.id', '=', 'user_profile.user_id')
+                 ->join('user_work_exp', 'registrations.id', '=', 'user_work_exp.user_id')
+                 ->where('registrations.id', $id)->first();
+            // $user = Appuser::where(['id' => $id])->first();
+            return $this->sendResponse($user, $message);
+        } else {
+            $message = " Invalid";
+            return $this->sendError($message);
+        }
     }
-    else {
-        $message = " Invalid";
-        return $this->sendError($message);
-    }
-}
 
 
-public function jobtype()
+    public function jobtype()
     {
         $message = "Job Type";
         $jobType = Job::distinct()->get('industry_type');
@@ -828,328 +825,318 @@ public function jobtype()
     {
         $message = "Search Result : Job Positions";
         $data = file_get_contents("php://input");
-        $request = json_decode($data, TRUE);
+        $request = json_decode($data, true);
         $type = $request['jobtype'];
         $location = $request['location'];
-        
+
         if(!empty($location) && !empty($type)) {
             $findposyition = Job::where(['job_location' => $location, 'industry_type' => $type])->with('company')->orderBy('id', 'DESC')->take(100)->get();
-            if(!empty($findposyition)){
+            if(!empty($findposyition)) {
                 return $this->sendResponse($findposyition, $message);
-            }else{
-                $message="no data found";
+            } else {
+                $message = "no data found";
                 return $this->sendError($message);
             }
         } elseif ($location != '') {
-        	
 
-           
-             $findposyition = Job::where(['job_location' => $location])->with('company')->orderBy('id', 'DESC')->take(100)->get();
-             //dd($findposyition);
-               if(!$findposyition->isEmpty())
-               {
-               	 return $this->sendResponse($findposyition, $message);
-               }
-          else{
-          	$message="no data found";
-               	 return $this->sendError($message);
-              
-           }
 
-        }
-         elseif ($type != '') {
-        	
 
-           
-             $findposyition = Job::where(['industry_type' => $type])->with('company')->orderBy('id', 'DESC')->take(100)->get();
-         
-
-                if(!$findposyition->isEmpty())
-               {
+            $findposyition = Job::where(['job_location' => $location])->with('company')->orderBy('id', 'DESC')->take(100)->get();
+            //dd($findposyition);
+            if(!$findposyition->isEmpty()) {
                 return $this->sendResponse($findposyition, $message);
-               }
-          else{
-          		$message="no data found";
-               	 return $this->sendError($message);
-              
-           }
-        }
-        else{
-     
+            } else {
+                $message = "no data found";
+                return $this->sendError($message);
+
+            }
+
+        } elseif ($type != '') {
+
+
+
+            $findposyition = Job::where(['industry_type' => $type])->with('company')->orderBy('id', 'DESC')->take(100)->get();
+
+
+            if(!$findposyition->isEmpty()) {
+                return $this->sendResponse($findposyition, $message);
+            } else {
+                $message = "no data found";
+                return $this->sendError($message);
+
+            }
+        } else {
+
 
             $findposyition = Job::orderBy('id', 'DESC')->with('company')->take(100)->get();
-             return $this->sendResponse($findposyition, $message);
+            return $this->sendResponse($findposyition, $message);
 
-       }
-           
-    
+        }
+
+
     }
 
-    public function getJobsByPositionName(){
+    public function getJobsByPositionName()
+    {
         $message = "Search Result : Job Positions By Position Name";
         $data = file_get_contents("php://input");
-        $request = json_decode($data, TRUE);
-        
+        $request = json_decode($data, true);
+
         if($request) {
             $search_input = $request['search_input'];
-            $findposition = Job::where('position','like',"%".$search_input."%")->with('company')->orderBy('id', 'DESC')->take(100)->get();
-            if(count($findposition)){
+            $findposition = Job::where('position', 'like', "%".$search_input."%")->with('company')->orderBy('id', 'DESC')->take(100)->get();
+            if(count($findposition)) {
                 return $this->sendResponse($findposition, $message);
             } else {
                 $message = "Oops! No Jobs Found...";
                 return $this->sendResponse([], $message);
             }
-            
+
         } else {
             $message = "Invalid Request";
             return $this->sendError($message);
         }
     }
 
-public function getJobById($job_id){
-    $message = "Job Details By Id";
-    $jobDetails = Job::where('id',$job_id)->with('company')->first();
-    if(isset($jobDetails) && $jobDetails != ""){
-        return $this->sendResponse($jobDetails, $message);
-    }
-    else{
-        $message = "Job Not Found";
-        return $this->sendError($message);
-    }
-}
-
-public function appliedJob(){
-$message = "Applied Successfully.";
-$data = file_get_contents("php://input");
-$request = json_decode($data, TRUE);
-if ($request) {
-    $job_id =  $request['job_id'];
-    $user_id =  $request['user_id'];
-    $check = AppJobApplied::where(['job_id'=>$job_id,'user_id'=>$user_id,'status'=>0])->first();
-    if($check == '')
+    public function getJobById($job_id)
     {
-        $applyJob = new AppJobApplied();
-        $applyJob->job_id = $job_id;
-        $applyJob->user_id = $user_id;
-        $applyJob->status = '0'; 
-    }
-    else{
-        $message = "Already Applied this job";
-        return $this->sendResponse($data,$message);
-    }
-
-    $company_id = Job::where('id',$job_id)->first();
-    $job_name = $company_id->position;
-    if($applyJob->save()){
-        $checkuser = Appuser::where('user_id',$user_id)->first();
-        $reguser = RegistrationModel::where('id',$user_id)->first();
-        $user_name = $reguser->name;
-        if($checkuser != '') {
-            $id = $checkuser->user_id;
-            $saveRes = Appuser::where('user_id',$id)->first();
-            $msg =  'Dear Candidate,Thank you for applying for the position of'.' '.$job_name.' '.' .You will soon get a call from our HR department.';
-            $token = $saveRes->token;
-            if(isset($token)){
-                Appuser::send_notification($msg,$token);
-            }
-            $company_token = AppCompany::where('company_id',$company_id->company_id)->value('token');
-            if(isset($company_token)){
-                $cmsg= 'Hi,'.' '.$user_name.' '. 'has applied for your position of' .' '. $job_name.' '. ' For full details, kindly click on his profile.';
-                Appuser::send_notification($cmsg,$company_token);
-            }
+        $message = "Job Details By Id";
+        $jobDetails = Job::where('id', $job_id)->with('company')->first();
+        if(isset($jobDetails) && $jobDetails != "") {
+            return $this->sendResponse($jobDetails, $message);
+        } else {
+            $message = "Job Not Found";
+            return $this->sendError($message);
         }
-}
+    }
+
+    public function appliedJob()
+    {
+        $message = "Applied Successfully.";
+        $data = file_get_contents("php://input");
+        $request = json_decode($data, true);
+        if ($request) {
+            $job_id =  $request['job_id'];
+            $user_id =  $request['user_id'];
+            $check = AppJobApplied::where(['job_id' => $job_id,'user_id' => $user_id,'status' => 0])->first();
+            if($check == '') {
+                $applyJob = new AppJobApplied();
+                $applyJob->job_id = $job_id;
+                $applyJob->user_id = $user_id;
+                $applyJob->status = '0';
+            } else {
+                $message = "Already Applied this job";
+                return $this->sendResponse($data, $message);
+            }
+
+            $company_id = Job::where('id', $job_id)->first();
+            $job_name = $company_id->position;
+            if($applyJob->save()) {
+                $checkuser = Appuser::where('user_id', $user_id)->first();
+                $reguser = RegistrationModel::where('id', $user_id)->first();
+                $user_name = $reguser->name;
+                if($checkuser != '') {
+                    $id = $checkuser->user_id;
+                    $saveRes = Appuser::where('user_id', $id)->first();
+                    $msg =  'Dear Candidate,Thank you for applying for the position of'.' '.$job_name.' '.' .You will soon get a call from our HR department.';
+                    $token = $saveRes->token;
+                    if(isset($token)) {
+                        Appuser::send_notification($msg, $token);
+                    }
+                    $company_token = AppCompany::where('company_id', $company_id->company_id)->value('token');
+                    if(isset($company_token)) {
+                        $cmsg = 'Hi,'.' '.$user_name.' '. 'has applied for your position of' .' '. $job_name.' '. ' For full details, kindly click on his profile.';
+                        Appuser::send_notification($cmsg, $company_token);
+                    }
+                }
+            }
 
 
-    return $this->sendResponse( $data, $message);
+            return $this->sendResponse($data, $message);
 
-        }
-
-        else{
+        } else {
             $message = "Invalid";
             return $this->sendError($message);
         }
-}
-   
+    }
 
 
 
-   public function profileUpdate()
-  {
+
+    public function profileUpdate()
+    {
         $message = "Profile Update Successfully.";
         $datarec = file_get_contents("php://input");
-        $request = json_decode($datarec, TRUE);
+        $request = json_decode($datarec, true);
         if ($request) {
 
             $userid = $request['user_id'];
 
-           $check = RegistrationModel::where(['id' => $userid])->first();
+            $check = RegistrationModel::where(['id' => $userid])->first();
 
             if (isset($check)) {
                 $id = $check->id;
 
-            $inputs = RegistrationModel::find($id);
+                $inputs = RegistrationModel::find($id);
 
 
-            $file =  $request['image'];
-        if ($file != '') {    
-      $data2 = base64_decode($file);
-                $image_name = rand(10000, 99999) . '.png';
-                $destinationPath = public_path('app_user') . '/' . $image_name;
-                file_put_contents($destinationPath, $data2);
-                  $inputs->image =  'https://happiestresume.com/public/app_user/'.$image_name;
+                $file =  $request['image'];
+                if ($file != '') {
+                    $data2 = base64_decode($file);
+                    $image_name = rand(10000, 99999) . '.png';
+                    $destinationPath = public_path('app_user') . '/' . $image_name;
+                    file_put_contents($destinationPath, $data2);
+                    $inputs->image =  'https://happiestresume.com/public/app_user/'.$image_name;
                 }
 
                 $name  = $request['name'];
 
 
-     if ($name  != ''){
-            $inputs->name =  $name;
+                if ($name  != '') {
+                    $inputs->name =  $name;
 
-          }
-          //  $inputs->mobile = $request['mobile'];
-            $inputs->email = $request['email'];
+                }
+                //  $inputs->mobile = $request['mobile'];
+                $inputs->email = $request['email'];
 
-$experience =  $request['experience'];
-              if ($experience != ''){
-            $inputs->experience = $experience;
-          }
-          
-            $inputs->save();
-          //  $inputs->password = $request['password '];
+                $experience =  $request['experience'];
+                if ($experience != '') {
+                    $inputs->experience = $experience;
+                }
 
-            $user_id= $inputs->id;
-          
-             $inputs1= UserProfile::where('user_id',  $id)->first();
- 
- $location =$request['current_location'];
-             if (  $location != ''){
-             $inputs1->current_location =  $location;
-           }
+                $inputs->save();
+                //  $inputs->password = $request['password '];
 
-           $gender = $request['gender'];
-              if ( $gender != ''){
-             $inputs1->gender = $gender;
-           }
+                $user_id = $inputs->id;
 
-             $inputs1->total_exp = $request['total_exp'];
-             $inputs1->current_ctc = $request['current_ctc'];
-      
-            
-           
-          //  dd($inputs->id);
-         
-            $inputs2 = Appuser::where('user_id',  $user_id)->first();
+                $inputs1 = UserProfile::where('user_id', $id)->first();
 
-        $qua = $request['qualification'];
-                if ( $qua  != ''){
-            $inputs2->qualification =  $qua ;
-          }
+                $location = $request['current_location'];
+                if ($location != '') {
+                    $inputs1->current_location =  $location;
+                }
 
-          $city = $request['city'];
+                $gender = $request['gender'];
+                if ($gender != '') {
+                    $inputs1->gender = $gender;
+                }
 
-           if ( $city != ''){
-            $inputs2->city =  $city;
-          }
-           // dd($inputs->id);
-            $inputs2->state =  $request['state'];
-        
-            $inputs2->save();
+                $inputs1->total_exp = $request['total_exp'];
+                $inputs1->current_ctc = $request['current_ctc'];
 
-            $inputs3= UserWorkExp::where('user_id',  $id)->first();
-             
-             $inputs3->company =  $request['company'];
 
-         $desg =  $request['designation'];
-               if ( $desg != ''){
-             $inputs3->designation =  $desg;
-           }
-        
-  
-            
-            $inputs3->save();
 
-             if ($file != '') {   
-           $request['image'] = 'https://happiestresume.com/public/app_user/'.$image_name;
-         }
-               $request['name'] = $inputs->name;
-               $request['experience'] = $inputs->experience;
-               $request['current_location'] = $inputs1->current_location;
+                //  dd($inputs->id);
+
+                $inputs2 = Appuser::where('user_id', $user_id)->first();
+
+                $qua = $request['qualification'];
+                if ($qua  != '') {
+                    $inputs2->qualification =  $qua ;
+                }
+
+                $city = $request['city'];
+
+                if ($city != '') {
+                    $inputs2->city =  $city;
+                }
+                // dd($inputs->id);
+                $inputs2->state =  $request['state'];
+
+                $inputs2->save();
+
+                $inputs3 = UserWorkExp::where('user_id', $id)->first();
+
+                $inputs3->company =  $request['company'];
+
+                $desg =  $request['designation'];
+                if ($desg != '') {
+                    $inputs3->designation =  $desg;
+                }
+
+
+
+                $inputs3->save();
+
+                if ($file != '') {
+                    $request['image'] = 'https://happiestresume.com/public/app_user/'.$image_name;
+                }
+                $request['name'] = $inputs->name;
+                $request['experience'] = $inputs->experience;
+                $request['current_location'] = $inputs1->current_location;
                 $request['gender'] = $inputs1->gender;
                 $request['qualification'] = $inputs2->qualification;
-                 $request['city'] = $inputs2->city ;
-                  $request['designation'] = $inputs3->designation;
+                $request['city'] = $inputs2->city ;
+                $request['designation'] = $inputs3->designation;
 
 
 
-            return $this->sendResponse( $request , $message);
+                return $this->sendResponse($request, $message);
+            } else {
+                $message = " Invalid";
+                return $this->sendError($message, $message);
+            }
         }
-        else {
-            $message = " Invalid";
-            return $this->sendError($message, $message);
-        }
-    }
     }
 
- 
-    
-
-  public function viewAppliedJob()
-{  
-    $message = "View Job.";
-    $datarec1 = file_get_contents("php://input");
-    $request = json_decode($datarec1, TRUE);
-    if ($request) {
-        $userids = $request['user_id'];
-        $arr = [];
-
-        $result = AppJobApplied::where('user_id',$userids)->get();
-       // dd($result);
-        foreach($result as $rs){
-           $result2 = Job::where('id','=', $rs->job_id)->first();
-           array_push($arr,$result2);
-        }
-        
-            return $this->sendResponse( $arr, $message);
-       
-        // $job =$result->job_id;
-
-        // $result2 = Job::where('id','=', $job)->get();
-       
-    }
-    else {
-        $message = " Invalid";
-        return $this->sendError($message);
-    }
-
-    
-
-
-}
 
 
 
-public function findNearestCompany()
+    public function viewAppliedJob()
     {
-        
+        $message = "View Job.";
+        $datarec1 = file_get_contents("php://input");
+        $request = json_decode($datarec1, true);
+        if ($request) {
+            $userids = $request['user_id'];
+            $arr = [];
+
+            $result = AppJobApplied::where('user_id', $userids)->get();
+            // dd($result);
+            foreach($result as $rs) {
+                $result2 = Job::where('id', '=', $rs->job_id)->first();
+                array_push($arr, $result2);
+            }
+
+            return $this->sendResponse($arr, $message);
+
+            // $job =$result->job_id;
+
+            // $result2 = Job::where('id','=', $job)->get();
+
+        } else {
+            $message = " Invalid";
+            return $this->sendError($message);
+        }
+
+
+
+
+    }
+
+
+
+    public function findNearestCompany()
+    {
+
         $message = "Nearest Company";
         $datarec1 = file_get_contents("php://input");
-        $request = json_decode($datarec1, TRUE);
+        $request = json_decode($datarec1, true);
         if ($request) {
-        $latitude  = $request['lat'];
-        $longitude = $request['lng'];
-       
-         $radius =100
-          ;
-        /*
-         * using eloquent approach, make sure to replace the "Restaurant" with your actual model name
-         * replace 6371000 with 6371 for kilometer and 3956 for miles
-         */
-        
-         
- 
+            $latitude  = $request['lat'];
+            $longitude = $request['lng'];
+
+            $radius = 100
+            ;
+            /*
+             * using eloquent approach, make sure to replace the "Restaurant" with your actual model name
+             * replace 6371000 with 6371 for kilometer and 3956 for miles
+             */
+
+
+
             $result  = DB::table('companies')
-          
+
             ->selectRaw("companies.id,companies.name, companies.lat, companies.lng,
                        ( 6371 * acos( cos( radians(?) ) *
                           cos( radians( lat ) )
@@ -1157,147 +1144,143 @@ public function findNearestCompany()
                           ) + sin( radians(?) ) *
                            sin( radians( lat ) ) )
                          ) AS distance", [$latitude, $longitude, $latitude])
-           
+
            ->having("distance", "<", $radius)
-         
-      
+
+
            ->get();
-           
-         
 
-            return $this->sendResponse( $result, $message);
+
+
+            return $this->sendResponse($result, $message);
+        }
     }
-}
 
-  public function viewCompanyDetail()
-{  
-    $message = "Company and Job  Detail";
-    $datarec1 = file_get_contents("php://input");
-    $request = json_decode($datarec1, TRUE);
-    if ($request) {
-        $userids = $request['company_id'];
+    public function viewCompanyDetail()
+    {
+        $message = "Company and Job  Detail";
+        $datarec1 = file_get_contents("php://input");
+        $request = json_decode($datarec1, true);
+        if ($request) {
+            $userids = $request['company_id'];
 
-        $result  = DB::table('companies')
-          
-            ->where('companies.id',$userids)
-            ->first();
+            $result  = DB::table('companies')
 
-              $result1 = DB::table('job_master')
-           
-            ->where('job_master.company_id',$userids)
-            
+                ->where('companies.id', $userids)
+                ->first();
+
+            $result1 = DB::table('job_master')
+
+            ->where('job_master.company_id', $userids)
+
 
             ->get();
-// foreach ($result as $key => $value) {
-//     $value->position = $result1;
-// }
-    $result->position = $result1;
- 
+            // foreach ($result as $key => $value) {
+            //     $value->position = $result1;
+            // }
+            $result->position = $result1;
+
             // $result->push($result1);
 
-        return $this->sendResponse( $result, $message);
+            return $this->sendResponse($result, $message);
+        } else {
+            $message = " Invalid";
+            return $this->sendError($message);
+        }
+
+
+
+
     }
-    else {
-        $message = " Invalid";
-        return $this->sendError($message);
+
+    public function insertUserNewOne(Request $request)
+    {
+        // return $request;
+        $message = "Enquiry Saved Successfully";
+        $datarec = file_get_contents("php://input");
+        $request = json_decode($datarec, true);
+        if ($request) {
+            // $item = new Enquiry();
+            // $item->housetype = $request['enquiry_for'];
+
+            // $item->company_name	 = $request['name'];
+            // $item->budget = $request['budget'];
+            // $item->desig = $request['occupation'];
+            // $item->location = $request['address'];
+            // $item->address_address = $request['preferred_location'];
+            // $item->contact = $request['contact'];
+            // $item->source = 'MobileApp';
+            // $item->save();
+
+            $message = 'true';
+            return $this->sendResponse($request, $message);
+        } else {
+            $message = " Invalid";
+            return $this->sendError($message, $message);
+        }
+
     }
 
-    
 
-
-}
-
-public function insertUserNewOne(Request $request){
-    // return $request;
-    $message = "Enquiry Saved Successfully";
-    $datarec = file_get_contents("php://input");
-    $request = json_decode($datarec, TRUE);
-    if ($request) {
-    // $item = new Enquiry();
-    // $item->housetype = $request['enquiry_for'];
-
-    // $item->company_name	 = $request['name'];
-    // $item->budget = $request['budget'];
-    // $item->desig = $request['occupation'];
-    // $item->location = $request['address'];
-    // $item->address_address = $request['preferred_location'];
-    // $item->contact = $request['contact'];
-    // $item->source = 'MobileApp';
-    // $item->save();
-    
-    $message = 'true';
-    return $this->sendResponse($request, $message);
-    } else{
-        $message = " Invalid";
-        return $this->sendError($message, $message);
-    }
-   
-}
-   
-
-public function resumeLink(){
-    $message = "Resume of Candidate";
-    $datarec1 = file_get_contents("php://input");
-    $request = json_decode($datarec1, TRUE);
-    if ($request) {
-        $user_id = $request['user_id'];
-        if($user_id != ''){
-            $resume_id = RegistrationModel::where('id',$user_id)->value('resumeCode_id');
-            if($resume_id != ''){
-            $arr = [];   
-            $resume_code = ResumeCodeModel::where('id',$resume_id)->value('user_code');
-            //$data['link'] = "https://happiestresume.com/appcv/$resume_code";
-            $data['link'] = "https://happiestresume.com/cv/$resume_code";
-            array_push($arr,$data);
-            return $this->sendResponse($arr, $message);
-            }
-            else{
+    public function resumeLink()
+    {
+        $message = "Resume of Candidate";
+        $datarec1 = file_get_contents("php://input");
+        $request = json_decode($datarec1, true);
+        if ($request) {
+            $user_id = $request['user_id'];
+            if($user_id != '') {
+                $resume_id = RegistrationModel::where('id', $user_id)->value('resumeCode_id');
+                if($resume_id != '') {
+                    $arr = [];
+                    $resume_code = ResumeCodeModel::where('id', $resume_id)->value('user_code');
+                    //$data['link'] = "https://happiestresume.com/appcv/$resume_code";
+                    $data['link'] = "https://happiestresume.com/cv/$resume_code";
+                    array_push($arr, $data);
+                    return $this->sendResponse($arr, $message);
+                } else {
+                    $message = "No Data Found";
+                    return $this->sendError($message);
+                }
+            } else {
                 $message = "No Data Found";
                 return $this->sendError($message);
             }
-        }
-        else{
-            $message = "No Data Found";
+        } else {
+            $message = "Invalid Data";
             return $this->sendError($message);
         }
     }
-    else{
-        $message = "Invalid Data";
-        return $this->sendError($message);
-    }
-}
-public function resumeLink2(){
-    $message = "Resume of Candidate";
-    $datarec1 = file_get_contents("php://input");
-    $request = json_decode($datarec1, TRUE);
-    if ($request) {
-        $user_id = $request['user_id'];
-        if($user_id != ''){
-            $resume_id = RegistrationModel::where('id',$user_id)->value('resumeCode_id');
-            if($resume_id != ''){
-            $arr = [];
-            $resume_code = ResumeCodeModel::where('id',$resume_id)->value('user_code');
-            $data2['link'] = "https://happiestresume.com/cv/$resume_code";
-            $data3['link2'] = "https://happiestresume.com/cv2/$resume_code";
-            array_push($arr,$data2,$data3);
-            return $this->sendResponse($arr, $message);
-            }
-            else{
+    public function resumeLink2()
+    {
+        $message = "Resume of Candidate";
+        $datarec1 = file_get_contents("php://input");
+        $request = json_decode($datarec1, true);
+        if ($request) {
+            $user_id = $request['user_id'];
+            if($user_id != '') {
+                $resume_id = RegistrationModel::where('id', $user_id)->value('resumeCode_id');
+                if($resume_id != '') {
+                    $arr = [];
+                    $resume_code = ResumeCodeModel::where('id', $resume_id)->value('user_code');
+                    $data2['link'] = "https://happiestresume.com/cv/$resume_code";
+                    $data3['link2'] = "https://happiestresume.com/cv2/$resume_code";
+                    array_push($arr, $data2, $data3);
+                    return $this->sendResponse($arr, $message);
+                } else {
+                    $message = "No Data Found";
+                    return $this->sendError($message);
+                }
+            } else {
                 $message = "No Data Found";
                 return $this->sendError($message);
             }
-        }
-        else{
-            $message = "No Data Found";
+        } else {
+            $message = "Invalid Data";
             return $this->sendError($message);
         }
     }
-    else{
-        $message = "Invalid Data";
-        return $this->sendError($message);
-    }
-}
-public function aboutus()
+    public function aboutus()
     {
         $message = "About Us";
         $about = "<p style='margin-top:0in;margin-right:0in;margin-bottom:10.0pt;margin-left:0in;line-height:115%;font-size:15px;font-family:'Calibri',sans-serif;'><span style='font-size:19px;line-height:115%;color:#202124;background:white;'>Happiest Resume is an innovative entrepreneurial idea that is the solution to all the problems faced by the job seekers whether they are Freshers or even Experienced Professionals as it helps them to build a perfect professional Resume and helping them to find the Jobs of their dreams.</span></p>
@@ -1380,7 +1363,7 @@ public function aboutus()
     }
 
 
-  public function contactus()
+    public function contactus()
     {
         $message = "Contact Us";
         $contact = "
@@ -1407,37 +1390,37 @@ public function aboutus()
 
     public function getCountry()
     {
-        
-       $countries = Country::get();
-       $message = "done";
-       return $this->sendResponse($countries, $message);
-       
+
+        $countries = Country::get();
+        $message = "done";
+        return $this->sendResponse($countries, $message);
+
     }
     public function getState($country_id)
     {
-       $states = State::where('country_id',$country_id)->get();
-       $message = "success";
-       return $this->sendResponse($states, $message);
+        $states = State::where('country_id', $country_id)->get();
+        $message = "success";
+        return $this->sendResponse($states, $message);
     }
     public function getCity($state_id)
     {
-        $cities= City::where('state_id',$state_id)->get();
+        $cities = City::where('state_id', $state_id)->get();
         $message = "success";
         return $this->sendResponse($cities, $message);
     }
     public function downloadPDF(Request $request)
     {
-        
+
         $data = [
             'data'    => $request->resume ,
         ];
         // return view('resume',compact('data'));
-        $pdf = PDF::loadView('resume',$data);
-          return $pdf->stream('resume.pdf');
-          $pdf->stream('resume.pdf');
+        $pdf = PDF::loadView('resume', $data);
+        return $pdf->stream('resume.pdf');
+        $pdf->stream('resume.pdf');
         $message = "success";
-        return $this->sendResponse($pdf,$message);
-    
+        return $this->sendResponse($pdf, $message);
+
     }
     public function loginUserDetails(Request $request)
     {
@@ -1474,71 +1457,72 @@ public function aboutus()
 
     public function saveData(Request $request)
     {
-    if($request) {
-        $data = $request ;
-        $loggedInUser= Auth::user();
-        $loggedInUserData = UserLogin_Model::where(['id'=> $loggedInUser->id])->first();
-        $loggedInUserData->resume_data = $data ;
-        $loggedInUserData->save();
-        $message = "success";
-        return response()->json(['message' => 'save data'], 200);
-    } else {
-        $message = "error";
-        return response()->json(['message' => 'Null data'], 500);
+        if($request) {
+            $data = $request ;
+            $loggedInUser = Auth::user();
+            $loggedInUserData = UserLogin_Model::where(['id' => $loggedInUser->id])->first();
+            $loggedInUserData->resume_data = $data ;
+            $loggedInUserData->save();
+            $message = "success";
+            return response()->json(['message' => 'save data'], 200);
+        } else {
+            $message = "error";
+            return response()->json(['message' => 'Null data'], 500);
+        }
     }
-}
-    
+
     public function saveUserData(Request $request)
     {
-        if($request) 
-        {
-        $data = $request ;
-        $loggedInUser= Auth::user();
-        $loggedInUserData = UserLogin_Model::where(['id'=> $loggedInUser->id])->first();
-        $loggedInUserData->user_data = $data;
-        $loggedInUserData->save();
-        $message = "success";
-        return response()->json(['message' => 'save data'], 200);
-    } else {
-        $message = "error";
-        return response()->json(['message' => 'Null Data'], 500);
+        if($request) {
+            $data = $request ;
+            $loggedInUser = Auth::user();
+            $loggedInUserData = UserLogin_Model::where(['id' => $loggedInUser->id])->first();
+            $loggedInUserData->user_data = $data;
+            $loggedInUserData->save();
+            $message = "success";
+            return response()->json(['message' => 'save data'], 200);
+        } else {
+            $message = "error";
+            return response()->json(['message' => 'Null Data'], 500);
+
+        }
+
+    }
+    public function saveUserImage(Request $request)
+    {
+        // return $request->all();
+        $id = $request->user_id;
+        $image = $request->image;
+        $user = UserLogin_Model::find($id);
+        $request->validate([
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+
+        if ($request->hasFile('image')) {
+            $file = $request->file('image');
+            $name = $file->getClientOriginalName();
+            $filePath = 'images/cv/' . $name;
+            $path = Storage::disk('s3')->put($filePath, file_get_contents($file), 'public');
+
+            $url = Storage::disk('s3')->url($filePath);
+            $user->image = $url;
+            $user->save();
+            return response()->json(['path' => $url,'message' => 'Saved User Image'], 200);
+        }
+        return response()->json(['message' => 'No Image exists'], 401);
 
     }
 
-  }
-  public function saveUserImage(Request $request)
-  {
-    // return $request->all();
-    $id = $request->user_id;
-    $image = $request->image;
-    $user = UserLogin_Model::find($id);
-    $request->validate([
-        'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-    ]);
 
-    if ($request->hasFile('image')) {
+    // if(!empty($image)) {
+    //     $imageName = time().'.'.$request->image->extension();
 
-        $file = $request->file('image');
-        $name = $file->getClientOriginalName();
-        // return $name;
-        $filePath = 'images/' . $name;
-        $path = Storage::disk('s3')->put($filePath, file_get_contents($file));
-        $user->image = $path;
-        $user->save();
-    }
+    //     $path = Storage::disk('s3')->put('images', $request->image);
+    //     // $path = Storage::disk('s3')->url($path);
 
-}
-
-
-// if(!empty($image)) {
-//     $imageName = time().'.'.$request->image->extension();
-
-//     $path = Storage::disk('s3')->put('images', $request->image);
-//     // $path = Storage::disk('s3')->url($path);
-
-//     $user->image = $path;
-//     $user->save();
-// }
+    //     $user->image = $path;
+    //     $user->save();
+    // }
 
     // if(!empty($image))
     // {
@@ -1547,5 +1531,5 @@ public function aboutus()
     //     Storage::disk('s3')->put($filepath, file_get_contents($fileName), 'public');
     //     $user->image = $filepath;
     // }
-  
+
 }

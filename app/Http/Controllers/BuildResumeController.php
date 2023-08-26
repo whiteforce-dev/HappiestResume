@@ -18,10 +18,13 @@ use Illuminate\Http\Request;
 use PDF;
 use Dompdf\Dompdf;
 use Dompdf\Options;
+use Illuminate\Support\Facades\Auth;
+
 class BuildResumeController extends Controller
 {
   public function signout()
   {
+    Auth::logout();
     return redirect('/');
   }
   public function buildResume(Request $request)

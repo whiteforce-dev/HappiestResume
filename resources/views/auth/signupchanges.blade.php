@@ -42,51 +42,7 @@
                     <div class="logo">
                         <img src="{{ asset('assets/image/logo (3).png') }}" alt="" width="110px" />
                     </div>
-                    {{-- <div class="inner" style="margin-right: 60px; margin-top: 10px !important;">
-                        <div class="container">
-                            <div class="para">
-                                <h1 class="account">
-                                    Login To Your Account <span class="auto-type"> </span>
-                                </h1>
-                                <p>
-                                    A Quick and Easy Way to Create Your Professional Resume. <br />
-                                    Start your journey with us.
-                                </p>
-                            </div>
-                        </div>
-                        <div class="input">
-                            <label class="email-label" for="username">Email</label>
-                            <input type="email" name="" id="username" placeholder="Eg: aadishriz@gmail.com"
-                                onkeyup="getUsername();" class="col-sm no-padding click click-courier" />
-                            <label class="email-label" for="password" style="margin-top: 10px">Password</label>
-                            <input type="password" name="password" id="password" placeholder="Eg: Password123"
-                                onkeyup="getUserPassword();" class="col-sm no-padding click click-vendor" />
-                            <label class="email-label" for="username">Email</label>
-                            <input type="email" name="" id="username" placeholder="Eg: aadishriz@gmail.com"
-                                onkeyup="getUsername();" class="col-sm no-padding click click-courier" />
-                            <label class="email-label" for="password" style="margin-top: 10px">Password</label>
-                            <input type="password" name="password" id="password" placeholder="Eg: Password123"
-                                onkeyup="getUserPassword();" class="col-sm no-padding click click-vendor" />
-                        </div>
-                        <div class="btn">
-                            <button class="login__form-btn" type="submit">Login</button>
-                            <div _ngcontent-c3="" class="login__form-title-wrapper">
-                                <div _ngcontent-c3="" class="login__form-title">OR</div>
-                            </div>
-                            <button class="g-button">
-                                <img src="{{ url('assets/image/google-auth.svg') }}" alt=""
-                                    width="25
-                                        px" style="margin-right: 5px" />
-                                Log in with Google
-                            </button>
-                            <p>
-                                Don't have an Account
-                                <a href="./signup.html"><button id="applyBtn">Sign-up</button></a>
-                            </p>
-                        </div>
-
-                    </div> --}}
-                  
+                
                     <div class="main-loader submitModal" style="margin-top:-20px !important; z-index: 300;">
                         <div class="loader-line application">
                           <div class="head-loader">

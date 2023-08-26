@@ -1,6 +1,81 @@
 @extends('frontend.frontmaster')
-@section('title','Home')
+@section('title','Blog')
 @section('content')
+<head>
+  {{-- <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy</title>
+  <link rel="stylesheet" href="{{ url('css/theme.min.css') }}">
+  
+  <link rel="stylesheet" href="https://happiestresume.com/public/front/css/style.css">
+  <link rel="stylesheet" media="screen" href="{{url('vendor/boxicons/css/boxicons.min.css') }}"/>
+  <link rel="stylesheet" media="screen" href="{{ url('vendor/swiper/swiper-bundle.min.css') }}"/>
+  <link rel="stylesheet" href="{{ url('css/blog.css') }}">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,900&family=Rubik:wght@300;400;600;700&display=swap"
+  rel="stylesheet"/> --}}
+  <style>
+    div#navbarNav.active-header ul li a {
+          color: black;
+          font-size: 0.9rem;
+      }
+      .first-black:hover{
+        color: orange !important;
+      }
+      .blogtap {
+          color: orange !important;
+      }
+
+      .nav-link {
+          font-weight: 500;
+          color: #000000;
+          font-size: 0.9rem;
+      }
+
+      .fixed-top {
+          height: 72px;
+      }
+
+      .fixed-top{
+          box-shadow: 0 0 2px 2px #b9c2d7;
+      }
+      .back-btn:hover {
+  background-color: #fd390e !important;
+  border-color: #fd390e !important;
+  color: #fff;
+  box-shadow: 0 0.25rem 0.25rem 0.125rem rgba(253, 86, 49, .1), 0 0.375rem 0.75rem -0.125rem rgba(253, 86, 49, .4);
+}
+.mb-2 a{
+text-decoration: none;
+
+}
+.list-unstyled li a{
+font-size: 0.9rem !important;
+  font-weight: 500 !important;
+  /* color: #423f50 !important; */
+}
+.btn-warning{
+background-color:  orange !important;
+font-size: 0.9rem;
+}
+.btn-warning:hover{
+background-color:  orange !important;
+background-color: #fd390e !important;
+  border-color: #fd390e !important;
+  color: #fff;
+  box-shadow: 0 0.25rem 0.25rem 0.125rem rgba(253, 86, 49, .1), 0 0.375rem 0.75rem -0.125rem rgba(253, 86, 49, .4);
+}
+.small_border p{
+font-size: 0.9rem !important;
+}
+.p-0{
+padding-left: 11px !important;
+width: 91%;
+}
+.px-6{
+max-width: 84%;
+}
+  </style>
+</head>
 <style>
 #top_navigation_bar{
     background: white;
@@ -142,13 +217,79 @@ p{
   /* padding: 5px; */
 }
 </style>
+<nav >
+  <header id="" class="navbar navbar-expand-lg fixed-top py-4" data-scroll-header="" style="background-color: white;">
+      <div class="container p-0" style="width: 90%;">
+          <a class="navbar-brand me-0 me-xl-4" href="#">
+              <img src="{{ url('assets/happiestNewAssets/img/logo.png') }}" alt="Happiest Resume"
+                  style="width: 110px;" loading="lazy">
+          </a>
+          <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse"
+              data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+              aria-label="Toggle navigation">
+              <div id="nav-icon4">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+              </div>
+          </button>
+
+          <div class="collapse navbar-collapse order-lg-2" id="navbarNav" style="justify-content: end;">
+              <ul class="navbar-nav navbar-nav-scroll" style="max-height: 35rem; width: 50%;">
+                  <!-- Menu items-->
+                  <li class="nav-item">
+                    <li class="nav-item active">
+                      <a class="nav-link " href="{{Request::is('/') ? " #home" : URL::to('/#home')}}" role="button" aria-expanded="false">Home
+                      </a>
+                  </li>
+                  </li>
+
+                  <li class="nav-item">
+                    <li class="nav-item">
+                      <a class="nav-link"  href="{{URL::to('exclusive-jobs')}}" role="button" aria-expanded="false">Jobs
+                      </a>
+                  </li>
+                  </li>
+                  <li class="nav-item ">
+                    <a class="nav-link" href="{{Request::is('/') ? " #about" : URL::to('/#about')}}" role="button" aria-expanded="false">About
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="{{Request::is('/') ? " #templates" : URL::to('/#templates')}}" role="button" aria-expanded="false">Templates
+                    </a>
+                  </li>
+                  <li class="nav-item ">
+                      <a class="nav-link first-black blogtap" href="{{ url('blog') }}" role="button"
+                          aria-expanded="false">Blog
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link"  href="{{Request::is('/') ? " #contact" :
+                    URL::to('/#contact')}}" role="button" aria-expanded="false">Contact
+                    </a>
+                  </li>
+              </ul>
+
+              <div>
+                  <a style="    background-color: #FF9900;
+                  border-color: #FF9900;padding: 0.425rem 1rem;
+  font-size: 0.875rem;
+  border-radius: 0.375rem; width:91px;" class="btn btn-primary btn-sm ms-2 back-btn" href="{{ url('/') }}">
+                  Back
+                  </a>
+              </div>
+          </div>
+      </div>
+  </header>
+
+</nav>
 <section class="blog-details-area ptb-100" style="margin-top:111px">
 <div class="container">
     <div class="row">
             <div class="col-lg-12 col-md-12">
                 <div class="blog-details-desc">
                     <div class="article-image">
-                    <img src="{{ url($blog->image) }}" alt="image" style="width:100%" height="500">
+                    <img src="{{ url($blog->image) }}" alt="image" style="width:100%" height="300">
                     </div>
                     <div class="article-content">
                         <div class="entry-meta">

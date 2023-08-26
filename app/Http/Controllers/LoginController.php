@@ -335,7 +335,7 @@ class LoginController extends Controller
         $user = AdminModel::where(['email' => $username, 'password' => $password, 'is_active' => 1])->first(); {
             if (isset($user)) {
                 $request->session()->put('admin', $user);
-                return redirect('dashboard');
+                return redirect('index');
             } else {
                 return redirect()->back()->withErrors(['Username / Password Invalid']);
             }

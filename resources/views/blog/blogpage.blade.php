@@ -187,32 +187,44 @@ font-size: 0.9rem !important;
               <div class="swiper-wrapper">
   
                 <!-- Item -->
-                <div class="swiper-slide h-auto pt-4">
+   @if(count($blog))
+      @foreach ($blog as $key => $item)
+      {{-- @dd($item) --}}
+       <div class="swiper-slide h-auto pt-4">
          <div class="only-img">
-          <img src="{{url ('assets/image/img-big3-403x257.png') }}" alt="">
+          <img src="{{$item->image}}" alt="">
           <div class="event">
-            <button>Events</button>
-            <button>Job Tips</button>
+            {{-- <button>Events</button>
+            <button>Job Tips</button> --}}
           </div>
          </div>
+         @php
+         $description = substr($item->description,0,80);
+         
+         @endphp
          <div class="only-para">
-          <h2>21 Job Interview Tips: How To Make a Great Impression</h2>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus accusamus laboriosam, sint mollitia alias possimus  deserunt aspernatur rem explicabo...</p>
+          <h2>{{ $item->title }}</h2>
+          {{-- substr($job_description, 0, 75) --}}
+          <p>{{ strip_tags($description) }}</p>
           <div class="admin">
             <div class="profile">
               <img src="{{ url('assets/image/profile.png') }}" alt="" width="35" height="35">
             </div>
             <div class="month">
               <span>Administrator</span>
-              <p>September 4, 2023</p>
+              <p> {{ date('d-m-Y',strtotime($item->publish_date)) }}</p>
             </div>
-            <div class="time">2 mins to read</div>
+            <div class="time">
+              
+              <a href="{{ url('read-more').'/'.$item->id }}" style="float:right;font-size:16px"> 2 mins to read </a>
+            </div>
           </div>
          </div>
-                </div>
-  
+       </div>
+      @endforeach
+  @endif
                 <!-- Item -->
-                <div class="swiper-slide h-auto pt-4">
+                {{-- <div class="swiper-slide h-auto pt-4">
                   <div class="only-img">
                    <img src="{{ url('assets/image/img-big1-403x257.png') }}" alt="">
                    <div class="event">
@@ -234,10 +246,10 @@ font-size: 0.9rem !important;
                      <div class="time">2 mins to read</div>
                    </div>
                   </div>
-                         </div>
+              </div> --}}
   
                 <!-- Item -->
-                <div class="swiper-slide h-auto pt-4">
+                {{-- <div class="swiper-slide h-auto pt-4">
                   <div class="only-img">
                    <img src="{{ url('assets/image/img-single-403x257.png') }}" alt="">
                    <div class="event">
@@ -259,10 +271,10 @@ font-size: 0.9rem !important;
                      <div class="time">2 mins to read</div>
                    </div>
                   </div>
-                         </div>
+                         </div> --}}
   
                 <!-- Item -->
-                <div class="swiper-slide h-auto pt-4">
+                {{-- <div class="swiper-slide h-auto pt-4">
                   <div class="only-img">
                    <img src="{{ url('assets/image/img8-403x257.png') }}" alt="">
                    <div class="event">
@@ -284,9 +296,9 @@ font-size: 0.9rem !important;
                      <div class="time">2 mins to read</div>
                    </div>
                   </div>
-                         </div>
+              </div> --}}
 
-                            <!-- Item -->
+                            {{-- <!-- Item -->
                 <div class="swiper-slide h-auto pt-4">
                   <div class="only-img">
                    <img src="{{ ('assets/image/img-big2-403x257.png') }}" alt="">
@@ -309,16 +321,16 @@ font-size: 0.9rem !important;
                      <div class="time">2 mins to read</div>
                    </div>
                   </div>
-                         </div>
+              </div> --}}
               </div>
             </div>
           </div>
         </div>
       </section>
-     
-      <section class="pb-4 pt-8 bg-white" id="contact">
+      {{-- @include('frontend.common.footer') --}}
+      {{-- <section class="pb-4 pt-8 bg-white" id="contact">
         @include('frontend.common.newFooter')
-        </section>
+        </section> --}}
 
       <!-- <script src="vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script> -->
       <script src="{{ url('vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js') }}"></script>
