@@ -1,11 +1,5 @@
-@extends('adminview.master')
-@section('title','Admin | Add New Item in How It Works Section')
-@section('head')
-{{--<link href="{{url('public').'/'}}plugins/pg-calendar/css/pignose.calendar.min.css" rel="stylesheet">--}}
-{{--<!-- Chartist -->--}}
-{{--<link rel="stylesheet" href={{url('public').'/'}}plugins/chartist/css/chartist.min.css">--}}
-{{--<link rel="stylesheet" href="{{url('public').'/'}}plugins/chartist-plugin-tooltips/css/chartist-plugin-tooltip.css">--}}
-@endsection
+@extends('master.master')
+@section('title', 'Add Blog')
 @section('content')
 <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
     <script type="text/javascript">
@@ -25,14 +19,14 @@
             }
         });
         </script>
- <style>
+ {{-- <style>
  label{
      font-weight:bold;
      font-size: 14px;
     color: #101010;
  }
- </style>       
-<div class="breadcrumb">
+ </style>        --}}
+{{-- <div class="breadcrumb">
     <h1 class="mr-2">How It Works</h1>
     <ul>
         <li>
@@ -51,10 +45,17 @@
             </a>
         </li>
     </ul>
-</div>
-<div class="separator-breadcrumb border-top"></div>
+</div> --}}
+{{-- <div class="separator-breadcrumb border-top"></div> --}}
 
-<div class="col-lg-12 col-md-12 mt-4">
+
+
+
+
+
+
+
+<div class="col-lg-8 col-md-8 "style="margin-left:250px !important;margin-top:80px !important">
     <div class="card  border-primary">
         <!-- -->
         <div class="card-header bg-primary  text-white">
@@ -92,9 +93,9 @@
                     <textarea  class='tiny-mce' id='editor1' name="tem_desc" required="required">{{isset($Details->tem_desc)?$Details->tem_desc:''}}</textarea>
                    
                 </div>
-                <div class="form-row">
+                <div class="row">
                        
-                       <div class="col-md-12 mb-3">
+                       <div class="col-sm-6">
                            <label for="name">End Line</label>
                            <input class="form-control" id="end_line" type="text" placeholder="Enter Title" name="end_line"
                                 value="">
@@ -104,9 +105,9 @@
                        </div>
                       
                        
-                   </div>
-                    <div class="form-row">
-                    <div class="col-md-6 mb-3">
+                   
+                    {{-- <div class="form-row"> --}}
+                    <div class="col-sm-6 mb-3 ">
                             <label for="name">Upload Image</label>
                             <input type="file" name="image" id="image" class="form-control" value="" title="Please upload Image for the blog"
                                 required="required">
@@ -122,7 +123,7 @@
                                 Looks good!
                             </div>
                         </div>
-                        <div class="col-md-4 mb-3">
+                        <div class="col-md-6 mb-3">
                             <label for="name">Publish Date</label>
                             <input class="form-control" id="publish_date" type="date" placeholder="Enter Publish Date" name="publish_date"
                                 required="required" value="">
@@ -130,7 +131,7 @@
                                 Looks good!
                             </div>
                         </div>
-                        <div class="col-md-4 mb-3">
+                        <div class="col-md-6 mb-3">
                             <label for="is_active">Blog For</label>
                             <select type="text" name="blogs_for" id="blogs_for" class="form-control required">
                                  <option value="">Select Any One</option>
@@ -141,7 +142,7 @@
                                 Looks good!
                             </div>
                         </div>
-                        <div class="col-md-4 mb-3">
+                        <div class="col-md-6 mb-3">
                             <label for="is_active">Status</label>
                             <select type="text" name="is_active" id="is_active" class="form-control required">
                                 <option value="1">Active</option>
@@ -154,7 +155,7 @@
                     </div>
                     <div class="form-row">
                         <div class="col-md-12 mb-3">
-                            <button class="btn btn-success float-right btn-block" type="submit">
+                            <button class="btn btn-primary float-right btn-block" type="submit">
                                 Save Item
                             </button>
                         </div>
@@ -170,4 +171,4 @@
 @endsection
 
 @section('scripts')
-@stop
+@endsection

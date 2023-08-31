@@ -175,10 +175,12 @@
 }
 
 .apply-btn {
-    width: 85%;
+    width: 100%;
     /* border: 2px solid black; */
     margin: 20px auto;
-    text-align: center;
+    margin-top: 50px;
+    /* text-align: center; */
+    margin-left: 42px;
     /* margin-bottom: 0px !important; */
     /* margin-right: 60px !important; */
 }

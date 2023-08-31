@@ -132,5 +132,10 @@ justify-content: center;
     display: flex;
     align-items: end;
     justify-content: center;
-    margin-bottom: -20px !important;
+}
+.time a{
+  color: #f78b05;
+  font-size: 0.82rem;
+  font-weight: 500;
+    text-decoration: none;
 }

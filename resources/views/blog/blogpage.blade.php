@@ -97,10 +97,10 @@ font-size: 0.9rem !important;
             </button>
 
             <div class="collapse navbar-collapse order-lg-2" id="navbarNav" style="justify-content: end;">
-                <ul class="navbar-nav navbar-nav-scroll" style="max-height: 35rem; width: 50%;">
+                <ul class="navbar-nav navbar-nav-scroll" style="max-height: 35rem; width: 44%;">
                     <!-- Menu items-->
                     <li class="nav-item">
-                      <li class="nav-item active">
+                      <li class="nav-item">
                         <a class="nav-link " href="{{Request::is('/') ? " #home" : URL::to('/#home')}}" role="button" aria-expanded="false">Home
                         </a>
                     </li>
@@ -134,9 +134,9 @@ font-size: 0.9rem !important;
 
                 <div>
                     <a style="    background-color: #FF9900;
-                    border-color: #FF9900;padding: 0.425rem 1rem;
+                    border-color: #FF9900; height:33px; padding-bottom:10px;
     font-size: 0.875rem;
-    border-radius: 0.375rem; width:91px;" class="btn btn-primary btn-sm ms-2 back-btn" href="{{ url('/') }}">
+    border-radius: 0.375rem; width:84px;" class="btn btn-primary btn-sm ms-2 back-btn" href="{{ url('/') }}">
                     Back
                     </a>
                 </div>
@@ -199,13 +199,13 @@ font-size: 0.9rem !important;
           </div>
          </div>
          @php
-         $description = substr($item->description,0,80);
+         $description = substr($item->description,0,70);
          
          @endphp
          <div class="only-para">
           <h2>{{ $item->title }}</h2>
           {{-- substr($job_description, 0, 75) --}}
-          <p>{{ strip_tags($description) }}</p>
+          <p>{{ strip_tags($description) }}...</p>
           <div class="admin">
             <div class="profile">
               <img src="{{ url('assets/image/profile.png') }}" alt="" width="35" height="35">
@@ -216,7 +216,7 @@ font-size: 0.9rem !important;
             </div>
             <div class="time">
               
-              <a href="{{ url('read-more').'/'.$item->id }}" style="float:right;font-size:16px"> 2 mins to read </a>
+              <a href="{{ url('read-more').'/'.$item->id }}"> 2 mins to read </a>
             </div>
           </div>
          </div>

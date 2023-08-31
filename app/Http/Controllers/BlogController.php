@@ -27,6 +27,19 @@ class BlogController extends Controller
     }
 
     public function blogStore(Request $request){
+
+        // return $request;
+    $request->validate([
+
+
+        'title' => 'required',
+        'tem_desc' => 'required',
+        'end_line' => 'required',
+        'author' => 'required',
+        'publish_date' => 'required',
+        'blogs_for' => 'required',
+        'image' => 'required',
+    ]);
       $blog = new Blog();
       $blog->title = $request->title;
       $blog->description = $request->tem_desc;
@@ -80,7 +93,7 @@ class BlogController extends Controller
       }  
 
     public function commentMaster(){
-        $comment = BlogsComment::orderBy('id', 'DESC')->get();
+        $comment = BlogsComment::orderBy('id', 'DESC')->paginate(10);
 
         return view('blog/commentMaster')->with(compact('comment'));
     }

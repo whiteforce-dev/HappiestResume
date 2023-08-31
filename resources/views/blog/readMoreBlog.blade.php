@@ -235,7 +235,7 @@ p{
           </button>
 
           <div class="collapse navbar-collapse order-lg-2" id="navbarNav" style="justify-content: end;">
-              <ul class="navbar-nav navbar-nav-scroll" style="max-height: 35rem; width: 50%;">
+              <ul class="navbar-nav navbar-nav-scroll" style="max-height: 35rem; width: 40% !important;">
                   <!-- Menu items-->
                   <li class="nav-item">
                     <li class="nav-item active">
@@ -271,10 +271,10 @@ p{
               </ul>
 
               <div>
-                  <a style="    background-color: #FF9900;
-                  border-color: #FF9900;padding: 0.425rem 1rem;
+                  <a style="background-color: #FF9900 !important;
+                  border-color: #FF9900 !important;padding: 0.425rem 1rem;
   font-size: 0.875rem;
-  border-radius: 0.375rem; width:91px;" class="btn btn-primary btn-sm ms-2 back-btn" href="{{ url('/') }}">
+  border-radius: 0.375rem; width:84px;" class="btn btn-primary btn-sm ms-2 back-btn" href="{{ url('/') }}">
                   Back
                   </a>
               </div>

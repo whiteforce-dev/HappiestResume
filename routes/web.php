@@ -77,6 +77,10 @@ Route::get('commentMaster', [BlogController::class,'commentMaster']);
 Route::any('comment/approve/{id}', [BlogController::class,'commentApprove']);
 Route::any('comment/decline/{id}', [BlogController::class,'commentDecline']);
 Route::any('comment/delete/{id}', [BlogController::class,'commentDelete']);
+Route::any('edit-blogs/{id}', [BlogController::class,'EditBlogs']);
+Route::any('update-blog/{id}', [BlogController::class,'UpdateBlogs']);
+Route::any('delete-blogs/{id}', [BlogController::class,'DeleteBlogs']);
+
 /////////////////////////////////////////BLOGS///////////////////////////////////////////
 
 Route::get('resumeloginJob/{jid}/{portal}', [JobResponseController::class,'resumeloginJob']);

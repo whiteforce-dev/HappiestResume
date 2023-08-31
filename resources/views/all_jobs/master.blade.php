@@ -320,6 +320,7 @@
         }
 
         .fnc-nav {
+            width: 33%;
             z-index: 5;
             position: absolute;
             right: 0;
@@ -364,12 +365,12 @@
             position: relative;
             display: inline-block;
             vertical-align: top;
-            width: 100px;
-            height: 50px;
-            font-size: 14px;
+            width: 110px;
+            height: 32px;
+            font-size: 12px;
             color: #fff;
             text-transform: uppercase;
-            background: transparent;
+            /* background: transparent; */
             border: none;
             outline: none;
             cursor: pointer;
@@ -890,7 +891,7 @@ div#navbarNav.active-header ul li a {
                             </div>
                            
                         </h2>
-                        <a href="{{ url('exclusive-jobs') }}" >
+                        <a href="{{ url('exclusive-jobs') }}#fresherscrolling" >
                             <button type="button" class="fnc-slide__action-btn">
                                 Click me!
                                 <span data-text="Click me!"> Click me!</span>
@@ -915,7 +916,7 @@ div#navbarNav.active-header ul li a {
                                 <span>Jobs</span>
                             </div> -->
                         </h2>
-                        <a href="{{ url('female-jobs') }}">
+                        <a href="{{ url('female-jobs') }}#femalescrolling">
                             <button type="button" class="fnc-slide__action-btn">
                                 Click me!
                                 <span data-text="Click me!"> Click me!</span>
@@ -940,7 +941,8 @@ div#navbarNav.active-header ul li a {
                                 <span>Jobs</span>
                             </div> -->
                         </h2>
-                        <a href="{{ url('national-jobs') }}">
+                        {{-- <a href=""> --}}
+                        <a href="{{ url('national-jobs') }}#nationalscrolling ">
                             <button type="button" class="fnc-slide__action-btn">
                                 Click me!
                                 <span data-text="Click me!"> Click me!</span>
@@ -965,7 +967,7 @@ div#navbarNav.active-header ul li a {
                                 <span>Jobs</span>
                             </div> -->
                         </h2>
-                        <a href="{{ url('international-jobs') }}">
+                        <a href="{{ url('international-jobs') }}#internationalscrolling">
                             <button type="button" class="fnc-slide__action-btn">
                                 Click me!
                                 <span data-text="Click me!"> Click me!</span>
@@ -983,21 +985,21 @@ div#navbarNav.active-header ul li a {
                 <div class="fnc-nav__bg m--navbg-red"></div>
                 <div class="fnc-nav__bg m--navbg-blue"></div>
             </div>
-            <div class="fnc-nav__controls" style="display: none;">
+            <div class="fnc-nav__controls" style="background-color:#ff8a00 !important;">
                 <button class="fnc-nav__control">
-                    Fresher'Jobs
+                    Fresher
                     <span class="fnc-nav__control-progress"></span>
                 </button>
                 <button class="fnc-nav__control">
-                    Female Jobs
+                    Female
                     <span class="fnc-nav__control-progress"></span>
                 </button>
                 <button class="fnc-nav__control">
-                    National Jobs
+                    National
                     <span class="fnc-nav__control-progress"></span>
                 </button>
                 <button class="fnc-nav__control">
-                    International Jobs
+                    International
                     <span class="fnc-nav__control-progress"></span>
                 </button>
             </div>

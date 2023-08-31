@@ -355,13 +355,15 @@
                             <i class="fa-solid fa-right-long"></i> Excellent problem solving
                             and analytical skills
                         </p> --}}
-            </div>
-        </div>
-        <div class="apply-btn">
            
-            <a href="javascript:void(0)"><button onclick="redirectToLogin(`/cv/jobs`)" class="btn-one"> Apply Now</button></a>
-            <button>Apply Later</button>
+                        <div class="apply-btn">
+           
+                            <a href="javascript:void(0)"><button onclick="redirectToLogin(`/cv/jobs`)" class="btn-one"> Apply Now</button></a>
+                            <button>Apply Later</button>
+                        </div>
+                    </div>
         </div>
+       
         </div>
         </div>
     </section>

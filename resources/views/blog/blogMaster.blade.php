@@ -1,13 +1,17 @@
-@extends('adminview.master')
+{{-- @extends('adminview.master')
 @section('title','Admin | Blogs')
-@section('head')
+@section('head') --}}
 {{--<link href="{{url('public').'/'}}plugins/pg-calendar/css/pignose.calendar.min.css" rel="stylesheet">--}}
 {{--<!-- Chartist -->--}}
 {{--<link rel="stylesheet" href={{url('public').'/'}}plugins/chartist/css/chartist.min.css">--}}
 {{--<link rel="stylesheet" href="{{url('public').'/'}}plugins/chartist-plugin-tooltips/css/chartist-plugin-tooltip.css">--}}
-@endsection
+{{-- @endsection --}}
+
+@extends('master.master')
+@section('title', 'Blogs')
 @section('content')
-<div class="breadcrumb">
+
+{{-- <div class="breadcrumb">
     <h1 class="mr-2">BLOGS</h1>
     <ul>
         <li>
@@ -29,13 +33,13 @@
    
     </ul>
 </div>
-<div class="separator-breadcrumb border-top"></div>
+<div class="separator-breadcrumb border-top"></div> --}}
 
 <div class="col-lg-12 col-md-12 mt-4">
-    <div class="card text-center border-primary">
+    <div class="card text-center border-primary"style="margin-left:140px !important;margin-right:40px !important;margin-top:80px !important">
         <!-- -->
         <div class="card-header bg-primary text-white">
-            <div>Manage Your All Items of Blogs Section</div>
+            <div>Blogs Section</div>
         </div>
         <div class="card-body">
             <!-- -->

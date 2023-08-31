@@ -278,7 +278,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="auto-img"><img src="{{ url('assets/image/Grey Clean CV Resume Photo.jpg') }}"></div>
+                    <div class="auto-img"><img src="{{ url('assets/image/Grey Clean CV Resume Photo.png') }}"></div>
                 </div>
 
             </section>

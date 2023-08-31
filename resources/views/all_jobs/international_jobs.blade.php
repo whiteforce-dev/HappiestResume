@@ -3,28 +3,53 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <style>
   .countryfirst{
-    margin-right: 30px;
+    /* margin-right: 30px; */
     border: 1px solid rgb(240, 142, 14);
-    border-radius: 7px;
-    padding-left: 10px;
+    border-bottom-left-radius: 20px;
+    border-top-left-radius: 20px;
+    padding-left: 20px;
     font-weight: 500;
+    width: 81%;
+    height: 39px;
+    border-right: none;
+    color: #66789C;
+    font-weight: 400;
+    font-size: 0.95rem;
+    appearance: none;
   }
   .countryfirst:focus{
     outline: 0;
   }
+  .fontdesign{
+    border: 1px solid #e79515;
+    border-bottom-right-radius: 50%;
+    border-top-right-radius: 50%;
+    /* background-color: #fff8f2; */
+    width: 39px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-left:none; 
+  }
+  .fontdesign i{
+    font-size: 1.4rem;
+  }
 
 </style>
 
-    <section class="heading" id="scrolling">
+    <section class="heading" id="internationalscrolling">
         <form>
             <section class="location">
-                <div class="up-location" style="position: relative;">
+                <div class="up-location" style="">
                     <h1>J<i class="fas fa-search" style="color: rgb(255, 153, 0); font-size: 1.7rem;"></i>bs By location</h1>
                     <hr style="background-color:  rgb(245, 160, 34); height: 4px; border: none; width: 27%; margin: 0 auto;">
                     <p style="margin-top: 11px;">Find your favourite jobs and get the benefits of yourself 
                       
                     </p>
-                    <div class="col-md-3" style="display:flex; justify-content: end;width:30%; margin:0 auto; position:absolute; bottom:10%; right:0%;">
+                    <div class="col-md-3" style="display:flex; justify-content: center;
+                    width: 34%;
+                    margin: 0 auto;
+                    margin-top: 28px !important;">
                       <select name="country" class="countryfirst" id="dynamic_select" style="display: block">
     
                           @foreach ($countries as $country)
@@ -32,7 +57,11 @@
                               </option>
                           @endforeach
                       </select>
-                      &nbsp;&nbsp;&nbsp;&nbsp;
+                      <div class="fontdesign">
+                        <i class="fa-solid fa-location-dot" style="color:#e7812f;;"></i>
+                      </div>
+                     
+                      {{-- &nbsp;&nbsp;&nbsp;&nbsp; --}}
                       {{-- <span class="icon-sahpe icon-lg bg-light-warning rounded-circle text-center text-dark-warning fs-4 ">
                           <i class="fa fa-search" aria-hidden="true"></i>
                       </span> --}}

@@ -123,30 +123,30 @@
   //INSERT EVENT DATE AND TIME HERE IN THIS FORMAT: 'June 1, 2023, 19:00:00'
   const EVENTDATE = new Date({{ Js::from($endDate) }});
   const countDown = new Date(EVENTDATE).getTime();
-  const x = setInterval(() => {
-    const now = new Date().getTime();
-    const distance = countDown - now;
+  // const x = setInterval(() => {
+  //   const now = new Date().getTime();
+  //   const distance = countDown - now;
 
-    var calday = Math.floor(distance / day);
-    var cday = calday;
-    if(parseInt(cday) < 11){
-      $('#days').css("color", 'red');
-      $('#hours').css("color", 'red');
-      $('#minutes').css("color", 'red');
-      $('#seconds').css("color", 'red');
-    }
-    document.getElementById("days").innerText = cday;
-    document.getElementById("hours").innerText = Math.floor(
-      (distance % day) / hour
-    );
-    document.getElementById("minutes").innerText = Math.floor(
-      (distance % hour) / minute
-    );
-    document.getElementById("seconds").innerText = Math.floor(
-      (distance % minute) / second
-    );
+  //   var calday = Math.floor(distance / day);
+  //   var cday = calday;
+  //   if(parseInt(cday) < 11){
+  //     $('#days').css("color", 'red');
+  //     $('#hours').css("color", 'red');
+  //     $('#minutes').css("color", 'red');
+  //     $('#seconds').css("color", 'red');
+  //   }
+  //   document.getElementById("days").innerText = cday;
+  //   document.getElementById("hours").innerText = Math.floor(
+  //     (distance % day) / hour
+  //   );
+  //   document.getElementById("minutes").innerText = Math.floor(
+  //     (distance % hour) / minute
+  //   );
+  //   document.getElementById("seconds").innerText = Math.floor(
+  //     (distance % minute) / second
+  //   );
 
-  }, 0);
+  // }, 0);
 };
 
 main();

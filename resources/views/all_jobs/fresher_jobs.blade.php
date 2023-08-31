@@ -158,7 +158,7 @@
     </div> -->
 </div> --}}
 
-<section class="heading" id="scrolling">
+<section class="heading" id="fresherscrolling">
 <form>
     <div class="input-sec">
         <div class="what">

@@ -45,16 +45,22 @@
             </li>
             <!-- Admin Specific -->
            
-            <li class="nav-label">Target</li>
+            <li class="nav-label">Blog</li>
             <li class=""><a class="has-arrow ai-icon "
                     href="javascript:void()" aria-expanded="false">
                     <i data-feather="crosshair"></i>
-                    <span class="nav-text">Target</span>
+                    <span class="nav-text">Add Blog</span>
                 </a>
                 <ul aria-expanded="false">
-                    <h6 class="dropdown-header cnav-head">Target Section </h6>
-                    <li class="liwithmargin "><a href=""
-                            class="">Monthly Target</span></a>
+                    <h6 class="dropdown-header cnav-head">Blog </h6>
+                    <li class="liwithmargin "><a href="{{ url('blog-Add') }}"
+                            class="">Add Blog</span></a>
+                    </li>
+                    <li class="liwithmargin "><a href="{{ url('blogMaster') }}"
+                            class="">Blog</span></a>
+                    </li>
+                    <li class="liwithmargin "><a href="{{ ('commentMaster') }}"
+                            class="">Manage Comments</span></a>
                     </li>
 
                 </ul>
