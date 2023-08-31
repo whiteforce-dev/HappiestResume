@@ -986,19 +986,19 @@ div#navbarNav.active-header ul li a {
                 <div class="fnc-nav__bg m--navbg-blue"></div>
             </div>
             <div class="fnc-nav__controls" style="background-color:#ff8a00 !important;">
-                <button class="fnc-nav__control">
+                <a href="{{ url('exclusive-jobs') }}#fresherscrolling" style="text-decoration:none"><button class="fnc-nav__control">
                     Fresher
                     <span class="fnc-nav__control-progress"></span>
-                </button>
-                <button class="fnc-nav__control">
+                </button></a>
+                <a href="{{ url('female-jobs') }}#femalescrolling"style="text-decoration:none">  <button class="fnc-nav__control">
                     Female
                     <span class="fnc-nav__control-progress"></span>
                 </button>
-                <button class="fnc-nav__control">
+                <a href="{{ url('national-jobs') }}#nationalscrolling"style="text-decoration:none"> <button class="fnc-nav__control">
                     National
                     <span class="fnc-nav__control-progress"></span>
                 </button>
-                <button class="fnc-nav__control">
+                <a href="{{ url('international-jobs') }}#internationalscrolling"style="text-decoration:none"> <button class="fnc-nav__control">
                     International
                     <span class="fnc-nav__control-progress"></span>
                 </button>
