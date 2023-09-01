@@ -14,10 +14,10 @@
                   <tr>
                     <th>S.No.</th>
                     <th>Blog For</th>
-                    <th>Title</th>
-                    <th style="width:150px" >Comment By</th>
-                    <th style="width:150px">Comment</th>
-                    <th style="width:150px">Comment Date</th>
+                    <th style="width:290px">Title</th>
+                    <th style="width:290px" >Comment By</th>
+                    <th style="width:250px">Comment</th>
+                    <th style="width:350px">Comment Date</th>
                     <th>Status</th>
                     <th>Action</th>
                   </tr>
@@ -28,7 +28,7 @@
                       @php($blog_for = App\Models\Blog::where('id',$comm->blog_id)->value('blogs_for'))
                       @php($blog_title = App\Models\Blog::where('id',$comm->blog_id)->value('title'))
                   <tr>
-                    <th>{{ $a++ }}</th>
+                    <th style="text-align:center;padding-top:108px!important">{{ $a++ }}</th>
                     <td>{{ $blog_for }}</td>
                     <td>{{ $blog_title }}</td>
                     <td style="word-break: break-all;
@@ -61,10 +61,13 @@
                      </td>
                   </tr>
                   @endforeach
+
                 </tbody>
               </table>
         </div>
+        {{ $comment->withQueryString()->links('pagination::bootstrap-4')}} 
         </div>
+       
         </div>
         
    

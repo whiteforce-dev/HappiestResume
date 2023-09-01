@@ -413,10 +413,7 @@
                                     {{-- {{ $job->id }} --}}
                                 </div>
                                 <div class="mid-box">
-                                    {{-- @php
-                                        $job_position = substr($job->position, 0, 25);
-                                    @endphp --}}
-                                    {{-- <h2> {{$job->id}}</h2> --}}
+                                
                                     <h2> {{ isset($job->position) ? ucwords($job->position) : 'Not Specified' }}</h2>
                                     @php
                                         $start = new \Carbon\Carbon("$job->created_at");
@@ -461,17 +458,7 @@
 
 
                                 <div class="applied">
-                                    {{-- <div class="amount">
-                              <span class="price"> Upto @if ($job->salary_type == 'USD')
-                                ${{ $job->package_offer_from }} - <br>
-                                 $
-                                {{ $job->package_offer_to }} USD
-                            @else
-                                ₹{{ $job->package_offer_from }} - <br>
-                                ₹
-                                {{ $job->package_offer_to }} 
-                            @endif</span><span class="muted"></span>
-                            </div>  --}}
+                            
                                     <div class="app-bttn" style="">
                                         <a href="{{ url('job-description', [$job->id]) }}">
                                             <button>Apply Now</button>
@@ -482,138 +469,7 @@
                         @endforeach
 
                 </div>
-                {{-- <div class="row" style="display:flex;flex-direction:row">
-                        <div class="container_sm" style="padding:0px">
-                            <div class="row" style="display:flex;flex-direction:row">
-                                @if (count($jobsint))
-                                    {{ $jobsint->links() }}
-                                    @foreach ($jobsint as $job)
-                                        <div class="col-sm-4">
-                                            <div class="cards">
-                                                <div class="cardn cards__item">
-                                                    <div class="card__frame">
-                                                        <div>
-                                                            <img class="img-fluid" style="height:40px;"
-                                                                src="{{ $job->company->hh_img ?? 'https://happiestresume.com/public/images/company/stepstone1.svg' }}" alt="image">
-                                                        </div>
-
-                                                        <div>
-                                                            <a href="">
-                                                                <button class="btn btn-primary"
-                                                                    style="margin-bottom:10px;margin-top:30px;
-                                                                    text-transform: uppercase;padding:10px;
-                                                  width:178px;background-color: #6343d8;
-                                                  border-color: #5e3fcb;color: #fff;">
-                                                                    CLICK TO APPLY !
-                                                                </button>
-                                                            </a>
-                                                        </div>
-
-                                                        <div class="flip-box">
-                                                            <div class="flip-box-inner">
-                                                                <div class="flip-box-front">
-
-                                                                    <button class="btn btn-primary"
-                                                                    style="margin-bottom:10px;margin-top:5px;
-                                                                    text-transform: uppercase;padding:10px;
-                                                  width:170px;background-color:red;
-                                                  border-color:red;color: #fff;">
-                                                                    REFER A FRIEND !
-                                                                </button>
-
-
-                                                                </div>
-                                                                <div class="flip-box-back">
-                                                                    <a href="https://www.facebook.com/sharer/sharer.php?u"
-                                                                        style="color:#000">
-                                                                        <i class="fab fa-facebook"
-                                                                            style="font-size:24px;padding:5px"></i>
-                                                                    </a>
-                                                                    <a href="https://twitter.com/intent/tweet?text=my"
-                                                                        style="color:#000">
-                                                                        <i class="fab fa-twitter"
-                                                                            style="font-size:24px;padding:5px"></i>
-                                                                    </a>
-                                                                    <a href="https://wa.me/?text=" style="color:#000">
-                                                                        <i class="fab fa-whatsapp"
-                                                                            style="font-size:24px;padding:5px"></i>
-                                                                    </a>
-                                                                    <a href="http://www.linkedin.com/shareArticle?mini=true"
-                                                                        style="color:#000">
-                                                                        <i class="fab fa-linkedin"
-                                                                            style="font-size:24px;padding:5px"></i>
-                                                                    </a>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="card__overlay"></div>
-                                                    <div class="card__content"
-                                                        style="width:240px;word-wrap:break-word">
-                                                        <div class="job_position">
-                                                            {{ $job->position }}
-                                                        </div>
-                                                        <hr style="color:black">
-                                                        <div class="experience">
-                                                            <div style="display: flex;flex-direction: row">
-                                                                <span><i class="fas fa-briefcase"
-                                                                        style="font-size:21px;"></i> | 0 to 5
-                                                                    years</span>
-                                                            </div>
-
-                                                            
-
-                                                            <div style="display: flex;flex-direction: row">
-                                                                <span><i class="far fa-money-bill-alt"
-                                                                        style="font-size:17px;"></i> | 
-                                                                        @if ($job->country == 'USD')
-                                                                        ${{ $job->package_offer_from }} To $
-                                                                        {{ $job->package_offer_to }} USD
-                                                                    @elseif($job->salary_type == 'Pounds')
-                                                                        £{{ $job->package_offer_from }} TO £
-                                                                        {{ $job->package_offer_to }} Pounds
-                                                                    @else
-                                                                        N/A
-                                                                    @endif
-                                                                    </span>
-                                                            </div>
-
-                                                            <div style="display: flex;flex-direction: row;">
-                                                                <span><i class="fas fa-map-marker-alt"
-                                                                        style="font-size:22px;"></i>
-                                                                    <span>|{{ $job->country }} </span>
-                                                            </div>
-                                                        </div>
-                                                        <div class="job_title">
-                                                            Job Description</div>
-                                                        <div class="job_desc">
-                                                          {{ strip_tags($job->job_description) }}
-                                                        </div>
-                                                        <hr style=color:black>
-                                                        @php
-                                                        $start = new \Carbon\Carbon("$job->created_at");
-                                                        $end = new \Carbon\Carbon();
-                                                    @endphp
-                                                        <div
-                                                        style="font-size: 16px;margin-top:3px;margin-left:20px;font-weight: bold;font-family: 'Muli', sans-serif;">
-                                                        <u>
-                                                            <br><br>
-                                                             Posted on -
-                                                            {{ $start->diff($end)->format('%d') }}
-                                                            days
-                                                            ago</u>
-                                                    </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    @endforeach
-
-                            </div>
-                        </div>
-                    </div> --}}
-
-                {{-- </div> --}}
+                
         @else
             <iframe height="800px" width="100%" src="{{ $country->url }}">
             </iframe>

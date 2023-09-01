@@ -23,7 +23,7 @@
         }
 
 
-     
+
 
         .fnc-slider {
             overflow: hidden;
@@ -413,7 +413,7 @@
         }
 
         /* NOT PART OF COMMON SLIDER STYLES */
-     
+
         .demo-cont {
             overflow: hidden;
             position: relative;
@@ -752,9 +752,10 @@
             transition-timing-function: ease;
             transform: rotate(-45deg) scaleX(0) translateZ(0);
         }
-/* Header Start */
 
-div#navbarNav.active-header ul li a {
+        /* Header Start */
+
+        div#navbarNav.active-header ul li a {
             color: black;
             font-size: 0.9rem;
         }
@@ -790,246 +791,262 @@ div#navbarNav.active-header ul li a {
         .first-header {
             color: black
         }
-        .nav-item{
-          margin: 0 auto
+
+        .nav-item {
+            margin: 0 auto
         }
-        .search-box-one{
+
+        .search-box-one {
             width: 90%
         }
+
         /* .navbar-nav-scroll li a{
       font-size: 875rem;
       color: black;
       font-weight: 600;
         } */
-        
+
         /* Header End  */
     </style>
 </head>
 
 <body style="font-family: Poppins, sans-serif;">
 
-  <nav>
-    <header id="top-nav" class="navbar navbar-expand-lg fixed-top py-4" data-scroll-header="">
-        <div class="container p-0">
-            <a class="navbar-brand me-0 me-xl-4" href="#">
-                <img src="http://127.0.0.1:8000/assets/happiestNewAssets/img/logo.png" alt="Happiest Resume"
-                    style="width: 110px;" loading="lazy">
-            </a>
-            <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
-                aria-label="Toggle navigation">
-                <div id="nav-icon4">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
-            </button>
+    <nav>
+        <header id="top-nav" class="navbar navbar-expand-lg fixed-top py-4" data-scroll-header="">
+            <div class="container p-0">
+                <a class="navbar-brand me-0 me-xl-4" href="#">
+                    <img src="http://127.0.0.1:8000/assets/happiestNewAssets/img/logo.png" alt="Happiest Resume"
+                        style="width: 110px;" loading="lazy">
+                </a>
+                <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <div id="nav-icon4">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </button>
 
-            <div class="collapse navbar-collapse order-lg-2" id="navbarNav" style="justify-content: end;">
-                <ul class="navbar-nav navbar-nav-scroll" style="max-height: 35rem; width: 50%;">
-                    <!-- Menu items-->
-                    <li class="nav-item">
-                        <li class="nav-item active">
-                            <a class="nav-link " href="{{Request::is('/') ? " #home" : URL::to('/#home')}}" role="button" aria-expanded="false">Home
-                            </a>
-                        </li>
-                    </li>
-
-                    <li class="nav-item active">
+                <div class="collapse navbar-collapse order-lg-2" id="navbarNav" style="justify-content: end;">
+                    <ul class="navbar-nav navbar-nav-scroll" style="max-height: 35rem; width: 50%;">
+                        <!-- Menu items-->
                         <li class="nav-item">
-                            <a class="nav-link"  href="{{URL::to('exclusive-jobs')}}" role="button" aria-expanded="false">Jobs
+                        <li class="nav-item active">
+                            <a class="nav-link " href="{{ Request::is('/') ? ' #home' : URL::to('/#home') }}"
+                                role="button" aria-expanded="false">Home
                             </a>
                         </li>
-                    </li>
-                    <li class="nav-item ">
-                        <a class="nav-link" href="{{Request::is('/') ? " #about" : URL::to('/#about')}}" role="button" aria-expanded="false">About
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{Request::is('/') ? " #templates" : URL::to('/#templates')}}" role="button" aria-expanded="false">Templates
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link first-black" href="{{ url('blog') }}" role="button"
-                            aria-expanded="false">Blog
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link"  href="{{Request::is('/') ? " #contact" :
-                    URL::to('/#contact')}}" role="button" aria-expanded="false">Contact
-                    </a>
-                    </li>
-                </ul>
+                        </li>
 
-                <div>
-                    <a style="    background-color: #FF9900;
+                        <li class="nav-item active">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ URL::to('exclusive-jobs') }}" role="button"
+                                aria-expanded="false">Jobs
+                            </a>
+                        </li>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link" href="{{ Request::is('/') ? ' #about' : URL::to('/#about') }}"
+                                role="button" aria-expanded="false">About
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ Request::is('/') ? ' #templates' : URL::to('/#templates') }}"
+                                role="button" aria-expanded="false">Templates
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link first-black" href="{{ url('blog') }}" role="button"
+                                aria-expanded="false">Blog
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ Request::is('/') ? ' #contact' : URL::to('/#contact') }}"
+                                role="button" aria-expanded="false">Contact
+                            </a>
+                        </li>
+                    </ul>
+
+                    <div>
+                        <a style="    background-color: #FF9900;
                     border-color: #FF9900;padding: 0.425rem 1rem;
     font-size: 0.875rem;
-    border-radius: 0.375rem;" class="btn btn-primary btn-sm ms-2" href="{{ url('/') }}">
-                    Back
+    border-radius: 0.375rem;"
+                            class="btn btn-primary btn-sm ms-2" href="{{ url('/') }}">
+                            Back
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+    </nav>
+    <div class="demo-cont">
+        <!-- slider start -->
+        <div class="fnc-slider example-slider">
+            <div class="fnc-slider__slides">
+                <!-- slide start -->
+                <div class="fnc-slide m--blend-green m--active-slide">
+                    <div class="fnc-slide__inner">
+                        <div class="fnc-slide__mask">
+                            <div class="fnc-slide__mask-inner"></div>
+                        </div>
+                        <div class="fnc-slide__content">
+                            <h2 class="fnc-slide__heading">
+                                <div class="fnc-slide__heading-line">
+                                    <span>Fresher's Jobs</span>
+                                </div>
+
+                            </h2>
+                            <a href="{{ url('exclusive-jobs') }}#fresherscrolling">
+                                <button type="button" class="fnc-slide__action-btn">
+                                    Click me!
+                                    <span data-text="Click me!"> Click me!</span>
+                                </button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- slide end -->
+                <!-- slide start -->
+                <div class="fnc-slide m--blend-dark">
+                    <div class="fnc-slide__inner">
+                        <div class="fnc-slide__mask">
+                            <div class="fnc-slide__mask-inner"></div>
+                        </div>
+                        <div class="fnc-slide__content">
+                            <h2 class="fnc-slide__heading">
+                                <div class="fnc-slide__heading-line">
+                                    <span>Female Jobs</span>
+                                </div>
+                                <!-- <div class="fnc-slide__heading-line">
+                                <span>Jobs</span>
+                            </div> -->
+                            </h2>
+                            <a href="{{ url('female-jobs') }}#femalescrolling">
+                                <button type="button" class="fnc-slide__action-btn">
+                                    Click me!
+                                    <span data-text="Click me!"> Click me!</span>
+                                </button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- slide end -->
+                <!-- slide start -->
+                <div class="fnc-slide m--blend-red">
+                    <div class="fnc-slide__inner">
+                        <div class="fnc-slide__mask">
+                            <div class="fnc-slide__mask-inner"></div>
+                        </div>
+                        <div class="fnc-slide__content">
+                            <h2 class="fnc-slide__heading">
+                                <div class="fnc-slide__heading-line">
+                                    <span>National Jobs</span>
+                                </div>
+                                <!-- <div class="fnc-slide__heading-line">
+                                <span>Jobs</span>
+                            </div> -->
+                            </h2>
+                            {{-- <a href=""> --}}
+                            <a href="{{ url('national-jobs') }}#nationalscrolling ">
+                                <button type="button" class="fnc-slide__action-btn">
+                                    Click me!
+                                    <span data-text="Click me!"> Click me!</span>
+                                </button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- slide end -->
+                <!-- slide start -->
+                <div class="fnc-slide m--blend-blue">
+                    <div class="fnc-slide__inner">
+                        <div class="fnc-slide__mask">
+                            <div class="fnc-slide__mask-inner"></div>
+                        </div>
+                        <div class="fnc-slide__content">
+                            <h2 class="fnc-slide__heading">
+                                <div class="fnc-slide__heading-line">
+                                    <span>International Jobs</span>
+                                </div>
+                                <!-- <div class="fnc-slide__heading-line">
+                                <span>Jobs</span>
+                            </div> -->
+                            </h2>
+                            <a href="{{ url('international-jobs') }}#internationalscrolling">
+                                <button type="button" class="fnc-slide__action-btn">
+                                    Click me!
+                                    <span data-text="Click me!"> Click me!</span>
+                                </button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- slide end -->
+            </div>
+            <nav class="fnc-nav">
+                <div class="fnc-nav__bgs">
+                    <div class="fnc-nav__bg m--navbg-green m--active-nav-bg"></div>
+                    <div class="fnc-nav__bg m--navbg-dark"></div>
+                    <div class="fnc-nav__bg m--navbg-red"></div>
+                    <div class="fnc-nav__bg m--navbg-blue"></div>
+                </div>
+                <div class="fnc-nav__controls" style="background-color:#ff8a00 !important;">
+                    <a href="{{ url('exclusive-jobs') }}#fresherscrolling" style="text-decoration:none">
+                        <button class="fnc-nav__control">
+                            Fresher
+                            <span class="fnc-nav__control-progress"></span>
+                        </button>
+                    </a>
+                    <a href="{{ url('female-jobs') }}#femalescrolling"style="text-decoration:none">
+                        <button class="fnc-nav__control">
+                            Female
+                            <span class="fnc-nav__control-progress"></span>
+                        </button>
+                    </a>
+                    <a href="{{ url('national-jobs') }}#nationalscrolling"style="text-decoration:none"> <button
+                            class="fnc-nav__control">
+                            National
+                            <span class="fnc-nav__control-progress"></span>
+                        </button>
+                    </a>
+                    <a href="{{ url('international-jobs') }}#internationalscrolling"style="text-decoration:none">
+                        <button class="fnc-nav__control">
+                            International
+                            <span class="fnc-nav__control-progress"></span>
+                        </button>
                     </a>
                 </div>
-            </div>
+            </nav>
         </div>
-    </header>
 
-</nav>
-<div class="demo-cont">
-    <!-- slider start -->
-    <div class="fnc-slider example-slider">
-        <div class="fnc-slider__slides">
-            <!-- slide start -->
-            <div class="fnc-slide m--blend-green m--active-slide">
-                <div class="fnc-slide__inner">
-                    <div class="fnc-slide__mask">
-                        <div class="fnc-slide__mask-inner"></div>
-                    </div>
-                    <div class="fnc-slide__content">
-                        <h2 class="fnc-slide__heading">
-                            <div class="fnc-slide__heading-line">
-                                <span>Fresher's Jobs</span>
-                            </div>
-                           
-                        </h2>
-                        <a href="{{ url('exclusive-jobs') }}#fresherscrolling" >
-                            <button type="button" class="fnc-slide__action-btn">
-                                Click me!
-                                <span data-text="Click me!"> Click me!</span>
-                            </button>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <!-- slide end -->
-            <!-- slide start -->
-            <div class="fnc-slide m--blend-dark">
-                <div class="fnc-slide__inner">
-                    <div class="fnc-slide__mask">
-                        <div class="fnc-slide__mask-inner"></div>
-                    </div>
-                    <div class="fnc-slide__content">
-                        <h2 class="fnc-slide__heading">
-                            <div class="fnc-slide__heading-line">
-                                <span>Female Jobs</span>
-                            </div>
-                            <!-- <div class="fnc-slide__heading-line">
-                                <span>Jobs</span>
-                            </div> -->
-                        </h2>
-                        <a href="{{ url('female-jobs') }}#femalescrolling">
-                            <button type="button" class="fnc-slide__action-btn">
-                                Click me!
-                                <span data-text="Click me!"> Click me!</span>
-                            </button>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <!-- slide end -->
-            <!-- slide start -->
-            <div class="fnc-slide m--blend-red">
-                <div class="fnc-slide__inner">
-                    <div class="fnc-slide__mask">
-                        <div class="fnc-slide__mask-inner"></div>
-                    </div>
-                    <div class="fnc-slide__content">
-                        <h2 class="fnc-slide__heading">
-                            <div class="fnc-slide__heading-line">
-                                <span>National Jobs</span>
-                            </div>
-                            <!-- <div class="fnc-slide__heading-line">
-                                <span>Jobs</span>
-                            </div> -->
-                        </h2>
-                        {{-- <a href=""> --}}
-                        <a href="{{ url('national-jobs') }}#nationalscrolling ">
-                            <button type="button" class="fnc-slide__action-btn">
-                                Click me!
-                                <span data-text="Click me!"> Click me!</span>
-                            </button>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <!-- slide end -->
-            <!-- slide start -->
-            <div class="fnc-slide m--blend-blue">
-                <div class="fnc-slide__inner">
-                    <div class="fnc-slide__mask">
-                        <div class="fnc-slide__mask-inner"></div>
-                    </div>
-                    <div class="fnc-slide__content">
-                        <h2 class="fnc-slide__heading">
-                            <div class="fnc-slide__heading-line">
-                                <span>International Jobs</span>
-                            </div>
-                            <!-- <div class="fnc-slide__heading-line">
-                                <span>Jobs</span>
-                            </div> -->
-                        </h2>
-                        <a href="{{ url('international-jobs') }}#internationalscrolling">
-                            <button type="button" class="fnc-slide__action-btn">
-                                Click me!
-                                <span data-text="Click me!"> Click me!</span>
-                            </button>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <!-- slide end -->
-        </div>
-        <nav class="fnc-nav">
-            <div class="fnc-nav__bgs">
-                <div class="fnc-nav__bg m--navbg-green m--active-nav-bg"></div>
-                <div class="fnc-nav__bg m--navbg-dark"></div>
-                <div class="fnc-nav__bg m--navbg-red"></div>
-                <div class="fnc-nav__bg m--navbg-blue"></div>
-            </div>
-            <div class="fnc-nav__controls" style="background-color:#ff8a00 !important;">
-                <a href="{{ url('exclusive-jobs') }}#fresherscrolling" style="text-decoration:none"><button class="fnc-nav__control">
-                    Fresher
-                    <span class="fnc-nav__control-progress"></span>
-                </button></a>
-                <a href="{{ url('female-jobs') }}#femalescrolling"style="text-decoration:none">  <button class="fnc-nav__control">
-                    Female
-                    <span class="fnc-nav__control-progress"></span>
-                </button>
-                <a href="{{ url('national-jobs') }}#nationalscrolling"style="text-decoration:none"> <button class="fnc-nav__control">
-                    National
-                    <span class="fnc-nav__control-progress"></span>
-                </button>
-                <a href="{{ url('international-jobs') }}#internationalscrolling"style="text-decoration:none"> <button class="fnc-nav__control">
-                    International
-                    <span class="fnc-nav__control-progress"></span>
-                </button>
-            </div>
-        </nav>
     </div>
-    
-</div>
-@yield('body')
- 
+    @yield('body')
 
-<script>
-  window.addEventListener(`scroll`, function() {
-      let nav = document.getElementById("top-nav")
-      if (window.scrollY > 5)
-          nav.classList.add("black-bg")
 
-      else
-          nav.classList.remove("black-bg");
-  })
-</script>
-<script>
-  window.addEventListener(`scroll`, function() {
-      let master = document.querySelector("#navbarNav")
-      if (window.scrollY > 5)
-          master.classList.add("active-header")
+    <script>
+        window.addEventListener(`scroll`, function() {
+            let nav = document.getElementById("top-nav")
+            if (window.scrollY > 5)
+                nav.classList.add("black-bg")
 
-      else
-          master.classList.remove("active-header");
-  })
-</script>
+            else
+                nav.classList.remove("black-bg");
+        })
+    </script>
+    <script>
+        window.addEventListener(`scroll`, function() {
+            let master = document.querySelector("#navbarNav")
+            if (window.scrollY > 5)
+                master.classList.add("active-header")
+
+            else
+                master.classList.remove("active-header");
+        })
+    </script>
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"

@@ -93,7 +93,7 @@ class BlogController extends Controller
       }  
 
     public function commentMaster(){
-        $comment = BlogsComment::orderBy('id', 'DESC')->paginate(10);
+        $comment = BlogsComment::orderBy('id', 'DESC')->paginate(15);
 
         return view('blog/commentMaster')->with(compact('comment'));
     }
